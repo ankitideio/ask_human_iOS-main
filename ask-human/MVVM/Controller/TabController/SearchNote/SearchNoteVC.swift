@@ -304,21 +304,21 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                         
                     }
                 }else{
-                    if isComing == true{
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                        vc.modalPresentationStyle = .overFullScreen
-                        vc.message = "You have insufficient funds for your search. First Add funds to continue."
-                        vc.isComing = true
-                        vc.callBack = {
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
-                            vc.isComing = true
-                            vc.callBack = {
-                                self.getEarning()
-                            }
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
-                        self.navigationController?.present(vc, animated: false)
-                    }else{
+//                    if isComing == true{
+//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                        vc.modalPresentationStyle = .overFullScreen
+//                        vc.message = "You have insufficient funds for your search. First Add funds to continue."
+//                        vc.isComing = true
+//                        vc.callBack = {
+//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
+//                            vc.isComing = true
+//                            vc.callBack = {
+//                                self.getEarning()
+//                            }
+//                            self.navigationController?.pushViewController(vc, animated: true)
+//                        }
+//                        self.navigationController?.present(vc, animated: false)
+//                    }else{
                         viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
                             if isComing == true{
                                 Store.notesId = data?.createNotes?.id ?? ""
@@ -336,7 +336,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                                 self.navigationController?.present(vc, animated:false)
                             }
                             
-                        }
+//                        }
 
                     }
                    
@@ -364,22 +364,22 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                         }
                     }
                 }else{
-                    if isComing == true{
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                        vc.modalPresentationStyle = .overFullScreen
-                        vc.message = "You have insufficient funds for your search. First Add funds to continue."
-                        vc.isComing = true
-                        vc.callBack = {
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
-                            vc.isComing = true
-                            
-                            vc.callBack = {
-                                self.getEarning()
-                            }
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
-                        self.navigationController?.present(vc, animated: false)
-                    }else{
+//                    if isComing == true{
+//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                        vc.modalPresentationStyle = .overFullScreen
+//                        vc.message = "You have insufficient funds for your search. First Add funds to continue."
+//                        vc.isComing = true
+//                        vc.callBack = {
+//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
+//                            vc.isComing = true
+//                            
+//                            vc.callBack = {
+//                                self.getEarning()
+//                            }
+//                            self.navigationController?.pushViewController(vc, animated: true)
+//                        }
+//                        self.navigationController?.present(vc, animated: false)
+//                    }else{
                         viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
                             if isComing == true{
                                 Store.notesId = data?.createNotes?.id ?? ""
@@ -397,7 +397,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                                 self.navigationController?.present(vc, animated:false)
                             }
                             
-                        }
+//                        }
                     }
                 }
             }
