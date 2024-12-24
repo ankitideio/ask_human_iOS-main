@@ -181,10 +181,14 @@ class OtpVC: UIViewController {
             
         }else{
             viewModel.phoneVerificationApi(otp: otp ?? 0, mobile: mobileNo ?? 0) { data in
-                
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-                    vc.isComing = 0
-                self.navigationController?.pushViewController(vc, animated:true)
+                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
+                Store.autoLogin = "true"
+                self.navigationController?.pushViewController(vc2, animated:true)
+
+
+//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+//                    vc.isComing = 0
+//                self.navigationController?.pushViewController(vc, animated:true)
         }
         
             

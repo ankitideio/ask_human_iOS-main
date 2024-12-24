@@ -360,6 +360,19 @@ extension UIButton {
 }
 
 extension UIView{
+    func setGradientBackground(colors: [UIColor], startPoint: CGPoint = CGPoint(x: 0.0, y: 0.0), endPoint: CGPoint = CGPoint(x: 1.0, y: 1.0)) {
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = self.bounds
+            gradientLayer.colors = colors.map { $0.cgColor }
+            gradientLayer.startPoint = startPoint
+            gradientLayer.endPoint = endPoint
+            gradientLayer.cornerRadius = self.layer.cornerRadius
+
+            // Remove previous gradient layers to avoid duplicates
+            self.layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
+            
+            self.layer.insertSublayer(gradientLayer, at: 0)
+        }
     func gradiantView(startColor: UIColor, endColor: UIColor) {
 
         let button: UIButton = UIButton(frame: self.bounds)

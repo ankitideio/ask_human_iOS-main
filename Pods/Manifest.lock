@@ -1,4 +1,5 @@
 PODS:
+  - AlignedCollectionViewFlowLayout (1.1.2)
   - ChartProgressBar (1.0.4)
   - Charts (4.1.0):
     - Charts/Core (= 4.1.0)
@@ -140,6 +141,7 @@ PODS:
   - TOCropViewController (2.7.4)
 
 DEPENDENCIES:
+  - AlignedCollectionViewFlowLayout
   - ChartProgressBar
   - Charts
   - CountryPickerView
@@ -165,6 +167,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AlignedCollectionViewFlowLayout
     - ChartProgressBar
     - Charts
     - CountryPickerView
@@ -199,6 +202,7 @@ SPEC REPOS:
     - TOCropViewController
 
 SPEC CHECKSUMS:
+  AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   ChartProgressBar: 1fe24fc286de1a3a8d02dcbdf6bc779c8e85865b
   Charts: ce0768268078eee0336f122c3c4ca248e4e204c5
   CountryPickerView: 6322ada32a80b0cd721b0267282a5c24f406f263
@@ -232,6 +236,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654
 
-PODFILE CHECKSUM: 6648802c219e50c6f04ff2581849b3ff43f0b517
+PODFILE CHECKSUM: ac6551e80d61495f0990a04dfbbdf64d46911e9a
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

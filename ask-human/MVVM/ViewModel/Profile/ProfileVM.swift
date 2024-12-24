@@ -7,16 +7,15 @@
 
 import Foundation
 import UIKit
-
 class ProfileVM{
     //MARK: - PROFILE API
-    
     func setProfileDetailApi(name:String,
                           about:String,
                           gender:Int,
                           ethnicity:String,
                           zodiac:String,
                           age:Int,
+                             dob:String,
                           smoke:String,
                           drink:String,
                           workout:String,
@@ -24,7 +23,8 @@ class ProfileVM{
                           price:String,
                           profileImage:UIImageView,
                              imageUpload:Bool,
-                   onSuccess:@escaping((ProfileDetailModel?)->())){
+                             hashtags: [[Hashtag]],
+                             onSuccess:@escaping((ProfileDetailModel?)->())){
         
         let formatter = DateFormatter()
         formatter.dateFormat = dateFormat.fullDate.rawValue
@@ -32,50 +32,114 @@ class ProfileVM{
         let imageInfo : ImageStructInfo
         
         imageInfo = ImageStructInfo.init(fileName: "Img\(date).jpeg", type: "jpeg", data: profileImage.image?.toData() ?? Data(), key: "profileImage")
-        var param = [String:Any]()
-        if imageUpload == true{
-            param = ["name": name,
-                    "about": about,
-                    "gender":gender,
-                    "ethnicity": ethnicity,
-                    "zodiac": zodiac,
-                    "age": age,
-                    "smoke": smoke,
-                    "drink": drink,
-                     "hoursPrice":price,
-                    "workout": workout,
-                    "bodytype": bodytype,
-                    "profileImage": imageInfo]
-        }else{
-            param = ["name": name,
-                    "about": about,
-                    "gender":gender,
-                    "ethnicity": ethnicity,
-                    "zodiac": zodiac,
-                    "age": age,
-                    "hoursPrice":price,
-                    "smoke": smoke,
-                    "drink": drink,
-                    "workout": workout,
-                    "bodytype": bodytype]
-        }
         
-            print(param)
-       
-        WebService.service(API.updateProfile,param: param,service: .put,is_raw_form: false){(model:ProfileDetailModel,jsonData,jsonSer) in
-           
-            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? "","age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? ""]
-           
-//            showSwiftyAlert("", model.message ?? "", true)
-            onSuccess(model)
+        var hashtagDict = [[String: Any]]()
+        for tagList in hashtags {
+            for tag in tagList {
+                let tagInfo: [String: Any] = [
+                    "id": tag.id ?? "",
+                    "title": tag.title ?? ""
+                ]
+                hashtagDict.append(tagInfo)
+            }
+        }
+        print("Hashtags dictionary: \(hashtagDict)")
+        
+        do {
+            
+            let jsonData = try JSONSerialization.data(withJSONObject: hashtagDict)
+            
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print(jsonString)
+                var param = [String:Any]()
+                if imageUpload == true{
+                    param = ["name": name,
+                             "about": about,
+                             "gender":gender,
+                             "ethnicity": ethnicity,
+                             "zodiac": zodiac,
+                             "age": age,
+                             "dob": dob,
+                             "smoke": smoke,
+                             "drink": drink,
+                             "hoursPrice":price,
+                             "workout": workout,
+                             "bodytype": bodytype,
+                             "profileImage": imageInfo,
+                             "hashtags": jsonString]
+                }else{
+                    param = ["name": name,
+                             "about": about,
+                             "gender":gender,
+                             "ethnicity": ethnicity,
+                             "zodiac": zodiac,
+                             "age": age,
+                             "dob": dob,
+                             "hoursPrice":price,
+                             "smoke": smoke,
+                             "drink": drink,
+                             "workout": workout,
+                             "bodytype": bodytype,
+                             "hashtags": jsonString]
+                }
+                
+                print(param)
+                
+                WebService.service(API.updateProfile,param: param,service: .put,is_raw_form: false){(model:ProfileDetailModel,jsonData,jsonSer) in
+                    Store.Hashtags = model
+                    Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? "","age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? ""]
+                    
+                    //            showSwiftyAlert("", model.message ?? "", true)
+                    onSuccess(model)
+                }
+            }else {
+                print("Failed to convert JSON to string.")
+            }
+        } catch {
+            print("Error: \(error)")
         }
     }
-    
+    func sendHashtagRequest(id: String, onSuccess: @escaping (VerificationHashtagData?) -> Void) {
+        // Parameters for the API request
+        let param: [String: Any] = ["id": id]
+        
+        do {
+            // Convert parameters to JSON
+            let jsonData = try JSONSerialization.data(withJSONObject: param, options: [])
+            
+            // Check JSON conversion
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print("Request Body: \(jsonString)")
+            } else {
+                print("Failed to convert JSON to string.")
+                return
+            }
+            
+            // Call the web service
+            WebService.service(API.sendRequestForHashtag, param: param, service: .post, is_raw_form: false) { (model: VerifyHashtagModel, _, _) in
+                onSuccess(model.data)
+            }
+        } catch {
+            // Print error if JSONSerialization fails
+            print("Error during JSON serialization: \(error.localizedDescription)")
+        }
+    }
+
+
+    func getSearchHashtagApi(searchBy:String,onSuccess:@escaping(([GetSearchHashtagData])->())){
+        WebService.service(API.getHashtags,urlAppendId: searchBy,service: .get,showHud: false,is_raw_form: false){(model:SearchHashtagModel,jsonData,jsonSer) in
+                
+            onSuccess(model.data ?? [])
+                
+        }
+    }
     
     func getProfileApi(onSuccess:@escaping((ProfileDetailModel?)->())){
         
         WebService.service(API.getProfile,service: .get,showHud: false,is_raw_form: true){(model:ProfileDetailModel,jsonData,jsonSer) in
-            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? ""]
+            Store.Hashtags = model
+            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? ""]
+            
             WebSocketManager.shared.initialize(userId: model.data?.user?.id ?? "")
             onSuccess(model)
             

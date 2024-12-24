@@ -28,11 +28,14 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var txtFldPassword: UITextField!
     @IBOutlet weak var txtFldPhone: UITextField!
     @IBOutlet weak var txtFldEmail: UITextField!
+    @IBOutlet weak var txtFldDob: UITextField!
+    @IBOutlet weak var txtFldName: UITextField!
     
     //MARK: - VARIABLES
     
     var viewModel = AuthVM()
     var signupDetail: SignUpData?
+    var selectedAge:Int?
     let countriesPhoneNumbers: [(country: String, digits: Int)] = [
         ("Afghanistan", 9),
         ("Albania", 8),
@@ -233,7 +236,6 @@ class SignUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewCountryPicker.delegate = self
-       
         viewCountryPicker.showCountryCodeInView = false
         viewCountryPicker.flagImageView.isHidden = true
         GoogleSignIn.shared.delegate = self
@@ -255,6 +257,7 @@ class SignUpVC: UIViewController {
             }
         }
     func uiSet(){
+        setupDatePicker(for: txtFldDob, mode: .date, selector: #selector(dateOfBirth))
         adjustCountryPickerWidth()
         if traitCollection.userInterfaceStyle == .dark {
             viewCountryPicker.textColor = .white
@@ -290,11 +293,15 @@ class SignUpVC: UIViewController {
                    let attributes: [NSAttributedString.Key: Any] = [
                        .foregroundColor: placeholderColor
                    ]
+            txtFldName.attributedPlaceholder = NSAttributedString(string: "Enter your full name", attributes: attributes)
                    txtFldEmail.attributedPlaceholder = NSAttributedString(string: "Enter your Email here", attributes: attributes)
             txtFldPhone.attributedPlaceholder = NSAttributedString(string: "Enter your Phone number", attributes: attributes)
             txtFldPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
             txtFldConfirmPassword.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: attributes)
-            
+            txtFldDob.attributedPlaceholder = NSAttributedString(string: "MM-DD-YY", attributes: attributes)
+
+            txtFldName.textColor = .white
+            txtFldDob.textColor = .white
             txtFldEmail.textColor = .white
             txtFldPhone.textColor = .white
             txtFldPassword.textColor = .white
@@ -334,17 +341,42 @@ class SignUpVC: UIViewController {
                     let attributes: [NSAttributedString.Key: Any] = [
                         .foregroundColor: placeholderColor
                     ]
+                    txtFldName.attributedPlaceholder = NSAttributedString(string: "Enter your full name", attributes: attributes)
+
+                    txtFldDob.attributedPlaceholder = NSAttributedString(string: "MM-DD-YY", attributes: attributes)
+
                     txtFldEmail.attributedPlaceholder = NSAttributedString(string: "Enter your Email here", attributes: attributes)
              txtFldPhone.attributedPlaceholder = NSAttributedString(string: "Enter your Phone number", attributes: attributes)
              txtFldPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
              txtFldConfirmPassword.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: attributes)
-             
+                    
+                    txtFldName.textColor = .black
+                    txtFldDob.textColor = .black
              txtFldEmail.textColor = .black
              txtFldPhone.textColor = .black
              txtFldPassword.textColor = .black
              txtFldConfirmPassword.textColor = .black
                 }
     }
+    
+    @objc func dateChanged(_ sender: UIDatePicker) {
+        // Get the selected date
+        let selectedDate = sender.date
+        
+        // Calculate the age from the selected date
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year], from: selectedDate, to: Date())
+        let selectedAge = components.year ?? 0  // Store the calculated age
+        
+        // Format the date and display it in the text field
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM, yyyy"
+        txtFldDob.text = dateFormatter.string(from: selectedDate)
+        
+        // Optionally, you can use the selectedAge value, for example, display it in a label
+        print("Selected Age: \(selectedAge)")
+    }
+
     func adjustCountryPickerWidth() {
         if let digits = digits(for: viewCountryPicker.selectedCountry.name) {
             txtFldPhone.maxLength = digits
@@ -363,7 +395,7 @@ class SignUpVC: UIViewController {
         }
     }
 
-    //MARK: - ACTIONS\
+    //MARK: - ACTIONS
     
     @IBAction func actionCountryPicker(_ sender: UIButton) {
         viewCountryPicker.showCountriesList(from: self)
@@ -405,7 +437,11 @@ class SignUpVC: UIViewController {
     
     @IBAction func actionSignUp(_ sender: GradientButton) {
         
-        if txtFldEmail.text == ""{
+        if txtFldName.text == ""{
+            
+            showSwiftyAlert("", "Please enter your full name.", false)
+            
+        }else if txtFldEmail.text == ""{
             
             showSwiftyAlert("", "Please enter your email address.", false)
             
@@ -420,6 +456,14 @@ class SignUpVC: UIViewController {
         }else if txtFldPhone.text?.count != txtFldPhone.maxLength{
             
             showSwiftyAlert("", "Please enter valid phone number", false)
+            
+        }else if txtFldDob.text == ""{
+            
+            showSwiftyAlert("", "Please enter your date of birth.", false)
+            
+        }else if selectedAge ?? 0 < 11{
+            
+            showSwiftyAlert("", "You must be at least 11 years old to proceed.", false)
             
         }else if txtFldPassword.text == ""{
             
@@ -442,12 +486,13 @@ class SignUpVC: UIViewController {
         }else{
             
             viewModel.signUpApi(email: txtFldEmail.text ?? "",
+                                name: txtFldName.text ?? "", age: "\(selectedAge ?? 0)",
                                 mobile: txtFldPhone.text ?? "",
                                 password: txtFldPassword.text ?? "",
-                                confirmPassword: txtFldConfirmPassword.text ?? "", countryCode: viewCountryPicker.selectedCountry.phoneCode,
+                                confirmPassword: txtFldConfirmPassword.text ?? "",
+                                countryCode: viewCountryPicker.selectedCountry.phoneCode,
+                                dob: txtFldDob.text ?? "",
                                 fcmToken: Store.deviceToken ?? "") { data in
-
-//                    showSwiftyAlert("", "A verification email has been sent. Please check your email and click on the verification link to complete the signup process.", true)
                
                     Store.isSocialLogin = false
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "OtpVC") as! OtpVC
@@ -511,6 +556,8 @@ class SignUpVC: UIViewController {
 
        }
 }
+
+//MARK: - UITextFieldDelegate
 extension SignUpVC:UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == txtFldPhone{
@@ -571,23 +618,26 @@ extension SignUpVC: ASAuthorizationControllerDelegate {
                 self.viewModel.socialaAuthApi(socialId: appleId, socialType: "apple", email: appleUserEmail ?? "", fcmToken: Store.deviceToken ?? "") { data in
                     Store.authKey = data?.token ?? ""
                     Store.isSocialLogin = true
-                        if data?.user?.profileComplete == 0{
-                            
-                            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-                            vc2.isComing = 0
-                            vc2.userName = (appleUserFirstName ?? "") + (appleUserLastName ?? "")
-                            self.navigationController?.pushViewController(vc2, animated:true)
-                            
-                        }else{
-                            
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+                        //if data?.user?.profileComplete == 0{
+                            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
                             Store.autoLogin = "true"
-                            vc.isComing = false
-                            Store.selectTabIndex = 1
-                            self.navigationController?.pushViewController(vc, animated:true)
+                            self.navigationController?.pushViewController(vc2, animated:true)
+
+//                            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+//                            vc2.isComing = 0
+//                            vc2.userName = (appleUserFirstName ?? "") + (appleUserLastName ?? "")
+//                            self.navigationController?.pushViewController(vc2, animated:true)
                             
-                        
-                    }
+//                        }else{
+//
+//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+//                            Store.autoLogin = "true"
+//                            vc.isComing = false
+//                            Store.selectTabIndex = 1
+//                            self.navigationController?.pushViewController(vc, animated:true)
+//
+//
+//                    }
 
                 }
             }
@@ -627,24 +677,27 @@ extension SignUpVC: GoogleSignInDelegate {
                     self.viewModel.socialaAuthApi(socialId: user?.id ?? "", socialType: "google", email: user?.email ?? "", fcmToken: Store.deviceToken ?? "") { data in
                         Store.authKey = data?.token ?? ""
                         Store.isSocialLogin = true
-                            if data?.user?.profileComplete == 0{
-                                
-                                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-                                vc2.isComing = 0
-                                vc2.profileImg = user?.picture?.absoluteString ?? ""
-                                vc2.userName = user?.name ?? ""
-                                self.navigationController?.pushViewController(vc2, animated:true)
-                                
-                            }else{
-                                
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+                          //  if data?.user?.profileComplete == 0{
+                                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
                                 Store.autoLogin = "true"
-                                vc.isComing = false
-                                Store.selectTabIndex = 1
-                                self.navigationController?.pushViewController(vc, animated:true)
+                                self.navigationController?.pushViewController(vc2, animated:true)
+
+//                                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+//                                vc2.isComing = 0
+//                                vc2.profileImg = user?.picture?.absoluteString ?? ""
+//                                vc2.userName = user?.name ?? ""
+//                                self.navigationController?.pushViewController(vc2, animated:true)
                                 
-                            
-                        }
+//                            }else{
+//                                
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+//                                Store.autoLogin = "true"
+//                                vc.isComing = false
+//                                Store.selectTabIndex = 1
+//                                self.navigationController?.pushViewController(vc, animated:true)
+//                                
+//                            
+//                        }
 
                         
                     }
@@ -688,4 +741,64 @@ extension SignUpVC:CountryPickerViewDelegate{
         }
     }
     
+}
+
+//MARK: - setupDatePicker
+extension SignUpVC {
+    func setupDatePicker(for textField: UITextField, mode: UIDatePicker.Mode, selector: Selector) {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = mode
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        textField.inputView = datePicker
+        
+        // Allow only past dates
+        datePicker.maximumDate = Date()  // Current date is the maximum
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: selector)
+        toolbar.setItems([flexibleSpace, doneButton], animated: true)
+        textField.inputAccessoryView = toolbar
+        
+        // Add target for value change
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        datePicker.tag = textField.tag
+    }
+
+    @objc func dateOfBirth() {
+        if let datePicker = txtFldDob.inputView as? UIDatePicker {
+            let selectedDate = datePicker.date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM, yyyy"
+            txtFldDob.text = dateFormatter.string(from: selectedDate)
+            
+            // Calculate age based on selected date of birth
+            calculateAge(from: selectedDate)
+        }
+        txtFldDob.resignFirstResponder()
+    }
+
+    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+        let selectedDate = sender.date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM, yyyy"
+        txtFldDob.text = dateFormatter.string(from: selectedDate)
+        
+        // Calculate age based on selected date of birth
+        calculateAge(from: selectedDate)
+    }
+    
+    func calculateAge(from birthDate: Date) {
+        let calendar = Calendar.current
+        let ageComponents = calendar.dateComponents([.year], from: birthDate, to: Date())
+        
+        if let age = ageComponents.year {
+            print("Age: \(age) years")
+            selectedAge = age
+        }
+    }
 }

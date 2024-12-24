@@ -34,13 +34,13 @@ struct User: Codable {
     let isApproved, isEmailVerify, isMobileVerify: Bool?
     let socialID, socialType: String?
     let isBlocked, isDeleted: Bool?
-    let createdAt, updatedAt: String?
+    let createdAt, updatedAt,dob: String?
     let v, otp,age,hoursPrice: Int?
     let token: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case role, name, email, profileImage, countryCode, mobile, password, about,profileComplete,age,gender,ethnicity,zodiac,workout,smoke,drink,bodytype
+        case role, name, email, profileImage, countryCode, mobile, password, about,profileComplete,age,gender,ethnicity,zodiac,workout,smoke,drink,bodytype,dob
         case deviceID = "deviceId"
         case fcmToken, isApproved, isEmailVerify, isMobileVerify
         case socialID = "socialId"

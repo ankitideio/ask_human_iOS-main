@@ -155,21 +155,25 @@ class LoginVC: UIViewController {
                         self.navigationController?.pushViewController(vc, animated:true)
                         
                     }else{
-                        if data?.user?.profileComplete == 0{
+                        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
+                        Store.autoLogin = "true"
+                        self.navigationController?.pushViewController(vc2, animated:true)
+
+//                        if data?.user?.profileComplete == 0{
+//                            
+//                            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+//                            vc2.isComing = 0
+//                            self.navigationController?.pushViewController(vc2, animated:true)
+//                            
+//                        }else{
                             
-                            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-                            vc2.isComing = 0
-                            self.navigationController?.pushViewController(vc2, animated:true)
+//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+//                            Store.autoLogin = "true"
+//                            vc.isComing = false
+//                            Store.selectTabIndex = 1
+//                            self.navigationController?.pushViewController(vc, animated:true)
                             
-                        }else{
-                            
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
-                            Store.autoLogin = "true"
-                            vc.isComing = false
-                            Store.selectTabIndex = 1
-                            self.navigationController?.pushViewController(vc, animated:true)
-                            
-                        }
+                        //}
                     }
                 }
             }
@@ -271,23 +275,28 @@ extension LoginVC: ASAuthorizationControllerDelegate {
                 self.viewModel.socialaAuthApi(socialId: appleId, socialType: "apple", email: appleUserEmail ?? "", fcmToken: Store.deviceToken ?? "") { data in
                     Store.authKey = data?.token ?? ""
                     Store.isSocialLogin = true
-                    if data?.user?.profileComplete == 0{
+                    
+                    let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
+                    Store.autoLogin = "true"
+                    self.navigationController?.pushViewController(vc2, animated:true)
+
+//                    if data?.user?.profileComplete == 0{
+//                        
+//                        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+//                        vc2.isComing = 0
+//                        
+//                        vc2.userName = (appleUserFirstName ?? "") + (appleUserLastName ?? "")
+//                        self.navigationController?.pushViewController(vc2, animated:true)
+//                        
+//                    }else{
                         
-                        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-                        vc2.isComing = 0
+//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+//                        Store.autoLogin = "true"
+//                        vc.isComing = false
+//                        Store.selectTabIndex = 1
+//                        self.navigationController?.pushViewController(vc, animated:true)
                         
-                        vc2.userName = (appleUserFirstName ?? "") + (appleUserLastName ?? "")
-                        self.navigationController?.pushViewController(vc2, animated:true)
-                        
-                    }else{
-                        
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
-                        Store.autoLogin = "true"
-                        vc.isComing = false
-                        Store.selectTabIndex = 1
-                        self.navigationController?.pushViewController(vc, animated:true)
-                        
-                    }
+                  //  }
                 }
             }
             
@@ -324,23 +333,27 @@ extension LoginVC: GoogleSignInDelegate {
                     self.viewModel.socialaAuthApi(socialId: user?.id ?? "", socialType: "google", email: user?.email ?? "", fcmToken: Store.deviceToken ?? "") { data in
                         Store.isSocialLogin = true
                         Store.authKey = data?.token ?? ""
-                            if data?.user?.profileComplete == 0{
+                        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
+                        Store.autoLogin = "true"
+                        self.navigationController?.pushViewController(vc2, animated:true)
+
+//                            if data?.user?.profileComplete == 0{
+//                                
+//                                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+//                                vc2.isComing = 0
+//                                vc2.profileImg = user?.picture?.absoluteString ?? ""
+//                                vc2.userName = user?.name ?? ""
+//                                self.navigationController?.pushViewController(vc2, animated:true)
+//                                
+//                            }else{
+
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+//                                Store.autoLogin = "true"
+//                                vc.isComing = false
+//                                Store.selectTabIndex = 1
+//                                self.navigationController?.pushViewController(vc, animated:true)
                                 
-                                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-                                vc2.isComing = 0
-                                vc2.profileImg = user?.picture?.absoluteString ?? ""
-                                vc2.userName = user?.name ?? ""
-                                self.navigationController?.pushViewController(vc2, animated:true)
-                                
-                            }else{
-                                
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
-                                Store.autoLogin = "true"
-                                vc.isComing = false
-                                Store.selectTabIndex = 1
-                                self.navigationController?.pushViewController(vc, animated:true)
-                                
-                            }
+                         //   }
                         
 
                     }

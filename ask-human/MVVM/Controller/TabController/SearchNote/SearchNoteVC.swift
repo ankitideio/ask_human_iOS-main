@@ -40,7 +40,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     var currentWeekStartDate: Date = Date()
     var calendar = Calendar.current
     var page:Int?
-
+    var wordsAfterHash: [String] = []
     //MARK: - LIFE CYCLE METHOD
     
     override func viewDidLoad() {
@@ -62,6 +62,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
         }else{
             btnBack.isHidden = true
         }
+        
            }
            @objc func dismissKeyboardWhileClick() {
                   view.endEditing(true)
@@ -260,14 +261,23 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     }
     
     @IBAction func actionSearch(_ sender: GradientButton) {
-        
-        if Store.isComingDraft == true{
-            updateNoteApi(status: "1", isComing: true)
-            
-        }else{
-            
-            addNoteApi(status: "1", isComing: true)
-            
+        let wordsWithHash = getWordsAfterHash(from: txtVwNote.text)
+
+        if !wordsWithHash.isEmpty {
+            print("Words after # are: \(wordsWithHash)")
+            Store.hashtagForSearchUser = wordsWithHash
+        } else {
+            print("No words found after #")
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1){
+            if Store.isComingDraft == true{
+                self.updateNoteApi(status: "1", isComing: true)
+                
+            }else{
+                
+                self.addNoteApi(status: "1", isComing: true)
+                
+            }
         }
     }
     
@@ -284,7 +294,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                 var arrUpdateImage = [Any]()
                 arrUpdateImage = arrImages
                 print(arrUpdateImage)
-                if Store.totalEarning ?? 0 > 0 {
+//                if Store.totalEarning ?? 0 > 0 {
                     viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
                         if isComing == true{
                             Store.notesId = data?.createNotes?.id ?? ""
@@ -303,7 +313,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                         }
                         
                     }
-                }else{
+//                }else{
 //                    if isComing == true{
 //                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
 //                        vc.modalPresentationStyle = .overFullScreen
@@ -319,33 +329,33 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
 //                        }
 //                        self.navigationController?.present(vc, animated: false)
 //                    }else{
-                        viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
-                            if isComing == true{
-                                Store.notesId = data?.createNotes?.id ?? ""
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
-                                Store.isRefer = false
-                                self.navigationController?.pushViewController(vc, animated: true)
-                            }else{
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                                vc.message = message ?? ""
-                                vc.isComing = false
-                                vc.modalPresentationStyle = .overFullScreen
-                                vc.callBack = {
-                                    SceneDelegate().tabBarHomeVCRoot()
-                                }
-                                self.navigationController?.present(vc, animated:false)
-                            }
-                            
+//                        viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
+//                            if isComing == true{
+//                                Store.notesId = data?.createNotes?.id ?? ""
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+//                                Store.isRefer = false
+//                                self.navigationController?.pushViewController(vc, animated: true)
+//                            }else{
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                                vc.message = message ?? ""
+//                                vc.isComing = false
+//                                vc.modalPresentationStyle = .overFullScreen
+//                                vc.callBack = {
+//                                    SceneDelegate().tabBarHomeVCRoot()
+//                                }
+//                                self.navigationController?.present(vc, animated:false)
+//                            }
+//
 //                        }
-
-                    }
-                   
-                }
+//
+//                    }
+//
+//                }
             }
             }else{
                 var arrUpdateImage = [Any]()
                 arrUpdateImage = arrImages
-                if Store.totalEarning ?? 0 > 0 {
+               // if Store.totalEarning ?? 0 > 0 {
                     viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
                         if isComing == true{
                             Store.notesId = data?.createNotes?.id ?? ""
@@ -363,7 +373,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                             self.navigationController?.present(vc, animated:false)
                         }
                     }
-                }else{
+//                }else{
 //                    if isComing == true{
 //                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
 //                        vc.modalPresentationStyle = .overFullScreen
@@ -372,7 +382,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
 //                        vc.callBack = {
 //                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
 //                            vc.isComing = true
-//                            
+//
 //                            vc.callBack = {
 //                                self.getEarning()
 //                            }
@@ -380,26 +390,26 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
 //                        }
 //                        self.navigationController?.present(vc, animated: false)
 //                    }else{
-                        viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
-                            if isComing == true{
-                                Store.notesId = data?.createNotes?.id ?? ""
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
-                                Store.isRefer = false
-                                self.navigationController?.pushViewController(vc, animated: true)
-                            }else{
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                                vc.message = message ?? ""
-                                vc.isComing = false
-                                vc.modalPresentationStyle = .overFullScreen
-                                vc.callBack = {
-                                    SceneDelegate().tabBarHomeVCRoot()
-                                }
-                                self.navigationController?.present(vc, animated:false)
-                            }
-                            
+//                        viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
+//                            if isComing == true{
+//                                Store.notesId = data?.createNotes?.id ?? ""
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+//                                Store.isRefer = false
+//                                self.navigationController?.pushViewController(vc, animated: true)
+//                            }else{
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                                vc.message = message ?? ""
+//                                vc.isComing = false
+//                                vc.modalPresentationStyle = .overFullScreen
+//                                vc.callBack = {
+//                                    SceneDelegate().tabBarHomeVCRoot()
+//                                }
+//                                self.navigationController?.present(vc, animated:false)
+//                            }
+//
 //                        }
-                    }
-                }
+//                    }
+//                }
             }
     }
     func updateNoteApi(status:String,isComing:Bool){
@@ -548,9 +558,42 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
 }
 //MARK: -UITextViewDelegate
 extension SearchNoteVC:UITextViewDelegate{
+    func textViewDidChange(_ textView: UITextView) {
+        applyTextAttributes(to: textView)
+       }
+       
+    func applyTextAttributes(to textView: UITextView) {
+        let text = textView.text ?? ""
+        let attributedString = NSMutableAttributedString(string: text)
+        
+        // Split the text by lines
+        let lines = text.split(separator: "\n", omittingEmptySubsequences: false)
+        var offset = 0
+        
+        for line in lines {
+            let words = line.split(separator: " ")
+            for word in words {
+                let wordString = String(word)
+                let range = NSRange(location: offset + (line as NSString).range(of: wordString).location, length: wordString.count)
+                
+                if word.hasPrefix("#") && word.count > 1 {
+                    let boldFont = UIFont.boldSystemFont(ofSize: 14)
+                    attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: range)
+                    attributedString.addAttribute(.font, value: boldFont, range: range)
+                }
+            }
+            // Add the length of the current line plus the newline character to the offset
+            offset += line.count + 1
+        }
+        
+        textView.attributedText = attributedString
+    }
+
+   
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (txtVwNote.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.count
+        
         return numberOfChars <= 200
     }
 }
@@ -645,4 +688,19 @@ extension SearchNoteVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
 }
 
+//MARK: - getWordAfterHash
+extension SearchNoteVC{
+    func getWordsAfterHash(from sentence: String) -> [String] {
+        // Split the sentence by spaces
+        let components = sentence.split(separator: " ")
+        
+        // Filter components that start with '#' and have letters after it
+        let wordsAfterHash = components.filter {
+            $0.hasPrefix("#") && $0.count > 1
+        }
+        .map { String($0.dropFirst()) } // Remove the '#' and keep the rest
+        
+        return wordsAfterHash
+    }
 
+}

@@ -9,20 +9,25 @@ import Foundation
 class AuthVM{
     
     //MARK: - signUpApi
-    
     func signUpApi(email:String,
+                   name:String,
+                   age:String,
                    mobile:String,
                    password:String,
                    confirmPassword:String,
                    countryCode:String,
+                   dob:String,
                    fcmToken:String,
                    onSuccess:@escaping((SignUpModel?)->())){
         
         let param: parameters = ["email": email,
+                                 "name": name,
+                                 "age": age,
                                  "mobile": mobile,
                                  "password":password,
                                  "confirmPassword": confirmPassword,
                                  "countryCode": countryCode,
+                                 "dob": dob,
                                  "fcmToken": fcmToken]
         
             print(param)
@@ -34,6 +39,30 @@ class AuthVM{
             onSuccess(model)
         }
     }
+//    func signUpApi(email:String,
+//                   mobile:String,
+//                   password:String,
+//                   confirmPassword:String,
+//                   countryCode:String,
+//                   fcmToken:String,
+//                   onSuccess:@escaping((SignUpModel?)->())){
+//        
+//        let param: parameters = ["email": email,
+//                                 "mobile": mobile,
+//                                 "password":password,
+//                                 "confirmPassword": confirmPassword,
+//                                 "countryCode": countryCode,
+//                                 "fcmToken": fcmToken]
+//        
+//            print(param)
+//        
+//        WebService.service(API.signUp,param: param,service: .post,is_raw_form: true){(model:SignUpModel,jsonData,jsonSer) in
+//            
+//            Store.authKey = model.data?.token ?? ""
+//           
+//            onSuccess(model)
+//        }
+//    }
     
     //MARK: - logInApi
     
@@ -51,7 +80,7 @@ class AuthVM{
         WebService.service(API.logIn,param: param,service: .post,is_raw_form: true){(model:LoginModel,jsonData,jsonSer) in
             Store.authKey = model.data?.user?.token ?? ""
             WebSocketManager.shared.initialize(userId: model.data?.user?.id ?? "")
-            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","userId":model.data?.user?.id ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0]
+            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","userId":model.data?.user?.id ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"dob":model.data?.user?.dob ?? ""]
            
             onSuccess(model.data)
         }
@@ -103,7 +132,7 @@ class AuthVM{
         
         WebService.service(API.loginWithGoogle,param: param,service: .post,is_raw_form: true){(model:LoginModel,jsonData,jsonSer) in
      
-            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","userId":model.data?.user?.id ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0]
+            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","userId":model.data?.user?.id ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"dob":model.data?.user?.dob ?? ""]
             WebSocketManager.shared.initialize(userId: model.data?.user?.id ?? "")
             onSuccess(model.data)
         }

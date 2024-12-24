@@ -26,11 +26,11 @@ struct UserDetail: Codable {
     let name: String?
     let email: String?
     let profileImage, countryCode: String?
-    let mobile: Int?
+    let mobile,age: Int?
     let password: String?
     let about: String?
     let gender: Int?
-    let zodiac, age, smoke, drink: String?
+    let zodiac, smoke, drink: String?
     let workout, bodytype, deviceID: String?
     let fcmToken: [String]?
     let isApproved, isEmailVerify, isMobileVerify: Bool?

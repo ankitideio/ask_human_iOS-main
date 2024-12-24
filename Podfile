@@ -31,5 +31,5 @@ target 'ask-human' do
   pod 'CountryPickerView'
   pod 'FLAnimatedImage'
   pod 'SwiftGifOrigin'
-  
+  pod "AlignedCollectionViewFlowLayout"
 end

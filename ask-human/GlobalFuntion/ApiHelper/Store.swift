@@ -9,6 +9,29 @@ import Foundation
 import UIKit
 
 class Store {
+    class var hashtagForSearchUser: [String]?{
+        set{
+            Store.saveValue(newValue, .hashtagForSearchUser)
+        }get{
+            return Store.getValue(.hashtagForSearchUser) as? [String]
+        }
+    }
+    class var Hashtags:ProfileDetailModel? {
+        set{
+            Store.saveUserDetails(newValue, .Hashtags)
+        }
+        get{
+            return Store.getUserDetails(.Hashtags)
+        }
+        }
+//    class var Hashtags:ProfileDetailModel? {
+//        set{
+//            Store.saveUserDetails(newValue, .userDetail)
+//        }
+//        get{
+//            return Store.getUserDetails(.userDetail)
+//        }
+//        }
     class var DarkMode: Int?{
         set{
             Store.saveValue(newValue, .DarkMode)

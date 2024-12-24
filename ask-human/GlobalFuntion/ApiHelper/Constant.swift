@@ -98,6 +98,9 @@ enum DefaultKeys: String{
     case addUser
     case openSiri
     case openUrl
+    case Hashtags
+    case hashtagForSearchUser
+    
 }
 
 
@@ -171,6 +174,8 @@ enum API: String
     case bankList = "user/bank"
     case deleteBank = "user/bank/delete"
     case defaultBank = "user/bank/mark-default"
+    case getHashtags = "user/hashtags/getHashtags"
+    case sendRequestForHashtag = "user/hashtags/requestVerification"
 }
 enum dateFormat: String {
     case fullDate = "MM_dd_yy_HH:mm:ss.SS"

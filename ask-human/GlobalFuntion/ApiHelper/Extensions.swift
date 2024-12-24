@@ -24,23 +24,27 @@ extension UITextField {
             }
         }
     }
-    func setInputViewDatePicker(target: Any, selector: Selector, for: UIControl.Event ) {
-           let screenWidth = UIScreen.main.bounds.width
-           let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))//1
-           datePicker.datePickerMode = .date //2
-           datePicker.minimumDate = Date()
-           if #available(iOS 14, *) {
-             datePicker.preferredDatePickerStyle = .wheels
-             datePicker.sizeToFit()
-           }
-           self.inputView = datePicker
-    
-           let toolBar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: screenWidth, height: 44.0)) //4
+    func setInputViewDatePicker(target: Any, selector: Selector, for event: UIControl.Event) {
+        let screenWidth = UIScreen.main.bounds.width
+        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 216))
+        datePicker.datePickerMode = .date
+        datePicker.minimumDate = nil  // No minimum date
+        datePicker.maximumDate = Date() // Only allow past dates
 
-           self.inputAccessoryView = toolBar
-       }
-       
-     
+        if #available(iOS 14, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.sizeToFit()
+        }
+
+        self.inputView = datePicker
+        
+        // Create the toolbar with a Done button
+        let toolBar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: screenWidth, height: 44.0))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: target, action: selector)
+        toolBar.setItems([doneButton], animated: false)
+        self.inputAccessoryView = toolBar
+    }
+
 }
 
 //MARK: EXTENSION UIVIEW - CONTROLLER
