@@ -35,6 +35,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+    <key>NSCameraUsageDescription</key>
+        <string>We need access to your camera for document scanning.</string>
+        <key>NFCReaderUsageDescription</key>
+        <string>We need access to NFC for reading ePassport chips.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

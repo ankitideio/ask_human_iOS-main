@@ -100,7 +100,6 @@ enum DefaultKeys: String{
     case openUrl
     case Hashtags
     case hashtagForSearchUser
-    
 }
 
 

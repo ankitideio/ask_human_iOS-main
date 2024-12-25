@@ -155,9 +155,11 @@ class LoginVC: UIViewController {
                         self.navigationController?.pushViewController(vc, animated:true)
                         
                     }else{
-                        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
                         Store.autoLogin = "true"
-                        self.navigationController?.pushViewController(vc2, animated:true)
+                        vc.isComing = false
+                        Store.selectTabIndex = 1
+                        self.navigationController?.pushViewController(vc, animated:true)
 
 //                        if data?.user?.profileComplete == 0{
 //                            

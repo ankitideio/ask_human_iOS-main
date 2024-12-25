@@ -10,6 +10,7 @@ import UIKit
 class ProfilePopUpsVC: UIViewController {
 
     @IBOutlet weak var tblVwList: UITableView!
+    
     var arrTitle = [String]()
     var callBack:((_ indexx:Int,_ title:String,_ selectIndex:String)->())?
     var isSelect = 1
@@ -18,6 +19,9 @@ class ProfilePopUpsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        uiSet()
+    }
+    func uiSet(){
         tblVwList.separatorStyle = .none
         
          if isSelect == 1{
@@ -82,6 +86,12 @@ class ProfilePopUpsVC: UIViewController {
            arrTitle.append("Ongoing")
            arrTitle.append("Completed")
            
+       }else if isSelect == 13{
+           //mycontracts
+           arrTitle.append("Passport")
+           arrTitle.append("Driving License")
+           arrTitle.append("Country ID")
+           
        }else{
             arrTitle.append("Slim")
             arrTitle.append("Fit")
@@ -89,11 +99,7 @@ class ProfilePopUpsVC: UIViewController {
             arrTitle.append("Average")
             arrTitle.append("Curvy")
         }
-       
-       
-    }
-    func uiSet(){
-        
+
     }
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
@@ -164,3 +170,4 @@ extension ProfilePopUpsVC: UITableViewDelegate,UITableViewDataSource{
         
     }
 }
+

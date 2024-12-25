@@ -14,6 +14,7 @@ struct ProfileDetailModel: Codable {
 // MARK: - DataClass
 struct ProfileDetailData: Codable {
     let user: Userr?
+    let completionPercentage:Int?
 }
 
 // MARK: - User

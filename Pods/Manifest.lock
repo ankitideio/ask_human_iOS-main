@@ -6,6 +6,9 @@ PODS:
   - Charts/Core (4.1.0):
     - SwiftAlgorithms (~> 1.0)
   - CountryPickerView (3.3.0)
+  - DocumentReader (7.5.4221):
+    - RegulaCommon (= 7.5.935)
+  - DocumentReaderFullRFID (7.5.11009)
   - Firebase (11.1.0):
     - Firebase/Core (= 11.1.0)
   - Firebase/Analytics (11.1.0):
@@ -116,6 +119,7 @@ PODS:
     - GoogleUtilities/Privacy
   - IQKeyboardManagerSwift (7.1.1)
   - Kingfisher (7.12.0)
+  - MBCircularProgressBar (0.3.5)
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -128,6 +132,7 @@ PODS:
   - PromisesObjC (2.4.0)
   - RangeSeekSlider (1.8.0)
   - RangeUISlider (4.0.1)
+  - RegulaCommon (7.5.935)
   - Socket.IO-Client-Swift (16.1.0):
     - Starscream (~> 4.0.6)
   - Starscream (4.0.8)
@@ -145,6 +150,8 @@ DEPENDENCIES:
   - ChartProgressBar
   - Charts
   - CountryPickerView
+  - DocumentReader
+  - DocumentReaderFullRFID
   - Firebase
   - Firebase/Analytics
   - Firebase/Messaging
@@ -154,6 +161,7 @@ DEPENDENCIES:
   - GoogleSignInSwift
   - IQKeyboardManagerSwift
   - Kingfisher
+  - MBCircularProgressBar
   - NVActivityIndicatorView
   - OTPInputView
   - RangeSeekSlider
@@ -171,6 +179,8 @@ SPEC REPOS:
     - ChartProgressBar
     - Charts
     - CountryPickerView
+    - DocumentReader
+    - DocumentReaderFullRFID
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -186,12 +196,14 @@ SPEC REPOS:
     - GoogleUtilities
     - IQKeyboardManagerSwift
     - Kingfisher
+    - MBCircularProgressBar
     - nanopb
     - NVActivityIndicatorView
     - OTPInputView
     - PromisesObjC
     - RangeSeekSlider
     - RangeUISlider
+    - RegulaCommon
     - Socket.IO-Client-Swift
     - Starscream
     - SwiftAlgorithms
@@ -206,6 +218,8 @@ SPEC CHECKSUMS:
   ChartProgressBar: 1fe24fc286de1a3a8d02dcbdf6bc779c8e85865b
   Charts: ce0768268078eee0336f122c3c4ca248e4e204c5
   CountryPickerView: 6322ada32a80b0cd721b0267282a5c24f406f263
+  DocumentReader: 972979da2ff7c8122c7a1c926127e84877c5b24d
+  DocumentReaderFullRFID: 02e9bad897ae1b7ef980a0344171959e3c09ac21
   Firebase: fdb3bd378401f26a7adfcf446b0a630f8c20c0e8
   FirebaseAnalytics: 9fcdb2e9844174bb405b34cc47092c9b91993d83
   FirebaseCore: 6e2a2782e234b14d48e880ed369ac55cda87fed7
@@ -221,12 +235,14 @@ SPEC CHECKSUMS:
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   IQKeyboardManagerSwift: d7f3d3a562c237a0e7335e657cd598c452f57f1b
   Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
+  MBCircularProgressBar: 0b795b722a5eb5b0923822f90474e2576a1a7855
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
   OTPInputView: 8a7cc613e29d264f799d121169d00a745cae4c00
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   RangeUISlider: 52e6e0b9b1a7d62e5a1cf0ec68dbb420e1c5f8b5
+  RegulaCommon: 2a6406d2d3ebbd720b66a9cfa5b9631701d343eb
   Socket.IO-Client-Swift: ee4b8f80a3db18dd7f32b266ddf273310609443c
   Starscream: 19b5533ddb925208db698f0ac508a100b884a1b9
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
@@ -236,6 +252,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654
 
-PODFILE CHECKSUM: ac6551e80d61495f0990a04dfbbdf64d46911e9a
+PODFILE CHECKSUM: 026071d9df288e820311cca5e5a8eb14f302c4ca
 
 COCOAPODS: 1.16.2

@@ -7,15 +7,15 @@
 
 import UIKit
 import AVFoundation
-import TOCropViewController
-import AVKit
-import Kingfisher
+import MBCircularProgressBar
 
 
 
 class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     //MARK: - OUTLETS
+    @IBOutlet var lblProfilePercent: UILabel!
+    @IBOutlet var viewCircular: CircularProgressBarView!
     @IBOutlet var btnUpload: UIButton!
     @IBOutlet var viewNotificationCount: UIView!
     @IBOutlet var lblNotificationCount: UILabel!
@@ -41,12 +41,13 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     var calendar = Calendar.current
     var page:Int?
     var wordsAfterHash: [String] = []
+    var viewModelProfile = ProfileVM()
     //MARK: - LIFE CYCLE METHOD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-   
+        
+        getProfileApi()
         darkMode()
         arrImages.removeAll()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardWhileClick))
@@ -54,22 +55,16 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                       view.addGestureRecognizer(tapGesture)
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("getnotifyCount"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfGetNotificationCount(notification:)), name: Notification.Name("GetNotificationCount"), object: nil)
-
-
         uiSet()
-        if isComing == true{
-            btnBack.isHidden = false
-        }else{
-            btnBack.isHidden = true
-        }
         
-           }
-           @objc func dismissKeyboardWhileClick() {
-                  view.endEditing(true)
-              }
+     }
+    
+    @objc func dismissKeyboardWhileClick() {
+        view.endEditing(true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-    
+        
         
         uiSet()
         getNotificationCount()
@@ -79,6 +74,14 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
 //                Store.openSiri = true
 //            }
 //        }
+    }
+    func getProfileApi(){
+        viewModelProfile.getProfileApi{ data in
+            self.viewCircular.setProgress(to: CGFloat(data?.data?.completionPercentage ?? 0))
+            self.lblProfilePercent.text = "\(data?.data?.completionPercentage ?? 0)%"
+        }
+     
+
     }
     @objc func methodOfReceivedNotification(notification: Notification) {
        getNotificationCount()
@@ -107,6 +110,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
             btnBack.setImage(UIImage(named: "keyboard-backspace25"), for: .normal)
             lblName.textColor = .white
             lblScreenTitle.textColor = .white
+            lblProfilePercent.textColor = .white
             lblTitleMessage.textColor = .white
             btnDraft.backgroundColor = .white
             btnDraft.setTitleColor(.black, for: .normal)
@@ -115,6 +119,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
             
             
         }else{
+            lblScreenTitle.textColor = .black
             btnUpload.setImage(UIImage(named: "mediaLight"), for: .normal)
             txtVwNote.tintColor = .black
             lblNotificationCount.textColor = .white
@@ -149,7 +154,6 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
             }
         }
     }
-    
         override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
             super.traitCollectionDidChange(previousTraitCollection)
             if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
@@ -159,18 +163,16 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
         }
    
     func uiSet(){
-      
+        if isComing == true{
+            btnBack.isHidden = false
+        }else{
+            btnBack.isHidden = true
+        }
         getEarning()
-       
-     
-        
         if Store.isComingDraft == true{
-            
             viewModel.draftDetail(id: draftId) { data in
                 self.txtVwNote.text = data?.notesDraftDetails?.note ?? ""
-
                 guard let media = data?.notesDraftDetails?.media else { return }
-
                 for item in media {
                     if !self.arrImages.contains(where: { $0 as? String == item }) {
                         self.arrImages.append(item)
@@ -229,6 +231,11 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     }
     //MARK: - ACTIONS
     
+    @IBAction func actionProfile(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+        vc.isComing = 0
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     @IBAction func actionUpload(_ sender: UIButton) {
         if arrImages.count >= 5 {
             showSwiftyAlert("", "You can only upload up to 5 images and videos.", false)
@@ -704,3 +711,4 @@ extension SearchNoteVC{
     }
 
 }
+

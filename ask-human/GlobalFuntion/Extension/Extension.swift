@@ -7,6 +7,80 @@
 
 import Foundation
 import UIKit
+// MARK: - CircularProgressBarView
+class CircularProgressBarView: UIView {
+    
+    // MARK: - Properties
+    private var circleLayer = CAShapeLayer()
+    private var progressLayer = CAShapeLayer()
+    private var startPoint = CGFloat(-Double.pi / 2)
+    private var endPoint = CGFloat(3 * Double.pi / 2)
+    private var imageView = UIImageView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        createCircularPath()
+        setupImageView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        createCircularPath()
+        setupImageView()
+    }
+    
+    private func createCircularPath() {
+        let radius = (min(bounds.width, bounds.height) - 10) / 2 // Adjust radius for line width
+        let circularPath = UIBezierPath(
+            arcCenter: CGPoint(x: bounds.midX, y: bounds.midY),
+            radius: radius,
+            startAngle: startPoint,
+            endAngle: endPoint,
+            clockwise: true
+        )
+        
+        // Configure circleLayer
+        circleLayer.path = circularPath.cgPath
+        circleLayer.fillColor = UIColor.clear.cgColor
+        circleLayer.lineCap = .round
+        circleLayer.lineWidth = 2  // Reduced line width for smaller view
+        circleLayer.strokeEnd = 1.0
+        circleLayer.strokeColor = UIColor.white.cgColor
+        layer.addSublayer(circleLayer)
+        
+        // Configure progressLayer
+        progressLayer.path = circularPath.cgPath
+        progressLayer.fillColor = UIColor.clear.cgColor
+        progressLayer.lineCap = .round
+        progressLayer.lineWidth = 2  // Reduced line width for smaller view
+        progressLayer.strokeEnd = 0
+        if traitCollection.userInterfaceStyle == .dark {
+            progressLayer.strokeColor = UIColor.white.cgColor
+        }else{
+            progressLayer.strokeColor = UIColor.app.cgColor
+        }
+        layer.addSublayer(progressLayer)
+    }
+    
+    private func setupImageView() {
+        let imageViewSize = CGSize(width: bounds.width * 0.5, height: bounds.height * 0.5)  // Adjust image size for smaller view
+        imageView.frame = CGRect(
+            x: (bounds.width - imageViewSize.width) / 2,
+            y: (bounds.height - imageViewSize.height) / 2,
+            width: imageViewSize.width,
+            height: imageViewSize.height
+        )
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "insideCircular") // Replace with your image name
+        addSubview(imageView)
+    }
+    
+    /// Set progress with values from 0 to 100
+    func setProgress(to progress: CGFloat) {
+        let normalizedProgress = max(0, min(progress, 100)) / 100 // Normalize to range [0, 1]
+        progressLayer.strokeEnd = normalizedProgress
+    }
+}
 
 //MARK: - Textfield
 extension UITextField{

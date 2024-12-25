@@ -475,21 +475,23 @@ class SignUpVC: UIViewController {
             
         }else if !isValidPassword(txtFldPassword.text ?? ""){
             showSwiftyAlert("", "Password must be at least one uppercase letter, one lowercase letter, one digit, and one special character", false)
-        }else if txtFldConfirmPassword.text == ""{
-            
-            showSwiftyAlert("", "Please enter confirm password.", false)
-            
-        }else if txtFldPassword.text != txtFldConfirmPassword.text{
-            
-            showSwiftyAlert("", "Password do not match.", false)
-            
-        }else{
+        }
+//        else if txtFldConfirmPassword.text == ""{
+//            
+//            showSwiftyAlert("", "Please enter confirm password.", false)
+//            
+//        }else if txtFldPassword.text != txtFldConfirmPassword.text{
+//            
+//            showSwiftyAlert("", "Password do not match.", false)
+//            
+//        }
+        else{
             
             viewModel.signUpApi(email: txtFldEmail.text ?? "",
                                 name: txtFldName.text ?? "", age: "\(selectedAge ?? 0)",
                                 mobile: txtFldPhone.text ?? "",
                                 password: txtFldPassword.text ?? "",
-                                confirmPassword: txtFldConfirmPassword.text ?? "",
+                                //confirmPassword: txtFldConfirmPassword.text ?? "",
                                 countryCode: viewCountryPicker.selectedCountry.phoneCode,
                                 dob: txtFldDob.text ?? "",
                                 fcmToken: Store.deviceToken ?? "") { data in

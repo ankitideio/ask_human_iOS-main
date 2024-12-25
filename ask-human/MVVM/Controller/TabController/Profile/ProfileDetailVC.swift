@@ -8,11 +8,22 @@
 import UIKit
 import IQKeyboardManagerSwift
 import AlignedCollectionViewFlowLayout
+import VisionKit
 
 
 class ProfileDetailVC: UIViewController{
     
     //MARK: - OUTLETS
+    @IBOutlet var txtFldIdAuthType: UITextField!
+    @IBOutlet var lblAuthIdTitle: UILabel!
+    @IBOutlet var btnIdAuth: UIButton!
+    @IBOutlet var lblZodiac: UILabel!
+    @IBOutlet var lblAgeDocument: UILabel!
+    @IBOutlet var lblCountry: UILabel!
+    @IBOutlet var lblGender: UILabel!
+    @IBOutlet var viewDocumentUserDetails: UIView!
+    @IBOutlet var imgVwDocument: UIImageView!
+    @IBOutlet var btnDocumentUpload: UIButton!
     @IBOutlet var lblAddHashtag: UILabel!
     @IBOutlet var btnVerifyhashtag: UIButton!
     @IBOutlet var lblDateofbirth: UILabel!
@@ -60,6 +71,7 @@ class ProfileDetailVC: UIViewController{
     @IBOutlet weak var txtFldUserName: UITextField!
     
     //MARK: - VARIABLES
+    
     var isComing = 0
     var viewModel = ProfileVM()
     var userInteraction: Bool = false
@@ -76,21 +88,13 @@ class ProfileDetailVC: UIViewController{
     var arrHashtags = [Hashtag]()
     var arrSuggestHashtags = [GetSearchHashtagData]()
     var selectedAge:Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        txtFldPrice.delegate = self
-        txtfldHashtag.delegate = self
-        txtFldDateofbirth.delegate = self
         uiSet()
         darkMode()
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardWhileClick))
-//                      tapGesture.cancelsTouchesInView = false
-//                      view.addGestureRecognizer(tapGesture)
-           }
-//           @objc func dismissKeyboardWhileClick() {
-//                  view.endEditing(true)
-//              }
+        }
+    
     override func viewWillAppear(_ animated: Bool) {
         txtVwDescription.delegate = self
         let thumbImageNormal = UIImage(named: "thumbb")
@@ -129,6 +133,18 @@ class ProfileDetailVC: UIViewController{
     }
     
     func uiSet(){
+
+        txtFldPrice.delegate = self
+        txtfldHashtag.delegate = self
+        txtFldDateofbirth.delegate = self
+
+        if imgVwDocument.image == UIImage(named: "") || imgVwDocument.image == nil{
+            viewDocumentUserDetails.isHidden = true
+            btnDocumentUpload.setImage(UIImage(named: "camera"), for: .normal)
+        }else{
+            btnDocumentUpload.setImage(UIImage(named: "edit 1"), for: .normal)
+            viewDocumentUserDetails.isHidden = false
+        }
         setupDatePicker(for: txtFldDateofbirth, mode: .date, selector: #selector(dateOfBirth))
         let nib = UINib(nibName: "HashtagCVC", bundle: nil)
         collVwHashtag.register(nib, forCellWithReuseIdentifier: "HashtagCVC")
@@ -152,30 +168,28 @@ class ProfileDetailVC: UIViewController{
             dateFormatter.dateFormat = "dd MMM, yyyy"
             let currentDate = Date()
             txtFldDateofbirth.text = dateFormatter.string(from: currentDate)
-        
-        if isComing == 0{
-            btnVerifyhashtag.isHidden = true
-            gradientVw.startColor = .clear
-            gradientVw.endColor = .clear
-            btnEditProfilePics.isHidden = true
-            btnUploadPhoto.isHidden = false
-            lblTitle.text = "Create User Profile"
-            btnCreateProfile.setTitle("Create profile", for: .normal)
-            btnBack.isHidden = true
-            if traitCollection.userInterfaceStyle == .dark {
-                imgVwUpload.image = UIImage(named: "Group 1686556762100")
-            }else{
-                imgVwUpload.image = UIImage(named: "Group 1686557525")
-            }
-            txtFldUserName.text = userName
-        }else{
+//        if isComing == 0{
+//            btnVerifyhashtag.isHidden = true
+//            gradientVw.startColor = .clear
+//            gradientVw.endColor = .clear
+//            btnEditProfilePics.isHidden = true
+//            btnUploadPhoto.isHidden = false
+//            lblTitle.text = "Create User Profile"
+//            btnCreateProfile.setTitle("Create profile", for: .normal)
+//            btnBack.isHidden = true
+//            if traitCollection.userInterfaceStyle == .dark {
+//                imgVwUpload.image = UIImage(named: "Group 1686556762100")
+//            }else{
+//                imgVwUpload.image = UIImage(named: "Group 1686557525")
+//            }
+//            txtFldUserName.text = userName
+//        }else{
             btnVerifyhashtag.isHidden = false
             if traitCollection.userInterfaceStyle == .dark {
                 imgVwUpload.image = UIImage(named: "Group 1686556762100")
             }else{
                 imgVwUpload.image = UIImage(named: "Group 1686557525")
             }
-
             gradientVw.startColor = .appPink
             gradientVw.endColor = .appPurple
             btnUploadPhoto.isHidden = true
@@ -185,7 +199,7 @@ class ProfileDetailVC: UIViewController{
             btnCreateProfile.setTitle("Update profile", for: .normal)
             getProfileApi()
             
-        }
+      //  }
         collVwHashtag.reloadData()
         collVwSuggestHashtag.reloadData()
         updateheightCollVwHashtags()
@@ -198,6 +212,7 @@ class ProfileDetailVC: UIViewController{
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]
+            txtFldIdAuthType.attributedPlaceholder = NSAttributedString(string: "Choose ID to authenticate", attributes: attributes)
             txtfldHashtag.attributedPlaceholder = NSAttributedString(string: "# Add hashtags", attributes: attributes)
             txtFldDateofbirth.attributedPlaceholder = NSAttributedString(string: "Date of birth", attributes: attributes)
             txtFldUserName.attributedPlaceholder = NSAttributedString(string: "User name", attributes: attributes)
@@ -214,16 +229,15 @@ class ProfileDetailVC: UIViewController{
             
             let labels = [
                 lblTitleUsername, lblTitleUploadProfile, lblTitleGender, lblTitleEthni,
-                lblTitleZodi, lblTitleAge, lblTitlePrice, lblTitleSmoke, lblTitleDrink,
+                lblTitleZodi, lblTitleAge, lblTitlePrice, lblTitleSmoke, lblTitleDrink,lblAuthIdTitle,
                 lblTitleWorkout, lblTitleBodyType, lblTitleDescription, lblTitle,lblMIn,lblMax,lblDateofbirth,lblAge,lblAddHashtag
             ]
 
             for label in labels {
                 label?.textColor = .white
             }
-            
             let textFields = [
-                txtFldPrice, txtFldGender, txtFldEthnicity, txtFldZodiac,
+                txtFldPrice, txtFldGender, txtFldEthnicity, txtFldZodiac,txtFldIdAuthType,
                 txtFldSmoke, txtFldDrink, txtFldWorkout, txtFldBodytype, txtFldUserName,txtFldDateofbirth
             ]
             viewDescription.layer.borderColor = UIColor.white.cgColor
@@ -235,8 +249,6 @@ class ProfileDetailVC: UIViewController{
                 textField?.layer.borderWidth = 1.0
                 textField?.layer.cornerRadius = 5.0
             }
-            
-            
         }else{
             
             viewDescription.layer.borderColor = UIColor(hex: "#DCDCDC").cgColor
@@ -246,6 +258,8 @@ class ProfileDetailVC: UIViewController{
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]
+            txtFldIdAuthType.attributedPlaceholder = NSAttributedString(string: "Choose ID to authenticate", attributes: attributes)
+
             txtFldDateofbirth.attributedPlaceholder = NSAttributedString(string: "Date of birth", attributes: attributes)
             txtfldHashtag.attributedPlaceholder = NSAttributedString(string: "# Add hashtags", attributes: attributes)
             txtFldUserName.attributedPlaceholder = NSAttributedString(string: "User name", attributes: attributes)
@@ -263,7 +277,7 @@ class ProfileDetailVC: UIViewController{
             btnBack.setImage(UIImage(named: "back"), for: .normal)
             let labels = [
                 lblTitleUsername, lblTitleUploadProfile, lblTitleGender, lblTitleEthni,
-                lblTitleZodi, lblTitleAge, lblTitlePrice, lblTitleSmoke, lblTitleDrink,
+                lblTitleZodi, lblTitleAge, lblTitlePrice, lblTitleSmoke, lblTitleDrink,lblAuthIdTitle,
                 lblTitleWorkout, lblTitleBodyType, lblTitleDescription, lblTitle,lblAge,lblDateofbirth,lblAddHashtag
             ]
 
@@ -271,7 +285,7 @@ class ProfileDetailVC: UIViewController{
                 label?.textColor = .black
             }
             let textFields = [
-                txtFldPrice, txtFldGender, txtFldEthnicity, txtFldZodiac,
+                txtFldPrice, txtFldGender, txtFldEthnicity, txtFldZodiac,txtFldIdAuthType,
                 txtFldSmoke, txtFldDrink, txtFldWorkout, txtFldBodytype, txtFldUserName,txtFldDateofbirth
             ]
 
@@ -322,15 +336,19 @@ class ProfileDetailVC: UIViewController{
         }
         if Store.userDetail?["gender"] as? Int ?? 0 == 0{
             self.txtFldGender.text = "Male"
+            self.lblGender.text = "Male"
         }else if Store.userDetail?["gender"] as? Int ?? 0 == 1{
             self.txtFldGender.text = "Female"
+            self.lblGender.text = "Female"
         }else{
             self.txtFldGender.text = "TS"
+            self.lblGender.text = "TS"
         }
         
         self.txtFldUserName.text = Store.userDetail?["userName"] as? String ?? ""
         self.txtFldDateofbirth.text = Store.userDetail?["dob"] as? String ?? ""
         self.txtFldEthnicity.text = Store.userDetail?["ethnicity"] as? String ?? ""
+        self.lblZodiac.text = Store.userDetail?["zodiac"] as? String ?? ""
         self.txtFldZodiac.text = Store.userDetail?["zodiac"] as? String ?? ""
         self.txtFldSmoke.text = Store.userDetail?["smoke"] as? String ?? ""
         self.txtFldDrink.text = Store.userDetail?["drink"] as? String ?? ""
@@ -341,9 +359,10 @@ class ProfileDetailVC: UIViewController{
         self.sliderr.value = Float(Store.userDetail?["age"] as? Int ?? 0)
         self.lblAge.text =  "\(Store.userDetail?["age"] as? Int ?? 0) Years age" 
         selectedAge = Store.userDetail?["age"] as? Int ?? 0
+        lblAgeDocument.text = "\(Store.userDetail?["age"] as? Int ?? 0)"
         self.txtVwDescription.text = Store.userDetail?["description"] as? String ?? ""
         arrHashtags = Store.Hashtags?.data?.user?.hashtags ?? []
-        
+       
         if let dob = Store.userDetail?["dob"] as? String, !dob.isEmpty {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "dd MMM, yyyy"
@@ -358,6 +377,46 @@ class ProfileDetailVC: UIViewController{
     }
     
     //MARK: - button actions
+    @IBAction func actionChooseIdtype(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePopUpsVC") as! ProfilePopUpsVC
+        vc.isSelect = 13
+        vc.modalPresentationStyle = .popover
+        vc.preferredContentSize = CGSize(width: sender.frame.width, height: 110)
+        vc.filterIndex = filterIndex
+        let popOver : UIPopoverPresentationController = vc.popoverPresentationController!
+        popOver.sourceView = sender
+        popOver.delegate = self
+        popOver.permittedArrowDirections = .up
+        vc.callBack = { (index,title,selectIndex) in
+            self.txtFldIdAuthType.text = title
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
+    @IBAction func actionDocumentUpload(_ sender: UIButton) {
+        
+        if txtFldIdAuthType.text == ""{
+            showSwiftyAlert("", "Please select a valid ID for authentication.", false)
+        }else{
+            openDocumentScanner()
+        }
+    }
+    private func openDocumentScanner() {
+            if VNDocumentCameraViewController.isSupported {
+                let documentCameraViewController = VNDocumentCameraViewController()
+                documentCameraViewController.delegate = self
+                documentCameraViewController.view.tintColor = .app
+                
+                present(documentCameraViewController, animated: true, completion: nil)
+            } else {
+                // Handle the case where the device does not support scanning
+                let alert = UIAlertController(title: "Not Supported",
+                                              message: "This device does not support document scanning.",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+            }
+        }
+        
     @IBAction func actionVerifyHashtag(_ sender: UIButton) {
         var validHashtags = [Hashtag]()
         var invalidHashtagIndices = [Int]()
@@ -383,9 +442,7 @@ class ProfileDetailVC: UIViewController{
         
     }
     @IBAction func actionEthnicity(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePopUpsVC") as! ProfilePopUpsVC
         vc.isSelect = 2
         vc.modalPresentationStyle = .popover
@@ -420,9 +477,7 @@ class ProfileDetailVC: UIViewController{
 //        self.present(vc, animated: true, completion: nil)
     }
     @IBAction func actionSmoke(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePopUpsVC") as! ProfilePopUpsVC
         vc.isSelect = 4
         vc.modalPresentationStyle = .popover
@@ -439,9 +494,7 @@ class ProfileDetailVC: UIViewController{
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func actionDrink(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePopUpsVC") as! ProfilePopUpsVC
         vc.isSelect = 5
         vc.modalPresentationStyle = .popover
@@ -458,9 +511,7 @@ class ProfileDetailVC: UIViewController{
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func actionWorkout(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePopUpsVC") as! ProfilePopUpsVC
         vc.isSelect = 6
         vc.modalPresentationStyle = .popover
@@ -477,9 +528,7 @@ class ProfileDetailVC: UIViewController{
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func actionBodytype(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePopUpsVC") as! ProfilePopUpsVC
         vc.isSelect = 8
         vc.modalPresentationStyle = .popover
@@ -496,9 +545,7 @@ class ProfileDetailVC: UIViewController{
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func actionGender(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePopUpsVC") as! ProfilePopUpsVC
         vc.isSelect = 1
         vc.modalPresentationStyle = .popover
@@ -528,9 +575,7 @@ class ProfileDetailVC: UIViewController{
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func actionEditUploadImage(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         ImagePicker().pickImage(self) { image in
             self.uploadProfile = true
             self.imgVwUpload.image = image
@@ -539,9 +584,7 @@ class ProfileDetailVC: UIViewController{
         
     }
     @IBAction func actionUploadImage(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         ImagePicker().pickImage(self) { image in
             
             self.uploadProfile = true
@@ -552,9 +595,7 @@ class ProfileDetailVC: UIViewController{
     }
     
     @IBAction func actionBack(_ sender: UIButton) {
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
+        view.endEditing(true)
         if isComing == 1{
             SceneDelegate().tabBarProfileVCRoot()
         }else{
@@ -563,95 +604,95 @@ class ProfileDetailVC: UIViewController{
     }
     
     @IBAction func actionCreateProfile(_ sender: GradientButton) {
-        print(selectedAge)
-        txtFldUserName.resignFirstResponder()
-        txtFldPrice.resignFirstResponder()
-        txtVwDescription.resignFirstResponder()
-        if isComing != 1{
-            if uploadProfile == false{
-                showSwiftyAlert("", "Profile image must be selected.", false)
-            }else if txtFldUserName.text == ""{
-                    showSwiftyAlert("", "Name must be entered.", false)
-            }else  if txtFldUserName.text?.count ?? 0 < 3 || txtFldUserName.text?.count ?? 0 > 30{
-                showSwiftyAlert("", "Name must be between 3 and 30 characters long.", false)
-            }else if txtFldGender.text == "" {
-                showSwiftyAlert("", "Gender must be selected.", false)
-            } else if txtFldDateofbirth.text == ""{
-                showSwiftyAlert("", "Date of birth must be selected.", false)
-            }else if selectedAge ?? 0 < 11 {
-                showSwiftyAlert("", "You must be at least 11 years old to proceed.", false)
-            } else if txtFldEthnicity.text == "" {
-                showSwiftyAlert("", "Ethnicity must be selected.", false)
-            } else if txtFldZodiac.text == "" {
-                showSwiftyAlert("", "Zodiac must be selected.", false)
-            } else if txtFldPrice.text == ""{
-                showSwiftyAlert("", "Please enter your hourly price.", false)
-            }else if txtFldSmoke.text == "" {
-                showSwiftyAlert("", "Smoking habit must be selected.", false)
-            } else if txtFldDrink.text == "" {
-                showSwiftyAlert("", "Drinking habit must be selected.", false)
-            } else if txtFldWorkout.text == "" {
-                showSwiftyAlert("", "Workout habit must be selected.", false)
-            } else if txtFldBodytype.text == "" {
-                showSwiftyAlert("", "Body type must be selected.", false)
-            }
-//            else if txtVwDescription.text == "" {
-//                showSwiftyAlert("", "Description must be entered.", false)
+//        print(selectedAge)
+//        txtFldUserName.resignFirstResponder()
+//        txtFldPrice.resignFirstResponder()
+//        txtVwDescription.resignFirstResponder()
+//        if isComing != 1{
+//            if uploadProfile == false{
+//                showSwiftyAlert("", "Profile image must be selected.", false)
+//            }else if txtFldUserName.text == ""{
+//                    showSwiftyAlert("", "Name must be entered.", false)
+//            }else  if txtFldUserName.text?.count ?? 0 < 3 || txtFldUserName.text?.count ?? 0 > 30{
+//                showSwiftyAlert("", "Name must be between 3 and 30 characters long.", false)
+//            }else if txtFldGender.text == "" {
+//                showSwiftyAlert("", "Gender must be selected.", false)
+//            } else if txtFldDateofbirth.text == ""{
+//                showSwiftyAlert("", "Date of birth must be selected.", false)
+//            }else if selectedAge ?? 0 < 11 {
+//                showSwiftyAlert("", "You must be at least 11 years old to proceed.", false)
+//            } else if txtFldEthnicity.text == "" {
+//                showSwiftyAlert("", "Ethnicity must be selected.", false)
+//            } else if txtFldZodiac.text == "" {
+//                showSwiftyAlert("", "Zodiac must be selected.", false)
+//            } else if txtFldPrice.text == ""{
+//                showSwiftyAlert("", "Please enter your hourly price.", false)
+//            }else if txtFldSmoke.text == "" {
+//                showSwiftyAlert("", "Smoking habit must be selected.", false)
+//            } else if txtFldDrink.text == "" {
+//                showSwiftyAlert("", "Drinking habit must be selected.", false)
+//            } else if txtFldWorkout.text == "" {
+//                showSwiftyAlert("", "Workout habit must be selected.", false)
+//            } else if txtFldBodytype.text == "" {
+//                showSwiftyAlert("", "Body type must be selected.", false)
 //            }
-            else {
-                
-                viewModel.setProfileDetailApi(name: txtFldUserName.text ?? "",
-                                              about: txtVwDescription.text ?? "",
-                                              gender: genderValues,
-                                              ethnicity: txtFldEthnicity.text ?? "",
-                                              zodiac: txtFldZodiac.text ?? "",
-                                              age: selectedAge ?? 0, dob: txtFldDateofbirth.text ?? "",
-                                              smoke: txtFldSmoke.text ?? "",
-                                              drink: txtFldDrink.text ?? "",
-                                              workout: txtFldWorkout.text ?? "",
-                                              bodytype: txtFldBodytype.text ?? "", price: txtFldPrice.text ?? "",
-                                              profileImage: imgVwUpload, imageUpload: uploadProfile, hashtags: [arrHashtags]) { data in
-                    self.viewModel.getProfileApi { data in
-                        
-                        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
-                        Store.autoLogin = "true"
-                        self.navigationController?.pushViewController(vc2, animated:true)
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }else if isComing == 1{
-            if uploadProfile == false{
-                showSwiftyAlert("", "Profile image must be selected.", false)
-            }else if txtFldUserName.text == "" {
-                    showSwiftyAlert("", "Name must be entered.", false)
-            }else  if txtFldUserName.text?.count ?? 0 < 3 || txtFldUserName.text?.count ?? 0 > 30{
-                showSwiftyAlert("", "Name must be between 3 and 30 characters long.", false)
-            }else if txtFldGender.text == "" {
-                showSwiftyAlert("", "Gender must be selected.", false)
-            } else if txtFldDateofbirth.text == ""{
-                showSwiftyAlert("", "Date of birth must be selected.", false)
-            }else if selectedAge ?? 0 < 11 {
-                showSwiftyAlert("", "You must be at least 11 years old to proceed.", false)
-            }  else if txtFldEthnicity.text == "" {
-                showSwiftyAlert("", "Ethnicity must be selected.", false)
-            } else if txtFldZodiac.text == "" {
-                showSwiftyAlert("", "Zodiac must be selected.", false)
-            }else if txtFldPrice.text == ""{
-                showSwiftyAlert("", "Please enter your hourly price.", false)
-            }else if txtFldSmoke.text == "" {
-                showSwiftyAlert("", "Smoking habit must be selected.", false)
-            } else if txtFldDrink.text == "" {
-                showSwiftyAlert("", "Drinking habit must be selected.", false)
-            } else if txtFldWorkout.text == "" {
-                showSwiftyAlert("", "Workout habit must be selected.", false)
-            } else if txtFldBodytype.text == "" {
-                showSwiftyAlert("", "Body type must be selected.", false)
-            }  else {
-                
+////            else if txtVwDescription.text == "" {
+////                showSwiftyAlert("", "Description must be entered.", false)
+////            }
+//            else {
+//                
+//                viewModel.setProfileDetailApi(name: txtFldUserName.text ?? "",
+//                                              about: txtVwDescription.text ?? "",
+//                                              gender: genderValues,
+//                                              ethnicity: txtFldEthnicity.text ?? "",
+//                                              zodiac: txtFldZodiac.text ?? "",
+//                                              age: selectedAge ?? 0, dob: txtFldDateofbirth.text ?? "",
+//                                              smoke: txtFldSmoke.text ?? "",
+//                                              drink: txtFldDrink.text ?? "",
+//                                              workout: txtFldWorkout.text ?? "",
+//                                              bodytype: txtFldBodytype.text ?? "", price: txtFldPrice.text ?? "",
+//                                              profileImage: imgVwUpload, imageUpload: uploadProfile, hashtags: [arrHashtags]) { data in
+//                    self.viewModel.getProfileApi { data in
+//                        
+//                        let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
+//                        Store.autoLogin = "true"
+//                        self.navigationController?.pushViewController(vc2, animated:true)
+//                        
+//                    }
+//                    
+//                }
+//                
+//            }
+//            
+//        }else if isComing == 1{
+//            if uploadProfile == false{
+//                showSwiftyAlert("", "Profile image must be selected.", false)
+//            }else if txtFldUserName.text == "" {
+//                    showSwiftyAlert("", "Name must be entered.", false)
+//            }else  if txtFldUserName.text?.count ?? 0 < 3 || txtFldUserName.text?.count ?? 0 > 30{
+//                showSwiftyAlert("", "Name must be between 3 and 30 characters long.", false)
+//            }else if txtFldGender.text == "" {
+//                showSwiftyAlert("", "Gender must be selected.", false)
+//            } else if txtFldDateofbirth.text == ""{
+//                showSwiftyAlert("", "Date of birth must be selected.", false)
+//            }else if selectedAge ?? 0 < 11 {
+//                showSwiftyAlert("", "You must be at least 11 years old to proceed.", false)
+//            }  else if txtFldEthnicity.text == "" {
+//                showSwiftyAlert("", "Ethnicity must be selected.", false)
+//            } else if txtFldZodiac.text == "" {
+//                showSwiftyAlert("", "Zodiac must be selected.", false)
+//            }else if txtFldPrice.text == ""{
+//                showSwiftyAlert("", "Please enter your hourly price.", false)
+//            }else if txtFldSmoke.text == "" {
+//                showSwiftyAlert("", "Smoking habit must be selected.", false)
+//            } else if txtFldDrink.text == "" {
+//                showSwiftyAlert("", "Drinking habit must be selected.", false)
+//            } else if txtFldWorkout.text == "" {
+//                showSwiftyAlert("", "Workout habit must be selected.", false)
+//            } else if txtFldBodytype.text == "" {
+//                showSwiftyAlert("", "Body type must be selected.", false)
+//            }  else {
+//                
                 viewModel.setProfileDetailApi(name: txtFldUserName.text ?? "",
                                               about: txtVwDescription.text ?? "",
                                               gender: genderValues,
@@ -681,65 +722,65 @@ class ProfileDetailVC: UIViewController{
                     
                 }
                 
-            }
+         //   }
             
-        }else{
-            
-            if uploadProfile == false{
-                showSwiftyAlert("", "Profile image must be selected.", false)
-            }else if txtFldUserName.text == "" {
-                showSwiftyAlert("", "Name must be entered.", false)
-            }else if txtFldGender.text == "" {
-                showSwiftyAlert("", "Gender must be selected.", false)
-            }else if txtFldDateofbirth.text == ""{
-                showSwiftyAlert("", "Date of birth must be selected.", false)
-            }else if selectedAge ?? 0 < 11 {
-                showSwiftyAlert("", "You must be at least 11 years old to proceed.", false)
-            } else if txtFldEthnicity.text == "" {
-                showSwiftyAlert("", "Ethnicity must be selected.", false)
-            } else if txtFldZodiac.text == "" {
-                showSwiftyAlert("", "Zodiac must be selected.", false)
-            }  else if txtFldPrice.text == ""{
-                showSwiftyAlert("", "Please enter your hourly price.", false)
-            }else if txtFldSmoke.text == "" {
-                showSwiftyAlert("", "Smoking habit must be selected.", false)
-            } else if txtFldDrink.text == "" {
-                showSwiftyAlert("", "Drinking habit must be selected.", false)
-            } else if txtFldWorkout.text == "" {
-                showSwiftyAlert("", "Workout habit must be selected.", false)
-            } else if txtFldBodytype.text == "" {
-                showSwiftyAlert("", "Body type must be selected.", false)
-            }else {
-                
-                viewModel.setProfileDetailApi(name: txtFldUserName.text ?? "",
-                                              about: txtVwDescription.text ?? "",
-                                              gender: genderValues,
-                                              ethnicity: txtFldEthnicity.text ?? "",
-                                              zodiac: txtFldZodiac.text ?? "",
-                                              age: selectedAge ?? 0, dob: txtFldDateofbirth.text ?? "",
-                                              smoke: txtFldSmoke.text ?? "",
-                                              drink: txtFldDrink.text ?? "",
-                                              workout: txtFldWorkout.text ?? "",
-                                              bodytype: txtFldBodytype.text ?? "", price: txtFldPrice.text ?? "",
-                                              profileImage: imgVwUpload, imageUpload: uploadProfile, hashtags: [arrHashtags]) { data in
-                    self.viewModel.getProfileApi { data in
-                     
-                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                        vc.modalPresentationStyle = .overFullScreen
-                        vc.message = data?.message ?? ""
-                        vc.callBack = {
-                            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
-                            Store.autoLogin = "true"
-                            vc2.isComing = false
-                           
-                            self.navigationController?.pushViewController(vc2, animated:true)
-                        }
-                        self.navigationController?.present(vc, animated: false)
-                        
-                    }
-                }
-            }
-        }
+//        }else{
+//            
+//            if uploadProfile == false{
+//                showSwiftyAlert("", "Profile image must be selected.", false)
+//            }else if txtFldUserName.text == "" {
+//                showSwiftyAlert("", "Name must be entered.", false)
+//            }else if txtFldGender.text == "" {
+//                showSwiftyAlert("", "Gender must be selected.", false)
+//            }else if txtFldDateofbirth.text == ""{
+//                showSwiftyAlert("", "Date of birth must be selected.", false)
+//            }else if selectedAge ?? 0 < 11 {
+//                showSwiftyAlert("", "You must be at least 11 years old to proceed.", false)
+//            } else if txtFldEthnicity.text == "" {
+//                showSwiftyAlert("", "Ethnicity must be selected.", false)
+//            } else if txtFldZodiac.text == "" {
+//                showSwiftyAlert("", "Zodiac must be selected.", false)
+//            }  else if txtFldPrice.text == ""{
+//                showSwiftyAlert("", "Please enter your hourly price.", false)
+//            }else if txtFldSmoke.text == "" {
+//                showSwiftyAlert("", "Smoking habit must be selected.", false)
+//            } else if txtFldDrink.text == "" {
+//                showSwiftyAlert("", "Drinking habit must be selected.", false)
+//            } else if txtFldWorkout.text == "" {
+//                showSwiftyAlert("", "Workout habit must be selected.", false)
+//            } else if txtFldBodytype.text == "" {
+//                showSwiftyAlert("", "Body type must be selected.", false)
+//            }else {
+//                
+//                viewModel.setProfileDetailApi(name: txtFldUserName.text ?? "",
+//                                              about: txtVwDescription.text ?? "",
+//                                              gender: genderValues,
+//                                              ethnicity: txtFldEthnicity.text ?? "",
+//                                              zodiac: txtFldZodiac.text ?? "",
+//                                              age: selectedAge ?? 0, dob: txtFldDateofbirth.text ?? "",
+//                                              smoke: txtFldSmoke.text ?? "",
+//                                              drink: txtFldDrink.text ?? "",
+//                                              workout: txtFldWorkout.text ?? "",
+//                                              bodytype: txtFldBodytype.text ?? "", price: txtFldPrice.text ?? "",
+//                                              profileImage: imgVwUpload, imageUpload: uploadProfile, hashtags: [arrHashtags]) { data in
+//                    self.viewModel.getProfileApi { data in
+//                     
+//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                        vc.modalPresentationStyle = .overFullScreen
+//                        vc.message = data?.message ?? ""
+//                        vc.callBack = {
+//                            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+//                            Store.autoLogin = "true"
+//                            vc2.isComing = false
+//                           
+//                            self.navigationController?.pushViewController(vc2, animated:true)
+//                        }
+//                        self.navigationController?.present(vc, animated: false)
+//                        
+//                    }
+//                }
+//            }
+//        }
     }
 }
 
@@ -755,12 +796,9 @@ extension ProfileDetailVC : UIPopoverPresentationControllerDelegate {
 // MARK: - UITextViewDelegate
 extension ProfileDetailVC:UITextViewDelegate{
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-          // Combine the current text with the new text to simulate the result
           let currentText = txtVwDescription.text ?? ""
           guard let stringRange = Range(range, in: currentText) else { return false }
           let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
-          
-          // Check if the new text exceeds the limit
           return updatedText.count <= characterLimit
       }
 }
@@ -771,15 +809,11 @@ extension ProfileDetailVC:UITextFieldDelegate{
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             if textField == txtfldHashtag{
                 guard let text = textField.text, !text.isEmpty else { return false }
-                // Check if the hashtag already exists
                 let existingHashtag = arrHashtags.first { $0.title?.lowercased() == text.lowercased() }
-                         
-                         // If the hashtag exists, don't add it to the array
                          if existingHashtag == nil {
                              let newHashtag = Hashtag(id: "", title: text, userIDS: [""], isVerified:  nil, usedCount: nil, createdBy: "", createdAt: "", updatedAt: "")
                              arrHashtags.append(newHashtag)
                          } else {
-                             // Optionally, show an alert or handle duplicate case here
                              print("Hashtag already exists")
                          }
                 collVwHashtag.reloadData()
@@ -819,8 +853,6 @@ extension ProfileDetailVC:UITextFieldDelegate{
 }
 //MARK: - COLLECTIONVIEW DELEGATE AND DATASOURCE
 extension ProfileDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collVwHashtag{
             return arrHashtags.count
@@ -828,10 +860,8 @@ extension ProfileDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
             return  arrSuggestHashtags.count
         }
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HashtagCVC", for: indexPath) as! HashtagCVC
-        
         if collectionView == collVwHashtag{
             cell.viewBtnDelete.isHidden = false
             cell.viewHashtagCount.isHidden = true
@@ -1017,5 +1047,34 @@ extension ProfileDetailVC{
         case (12, 22...), (1, 1...19): return "Capricorn"
         default: return "Unknown"
         }
+    }
+}
+
+// MARK: - VNDocumentCameraViewControllerDelegate
+extension ProfileDetailVC: VNDocumentCameraViewControllerDelegate {
+    
+    func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
+        controller.dismiss(animated: true, completion: nil)
+        if scan.pageCount > 0 {
+            let scannedImage = scan.imageOfPage(at: 0)
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "IdAuthenticatedVC") as! IdAuthenticatedVC
+                vc.callBack = { [self] in
+                    imgVwDocument.image = scannedImage
+                    uiSet()
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            print("No pages found in the scan.")
+        }
+    }
+    
+    func documentCameraViewControllerDidCancel(_ controller: VNDocumentCameraViewController) {
+        controller.dismiss(animated: true, completion: nil)
+        print("User canceled scanning.")
+    }
+    
+    func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFailWithError error: Error) {
+        controller.dismiss(animated: true, completion: nil)
+        print("Scanning failed with error: \(error.localizedDescription)")
     }
 }

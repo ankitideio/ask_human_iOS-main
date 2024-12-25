@@ -31,5 +31,8 @@ target 'ask-human' do
   pod 'CountryPickerView'
   pod 'FLAnimatedImage'
   pod 'SwiftGifOrigin'
-  pod "AlignedCollectionViewFlowLayout"
+  pod 'AlignedCollectionViewFlowLayout'
+  pod 'MBCircularProgressBar'
+  pod 'DocumentReader'
+  pod 'DocumentReaderFullRFID'
 end

