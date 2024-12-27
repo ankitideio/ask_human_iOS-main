@@ -9,7 +9,13 @@ import Foundation
 import UIKit
 
 class Store {
-
+    class var nationality: String?{
+        set{
+            Store.saveValue(newValue, .nationality)
+        }get{
+            return Store.getValue(.nationality) as? String
+        }
+    }
     class var hashtagForSearchUser: [String]?{
         set{
             Store.saveValue(newValue, .hashtagForSearchUser)

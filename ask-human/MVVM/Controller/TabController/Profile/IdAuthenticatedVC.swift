@@ -18,7 +18,8 @@
         @IBOutlet var txtFldAge: UITextField!
         
         //MARK: - variables
-        var callBack:(()->())?
+        var callBack:((_ gender:String)->())?
+        var gender:Int?
         var countriesPhoneNumbersWithNationalities: [String: [String]] = [
             "Afghan": ["+93"],
             "Albanian": ["+355"],
@@ -230,9 +231,10 @@
                 imgVwTitle.image = UIImage(named: "askhumaniconlight")
             }
             txtFldNationality.text = getCountryName(byPhoneCode: Store.userDetail?["countryCode"] as? String ?? "")
-            if Store.userDetail?["gender"] as? Int ?? 0 == 0{
+            Store.nationality = getCountryName(byPhoneCode: Store.userDetail?["countryCode"] as? String ?? "")
+            if gender == 0{
                 self.txtFldGender.text = "Male"
-            }else if Store.userDetail?["gender"] as? Int ?? 0 == 1{
+            }else if gender == 1{
                 self.txtFldGender.text = "Female"
             }else{
                 self.txtFldGender.text = "TS"
@@ -278,7 +280,7 @@
         //MARK: - IBAction
         @IBAction func actionProceed(_ sender: Any) {
             self.navigationController?.popViewController(animated: true)
-            callBack?()
+            callBack?(txtFldGender.text ?? "")
         }
         @IBAction func actionBack(_ sender: UIButton) {
             self.navigationController?.popViewController(animated: true)

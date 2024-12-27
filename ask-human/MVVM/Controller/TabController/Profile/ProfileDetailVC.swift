@@ -81,6 +81,7 @@ class ProfileDetailVC: UIViewController{
     var isSelectImage = false
     var callBack:(()->())?
     var uploadProfile = false
+    var uploadDocument = false
     var profileImg = ""
     var userName = ""
     var message = ""
@@ -88,7 +89,7 @@ class ProfileDetailVC: UIViewController{
     var arrHashtags = [Hashtag]()
     var arrSuggestHashtags = [GetSearchHashtagData]()
     var selectedAge:Int?
-    
+    var selectedIdType = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         uiSet()
@@ -133,18 +134,11 @@ class ProfileDetailVC: UIViewController{
     }
     
     func uiSet(){
-
+        lblCountry.text = Store.nationality
         txtFldPrice.delegate = self
         txtfldHashtag.delegate = self
         txtFldDateofbirth.delegate = self
 
-        if imgVwDocument.image == UIImage(named: "") || imgVwDocument.image == nil{
-            viewDocumentUserDetails.isHidden = true
-            btnDocumentUpload.setImage(UIImage(named: "camera"), for: .normal)
-        }else{
-            btnDocumentUpload.setImage(UIImage(named: "edit 1"), for: .normal)
-            viewDocumentUserDetails.isHidden = false
-        }
         setupDatePicker(for: txtFldDateofbirth, mode: .date, selector: #selector(dateOfBirth))
         let nib = UINib(nibName: "HashtagCVC", bundle: nil)
         collVwHashtag.register(nib, forCellWithReuseIdentifier: "HashtagCVC")
@@ -212,6 +206,7 @@ class ProfileDetailVC: UIViewController{
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]
+            txtFldPrice.attributedPlaceholder = NSAttributedString(string: "Hourly Price", attributes: attributes)
             txtFldIdAuthType.attributedPlaceholder = NSAttributedString(string: "Choose ID to authenticate", attributes: attributes)
             txtfldHashtag.attributedPlaceholder = NSAttributedString(string: "# Add hashtags", attributes: attributes)
             txtFldDateofbirth.attributedPlaceholder = NSAttributedString(string: "Date of birth", attributes: attributes)
@@ -259,7 +254,7 @@ class ProfileDetailVC: UIViewController{
                 .foregroundColor: placeholderColor
             ]
             txtFldIdAuthType.attributedPlaceholder = NSAttributedString(string: "Choose ID to authenticate", attributes: attributes)
-
+            txtFldPrice.attributedPlaceholder = NSAttributedString(string: "Hourly Price", attributes: attributes)
             txtFldDateofbirth.attributedPlaceholder = NSAttributedString(string: "Date of birth", attributes: attributes)
             txtfldHashtag.attributedPlaceholder = NSAttributedString(string: "# Add hashtags", attributes: attributes)
             txtFldUserName.attributedPlaceholder = NSAttributedString(string: "User name", attributes: attributes)
@@ -344,6 +339,24 @@ class ProfileDetailVC: UIViewController{
             self.txtFldGender.text = "TS"
             self.lblGender.text = "TS"
         }
+        if Store.userDetail?["document"] as? String ?? "" == ""{
+            viewDocumentUserDetails.isHidden = true
+            btnDocumentUpload.setImage(UIImage(named: "camera"), for: .normal)
+            uploadDocument = false
+        }else{
+            btnDocumentUpload.setImage(UIImage(named: "edit 1"), for: .normal)
+            viewDocumentUserDetails.isHidden = false
+            imgVwDocument.imageLoad(imageUrl: Store.userDetail?["document"] as? String ?? "")
+            uploadDocument = true
+        }
+        if Store.userDetail?["identity"] as? Int ?? 0 == 1{
+            txtFldIdAuthType.text =  "Driving Licence"
+        }else if Store.userDetail?["identity"] as? Int ?? 0 == 2{
+            txtFldIdAuthType.text =  "Country ID"
+        }else{
+            txtFldIdAuthType.text =  "Passport"
+        }
+       
         
         self.txtFldUserName.text = Store.userDetail?["userName"] as? String ?? ""
         self.txtFldDateofbirth.text = Store.userDetail?["dob"] as? String ?? ""
@@ -354,7 +367,12 @@ class ProfileDetailVC: UIViewController{
         self.txtFldDrink.text = Store.userDetail?["drink"] as? String ?? ""
         self.txtFldWorkout.text = Store.userDetail?["workout"] as? String ?? ""
         self.txtFldBodytype.text = Store.userDetail?["bodyType"] as? String ?? ""
-        self.txtFldPrice.text = "\(Store.userDetail?["hoursPrice"] as? Int ?? 0)"
+        if Store.userDetail?["hoursPrice"] as? Int ?? 0 > 0{
+            self.txtFldPrice.text = "\(Store.userDetail?["hoursPrice"] as? Int ?? 0)"
+        }else{
+            self.txtFldPrice.text = ""
+        }
+       
         self.lblMax.text = "72 Max"
         self.sliderr.value = Float(Store.userDetail?["age"] as? Int ?? 0)
         self.lblAge.text =  "\(Store.userDetail?["age"] as? Int ?? 0) Years age" 
@@ -389,16 +407,17 @@ class ProfileDetailVC: UIViewController{
         popOver.permittedArrowDirections = .up
         vc.callBack = { (index,title,selectIndex) in
             self.txtFldIdAuthType.text = title
+            self.selectedIdType = index
         }
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func actionDocumentUpload(_ sender: UIButton) {
         
-        if txtFldIdAuthType.text == ""{
-            showSwiftyAlert("", "Please select a valid ID for authentication.", false)
-        }else{
+//        if txtFldIdAuthType.text == ""{
+//            showSwiftyAlert("", "Please select a valid ID for authentication.", false)
+//        }else{
             openDocumentScanner()
-        }
+      //  }
     }
     private func openDocumentScanner() {
             if VNDocumentCameraViewController.isSupported {
@@ -702,8 +721,12 @@ class ProfileDetailVC: UIViewController{
                                               smoke: txtFldSmoke.text ?? "",
                                               drink: txtFldDrink.text ?? "",
                                               workout: txtFldWorkout.text ?? "",
-                                              bodytype: txtFldBodytype.text ?? "", price: txtFldPrice.text ?? "",
-                                              profileImage: imgVwUpload, imageUpload: uploadProfile, hashtags: [arrHashtags]) { data in
+                                              bodytype: txtFldBodytype.text ?? "", hoursPrice:txtFldPrice.text ?? "",
+                                              countryCode:Store.userDetail?["countryCode"] as? String ?? "",
+                                              nationality: Store.nationality ?? "",
+                                              identity:selectedIdType,
+                                              profileImage: imgVwUpload,
+                                              document: imgVwDocument, imageUpload: uploadProfile, uploadDocument: uploadDocument, hashtags: [arrHashtags]) { data in
                     self.message = data?.message ?? ""
                     self.viewModel.getProfileApi { data in
                         
@@ -1057,17 +1080,28 @@ extension ProfileDetailVC: VNDocumentCameraViewControllerDelegate {
         controller.dismiss(animated: true, completion: nil)
         if scan.pageCount > 0 {
             let scannedImage = scan.imageOfPage(at: 0)
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "IdAuthenticatedVC") as! IdAuthenticatedVC
-                vc.callBack = { [self] in
-                    imgVwDocument.image = scannedImage
-                    uiSet()
+            viewModel.scanDocumentApi(document: scannedImage, type: selectedIdType) { gender in
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "IdAuthenticatedVC") as! IdAuthenticatedVC
+                vc.callBack = { [self] gender in
+                    print(gender)
+
+                        if gender == "Male"{
+                            lblGender.text = "Male"
+                        }else if gender == "Female"{
+                            lblGender.text = "Female"
+                        }else{
+                            lblGender.text = "TS"
+                        }
+                        imgVwDocument.image = scannedImage
+                        uploadDocument = true
+                        btnDocumentUpload.setImage(UIImage(named: "edit 1"), for: .normal)
+                        viewDocumentUserDetails.isHidden = false
+                    }
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
-                self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            print("No pages found in the scan.")
+            
         }
     }
-    
     func documentCameraViewControllerDidCancel(_ controller: VNDocumentCameraViewController) {
         controller.dismiss(animated: true, completion: nil)
         print("User canceled scanning.")

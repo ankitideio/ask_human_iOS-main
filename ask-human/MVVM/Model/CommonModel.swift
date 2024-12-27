@@ -11,5 +11,10 @@ import Foundation
 struct CommonModel: Codable {
     let status, message,url: String?
     let statusCode: Int?
+    let data: GetDataa?
 }
 
+// MARK: - DataClass
+struct GetDataa: Codable {
+    let gender: Int?
+}

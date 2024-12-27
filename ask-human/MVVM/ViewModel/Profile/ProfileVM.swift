@@ -9,6 +9,19 @@ import Foundation
 import UIKit
 class ProfileVM{
     //MARK: - PROFILE API
+    //0 for male 1 for female
+    func scanDocumentApi(document:UIImage,type:Int,onSuccess:@escaping((_ gender:Int?)->())){
+        let formatter = DateFormatter()
+        formatter.dateFormat = dateFormat.fullDate.rawValue
+        let date = formatter.string(from: Date())
+        let imageInfo : ImageStructInfo
+        
+        imageInfo = ImageStructInfo.init(fileName: "Img\(date).jpeg", type: "jpeg", data: document.toData(), key: "document")
+        let param:parameters = ["document":imageInfo,"type":type]
+        WebService.service(API.scanDocument,param:param,service:.put,showHud: true,is_raw_form: false) { (model:DocumentModel,jsonData,jsonSer) in
+            onSuccess(model.data?.gender)
+        }
+    }
     func setProfileDetailApi(name:String,
                           about:String,
                           gender:Int,
@@ -20,9 +33,14 @@ class ProfileVM{
                           drink:String,
                           workout:String,
                           bodytype:String,
-                          price:String,
+                             hoursPrice:String,
+                             countryCode:String,
+                             nationality:String,
+                             identity:Int,
                           profileImage:UIImageView,
+                             document:UIImageView,
                              imageUpload:Bool,
+                             uploadDocument:Bool,
                              hashtags: [[Hashtag]],
                              onSuccess:@escaping((ProfileDetailModel?)->())){
         
@@ -30,8 +48,11 @@ class ProfileVM{
         formatter.dateFormat = dateFormat.fullDate.rawValue
         let date = formatter.string(from: Date())
         let imageInfo : ImageStructInfo
-        
         imageInfo = ImageStructInfo.init(fileName: "Img\(date).jpeg", type: "jpeg", data: profileImage.image?.toData() ?? Data(), key: "profileImage")
+        
+        
+        let imageInfoDocument : ImageStructInfo
+        imageInfoDocument = ImageStructInfo.init(fileName: "Img\(date).jpeg", type: "jpeg", data: document.image?.toData() ?? Data(), key: "document")
         
         var hashtagDict = [[String: Any]]()
         for tagList in hashtags {
@@ -52,7 +73,7 @@ class ProfileVM{
             if let jsonString = String(data: jsonData, encoding: .utf8) {
                 print(jsonString)
                 var param = [String:Any]()
-                if imageUpload == true{
+                if imageUpload == true && uploadDocument == true{
                     param = ["name": name,
                              "about": about,
                              "gender":gender,
@@ -62,10 +83,50 @@ class ProfileVM{
                              "dob": dob,
                              "smoke": smoke,
                              "drink": drink,
-                             "hoursPrice":price,
+                             "hoursPrice":hoursPrice,
                              "workout": workout,
+                             "countryCode": countryCode,
+                             "nationality": nationality,
+                             "identity": identity,
                              "bodytype": bodytype,
                              "profileImage": imageInfo,
+                             "document": imageInfoDocument,
+                             "hashtags": jsonString]
+                }else if imageUpload == true{
+                    param = ["name": name,
+                             "about": about,
+                             "gender":gender,
+                             "ethnicity": ethnicity,
+                             "zodiac": zodiac,
+                             "age": age,
+                             "dob": dob,
+                             "smoke": smoke,
+                             "drink": drink,
+                             "hoursPrice":hoursPrice,
+                             "workout": workout,
+                             "countryCode": countryCode,
+                             "nationality": nationality,
+                             "identity": identity,
+                             "bodytype": bodytype,
+                             "profileImage": imageInfo,
+                             "hashtags": jsonString]
+                }else if uploadDocument == true{
+                    param = ["name": name,
+                             "about": about,
+                             "gender":gender,
+                             "ethnicity": ethnicity,
+                             "zodiac": zodiac,
+                             "age": age,
+                             "dob": dob,
+                             "smoke": smoke,
+                             "drink": drink,
+                             "hoursPrice":hoursPrice,
+                             "workout": workout,
+                             "countryCode": countryCode,
+                             "nationality": nationality,
+                             "identity": identity,
+                             "bodytype": bodytype,
+                             "document": imageInfoDocument,
                              "hashtags": jsonString]
                 }else{
                     param = ["name": name,
@@ -75,10 +136,13 @@ class ProfileVM{
                              "zodiac": zodiac,
                              "age": age,
                              "dob": dob,
-                             "hoursPrice":price,
                              "smoke": smoke,
                              "drink": drink,
+                             "hoursPrice":hoursPrice,
                              "workout": workout,
+                             "countryCode": countryCode,
+                             "nationality": nationality,
+                             "identity": identity,
                              "bodytype": bodytype,
                              "hashtags": jsonString]
                 }
@@ -87,7 +151,7 @@ class ProfileVM{
                 
                 WebService.service(API.updateProfile,param: param,service: .put,is_raw_form: false){(model:ProfileDetailModel,jsonData,jsonSer) in
                     Store.Hashtags = model
-                    Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? "","age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? ""]
+                    Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? "","age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? "","nationality":model.data?.user?.nationality ?? "","document":model.data?.user?.document ?? "","identity":model.data?.user?.identity ?? 0]
                     
                     //            showSwiftyAlert("", model.message ?? "", true)
                     onSuccess(model)
@@ -138,7 +202,7 @@ class ProfileVM{
         
         WebService.service(API.getProfile,service: .get,showHud: false,is_raw_form: true){(model:ProfileDetailModel,jsonData,jsonSer) in
             Store.Hashtags = model
-            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? ""]
+            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? "","nationality":model.data?.user?.nationality ?? "","document":model.data?.user?.document ?? "","identity":model.data?.user?.identity ?? 0]
             
             WebSocketManager.shared.initialize(userId: model.data?.user?.id ?? "")
             onSuccess(model)

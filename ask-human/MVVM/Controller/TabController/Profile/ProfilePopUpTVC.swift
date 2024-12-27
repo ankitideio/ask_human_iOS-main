@@ -11,6 +11,7 @@ class ProfilePopUpTVC: UITableViewCell {
     
     @IBOutlet var widthImgVwTick: NSLayoutConstraint!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet var viewBack: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

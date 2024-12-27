@@ -8,15 +8,21 @@
 import UIKit
 import AVFoundation
 import MBCircularProgressBar
+enum TriangleDirection {
+    case bottomLeft
+    case bottomRight
+    case centerBetweenLeftRight
+}
 
 
 
 class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     //MARK: - OUTLETS
+    @IBOutlet var viewButtons: UIView!
     @IBOutlet var lblProfilePercent: UILabel!
     @IBOutlet var viewCircular: CircularProgressBarView!
-    @IBOutlet var btnUpload: UIButton!
+   // @IBOutlet var btnUpload: UIButton!
     @IBOutlet var viewNotificationCount: UIView!
     @IBOutlet var lblNotificationCount: UILabel!
     @IBOutlet var btnBack: UIButton!
@@ -46,7 +52,65 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Ensure the container view (viewButtons) has a proper frame and size before adding subviews
+        let buttonFrame = viewButtons.frame
+
+        // Adjust the width and position of the triangles to decrease space between them
+        let triangleWidth = buttonFrame.width / 2.0  // Slightly decrease the width
+        // Create the center triangle between the left and right
+        let triangle3 = CustomTriangleView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: buttonFrame.width,
+            height: 150
+        ))
+
+        // Add 30-point bottom space by adjusting the frame's y position
+        let adjustedYPosition = buttonFrame.height - 15 - triangle3.frame.height
+        triangle3.frame.origin.y = adjustedYPosition
+        triangle3.direction = .centerBetweenLeftRight
+        triangle3.imageName = "topp"
+        viewButtons.addSubview(triangle3) // Add to viewButtons
+       // addTapGesture(to: triangle3, name: "Center Triangle")
         
+        // Create the first triangle (left)
+        let triangle1 = CustomTriangleView(frame: CGRect(x: 0, y: 0, width: triangleWidth, height: 120))
+        triangle1.direction = .bottomLeft
+        triangle1.imageName = "lefftt"
+        triangle1.layer.cornerRadius = 15 // Adjust the radius as needed
+        triangle1.layer.masksToBounds = true // Ensure the corner radius is applied
+
+        viewButtons.addSubview(triangle1) // Add to viewButtons
+        addTapGesture(to: triangle1, name: "Left Triangle")
+
+        // Create the second triangle (right)
+        let triangle2 = CustomTriangleView(frame: CGRect(x: buttonFrame.width - triangleWidth, y: 0, width: triangleWidth, height: 120))
+        triangle2.direction = .bottomRight
+        triangle2.imageName = "rightt"
+        triangle2.layer.cornerRadius = 15 // Adjust the radius as needed
+        triangle2.layer.masksToBounds = true // Ensure the corner radius is applied
+
+        viewButtons.addSubview(triangle2) // Add to viewButtons
+        addTapGesture(to: triangle2, name: "Right Triangle")
+
+        // Create the center triangle between the left and right
+        let triangle4 = CustomTriangleView(frame: CGRect(
+            x: (buttonFrame.width - buttonFrame.width / 2.0 ) / 2,
+            y: 0,
+            width: triangleWidth,
+            height: 120
+        ))
+
+        // Add 30-point bottom space by adjusting the frame's y position
+        let adjustedYPosition2 = buttonFrame.height - 55 - triangle4.frame.height
+        triangle4.frame.origin.y = adjustedYPosition2
+
+        triangle4.direction = .centerBetweenLeftRight
+       // triangle4.imageName = "topp"
+        viewButtons.addSubview(triangle4) // Add to viewButtons
+        addTapGesture(to: triangle4, name: "Center Triangle")
+
+
         getProfileApi()
         darkMode()
         arrImages.removeAll()
@@ -58,7 +122,74 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
         uiSet()
         
      }
-    
+    func addTapGesture(to view: UIView, name: String) {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTriangleTap(_:)))
+        view.addGestureRecognizer(tapGesture)
+        view.isUserInteractionEnabled = true // Ensure the view allows interactions
+        // Store reference to the triangle's name (left or right)
+        objc_setAssociatedObject(view, &AssociatedKeys.triangleNameKey, name, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+
+    @objc func handleTriangleTap(_ gesture: UITapGestureRecognizer) {
+        guard let view = gesture.view else { return }
+        
+        if let triangleName = objc_getAssociatedObject(view, &AssociatedKeys.triangleNameKey) as? String {
+            switch triangleName {
+            case "Left Triangle":
+                print("Left Triangle tapped!")
+                
+                if Store.isComingDraft == true{
+                    updateNoteApi(status: "0", isComing: false)
+                    
+                }else{
+                    addNoteApi(status: "0", isComing: false)
+                    
+                }
+
+            case "Right Triangle":
+                print("Right Triangle tapped!")
+                let wordsWithHash = getWordsAfterHash(from: txtVwNote.text)
+
+                if !wordsWithHash.isEmpty {
+                    print("Words after # are: \(wordsWithHash)")
+                    Store.hashtagForSearchUser = wordsWithHash
+                } else {
+                    print("No words found after #")
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.1){
+                    if Store.isComingDraft == true{
+                        self.updateNoteApi(status: "1", isComing: true)
+                        
+                    }else{
+                        
+                        self.addNoteApi(status: "1", isComing: true)
+                        
+                    }
+                }
+
+            case "Center Triangle":
+                print("Center Triangle tapped!")
+                if arrImages.count >= 5 {
+                    showSwiftyAlert("", "You can only upload up to 5 images and videos.", false)
+                    return
+                }else{
+                    chooseImage()
+                }
+            default:
+                print("Unknown Triangle tapped!")
+            }
+        }
+    }
+
+
+    // Associated keys to store the reference of the triangle layer and the triangle's name in the view
+    private struct AssociatedKeys {
+        static var triangleLayerKey = "triangleLayerKey"
+        static var triangleNameKey = "triangleNameKey"
+    }
+
+
+
     @objc func dismissKeyboardWhileClick() {
         view.endEditing(true)
     }
@@ -105,7 +236,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     
     func darkMode(){
         if traitCollection.userInterfaceStyle == .dark {
-            btnUpload.setImage(UIImage(named: "mediaDark"), for: .normal)
+           // btnUpload.setImage(UIImage(named: "mediaDark"), for: .normal)
             lblNotificationCount.textColor = .white
             btnBack.setImage(UIImage(named: "keyboard-backspace25"), for: .normal)
             lblName.textColor = .white
@@ -120,7 +251,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
             
         }else{
             lblScreenTitle.textColor = .black
-            btnUpload.setImage(UIImage(named: "mediaLight"), for: .normal)
+           // btnUpload.setImage(UIImage(named: "mediaLight"), for: .normal)
             txtVwNote.tintColor = .black
             lblNotificationCount.textColor = .white
             btnBack.setImage(UIImage(named: "back"), for: .normal)
@@ -231,6 +362,12 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     }
     //MARK: - ACTIONS
     
+    @IBAction func actionDraft(_ sender: UIButton) {
+        print("actionDraft")
+    }
+    @IBAction func actionSearchh(_ sender: UIButton) {
+        print("actionSearchh")
+    }
     @IBAction func actionProfile(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
         vc.isComing = 0
@@ -652,7 +789,7 @@ extension SearchNoteVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / 2-12, height: 100)
+        return CGSize(width: 60, height: 60)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        if arrImages.count >= 5 {
@@ -712,3 +849,80 @@ extension SearchNoteVC{
 
 }
 
+
+class CustomTriangleView: UIView {
+    enum Direction {
+        case bottomLeft, bottomRight, centerBetweenLeftRight
+    }
+    var direction: Direction = .bottomLeft {
+        didSet {
+            setNeedsDisplay() // Redraw the triangle when the direction is set
+        }
+    }
+    var imageName: String? {
+        didSet {
+            addImageToTriangle() // Add the image when the image name is set
+        }
+    }
+
+    var triangleColor: UIColor = .clear {
+        didSet {
+            setNeedsDisplay() // Redraw with the new color
+        }
+    }
+
+    // Override draw to make sure no shape is drawn
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+
+        self.backgroundColor = .clear // Ensure background is clear
+        
+        // Fill the triangle with the specified color
+        let path = getTrianglePath()
+        triangleColor.setFill()  // Set the triangle color
+        path.fill()              // Fill the triangle path
+    }
+
+    private func addImageToTriangle() {
+        guard let imageName = imageName else { return }
+
+        // Remove any existing image views before adding a new one
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+
+        // Create the UIImageView and apply the triangle mask
+        let imageView = UIImageView(frame: self.bounds)
+        imageView.image = UIImage(named: imageName)
+        
+        // Create a mask using the triangle's path
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = getTrianglePath().cgPath
+        imageView.layer.mask = maskLayer
+
+        self.addSubview(imageView) // Add the image view as a subview
+    }
+
+    private func getTrianglePath() -> UIBezierPath {
+        let path = UIBezierPath()
+        let rect = self.bounds
+        switch direction {
+        case .bottomLeft:
+            path.move(to: CGPoint(x: 0, y: rect.height)) // Bottom-left corner
+            path.addLine(to: CGPoint(x: rect.width, y: rect.height)) // Bottom-right corner
+            path.addLine(to: CGPoint(x: 0, y: 0)) // Top-left corner
+        case .bottomRight:
+            path.move(to: CGPoint(x: rect.width, y: rect.height)) // Bottom-right corner
+            path.addLine(to: CGPoint(x: 0, y: rect.height)) // Bottom-left corner
+            path.addLine(to: CGPoint(x: rect.width, y: 0)) // Top-right corner
+        case .centerBetweenLeftRight:
+            let centerX = rect.midX
+            let topY = 0.0
+            path.move(to: CGPoint(x: centerX, y: rect.height)) // Bottom-center of the view
+            path.addLine(to: CGPoint(x: centerX - rect.width / 1.5, y: topY)) // Top-left point
+            path.addLine(to: CGPoint(x: centerX + rect.width / 1.5, y: topY)) // Top-right point
+        }
+        path.close()
+        return path
+    }
+}

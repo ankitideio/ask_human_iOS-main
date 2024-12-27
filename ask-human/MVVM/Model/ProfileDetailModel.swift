@@ -19,9 +19,9 @@ struct ProfileDetailData: Codable {
 
 // MARK: - User
 struct Userr: Codable {
-    let id, name, email: String?
+    let id, name, email,nationality,document: String?
     let profileImage: String?
-    let mobile: Int?
+    let mobile,identity: Int?
     let countryCode, about: String?
     let gender: Int?
     let ethnicity, zodiac: String?
@@ -33,7 +33,7 @@ struct Userr: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case name, email, profileImage, mobile, countryCode, about, gender, ethnicity, zodiac, age, smoke, drink, workout, bodytype, hoursPrice, videoVerify, hashtags, dob
+        case name, email, profileImage, mobile, countryCode, about, gender, ethnicity, zodiac, age, smoke, drink, workout, bodytype, hoursPrice, videoVerify, hashtags, dob,nationality,document,identity
     }
 }
 

