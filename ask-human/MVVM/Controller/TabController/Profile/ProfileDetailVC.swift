@@ -249,7 +249,7 @@ class ProfileDetailVC: UIViewController{
             viewDescription.layer.borderColor = UIColor(hex: "#DCDCDC").cgColor
             viewDescription.layer.borderWidth = 1.0
             viewDescription.layer.cornerRadius = 5.0
-            let placeholderColor = UIColor(red: 72/255, green: 72/255, blue: 72/255, alpha: 1.0)
+            let placeholderColor = UIColor.placeholder
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]
@@ -349,19 +349,19 @@ class ProfileDetailVC: UIViewController{
             imgVwDocument.imageLoad(imageUrl: Store.userDetail?["document"] as? String ?? "")
             uploadDocument = true
         }
-        if Store.userDetail?["identity"] as? Int ?? 0 == 1{
+        if Store.userDetail?["identity"] as? Int == 0{
+            txtFldIdAuthType.text =  "Passport"
+        }else if Store.userDetail?["identity"] as? Int == 1{
             txtFldIdAuthType.text =  "Driving Licence"
-        }else if Store.userDetail?["identity"] as? Int ?? 0 == 2{
+        }else if Store.userDetail?["identity"] as? Int == 2{
             txtFldIdAuthType.text =  "Country ID"
         }else{
-            txtFldIdAuthType.text =  "Passport"
+            txtFldIdAuthType.text =  ""
         }
-       
-        
         self.txtFldUserName.text = Store.userDetail?["userName"] as? String ?? ""
         self.txtFldDateofbirth.text = Store.userDetail?["dob"] as? String ?? ""
         self.txtFldEthnicity.text = Store.userDetail?["ethnicity"] as? String ?? ""
-        self.lblZodiac.text = Store.userDetail?["zodiac"] as? String ?? ""
+        
         self.txtFldZodiac.text = Store.userDetail?["zodiac"] as? String ?? ""
         self.txtFldSmoke.text = Store.userDetail?["smoke"] as? String ?? ""
         self.txtFldDrink.text = Store.userDetail?["drink"] as? String ?? ""
@@ -372,7 +372,6 @@ class ProfileDetailVC: UIViewController{
         }else{
             self.txtFldPrice.text = ""
         }
-       
         self.lblMax.text = "72 Max"
         self.sliderr.value = Float(Store.userDetail?["age"] as? Int ?? 0)
         self.lblAge.text =  "\(Store.userDetail?["age"] as? Int ?? 0) Years age" 
@@ -389,11 +388,12 @@ class ProfileDetailVC: UIViewController{
                     let components = calendar.dateComponents([.month, .day], from: dateOfBirth)
                     if let month = components.month, let day = components.day {
                         self.txtFldZodiac.text = getZodiacSign(month: month, day: day)
+                        self.lblZodiac.text = getZodiacSign(month: month, day: day)
                     }
                 }
             }
+        
     }
-    
     //MARK: - button actions
     @IBAction func actionChooseIdtype(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfilePopUpsVC") as! ProfilePopUpsVC
@@ -413,11 +413,11 @@ class ProfileDetailVC: UIViewController{
     }
     @IBAction func actionDocumentUpload(_ sender: UIButton) {
         
-//        if txtFldIdAuthType.text == ""{
-//            showSwiftyAlert("", "Please select a valid ID for authentication.", false)
-//        }else{
+        if txtFldIdAuthType.text == ""{
+            showSwiftyAlert("", "Please select a valid ID for authentication.", false)
+        }else{
             openDocumentScanner()
-      //  }
+        }
     }
     private func openDocumentScanner() {
             if VNDocumentCameraViewController.isSupported {

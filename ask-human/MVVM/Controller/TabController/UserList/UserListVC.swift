@@ -115,7 +115,7 @@ class UserListVC: UIViewController,UIAdaptivePresentationControllerDelegate{
             lblNOData.textColor = UIColor(hex: "#6F7179")
             btnCross.setImage(UIImage(named: "crossBlack"), for: .normal)
             btnClose.backgroundColor =  UIColor(hex: "#272727")
-            let placeholderColor =  UIColor(hex: "#9CA4AB")
+            let placeholderColor =  UIColor.placeholder
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]

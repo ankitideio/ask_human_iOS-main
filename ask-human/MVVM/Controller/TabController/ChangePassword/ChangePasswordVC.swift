@@ -65,7 +65,7 @@ class ChangePasswordVC: UIViewController {
         }else{
             btnBack.setImage(UIImage(named: "back"), for: .normal)
             lblScreenTitle.textColor = .black
-            let placeholderColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
+            let placeholderColor = UIColor.placeholder
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]

@@ -57,7 +57,7 @@ class ResetPasswordVC: UIViewController {
         }else{
             imgVwTitle.image = UIImage(named: "askhumaniconlight")
             btnBack.setImage(UIImage(named: "back"), for: .normal)
-            let placeholderColor = UIColor(red: 72/255, green: 72/255, blue: 72/255, alpha: 1.0)
+            let placeholderColor = UIColor.placeholder
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]

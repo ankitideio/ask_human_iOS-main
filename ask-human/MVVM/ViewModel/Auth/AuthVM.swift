@@ -130,7 +130,7 @@ class AuthVM{
             print(param)
         
         WebService.service(API.loginWithGoogle,param: param,service: .post,is_raw_form: true){(model:LoginModel,jsonData,jsonSer) in
-            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","userId":model.data?.user?.id ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? ""]
+            Store.userDetail = ["email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","userId":model.data?.user?.id ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? ""]
             WebSocketManager.shared.initialize(userId: model.data?.user?.id ?? "")
             onSuccess(model.data)
         }

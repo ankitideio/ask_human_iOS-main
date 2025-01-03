@@ -148,12 +148,13 @@ class ProfileVC: UIViewController {
     //MARK: - ACTION
     
     @IBAction func actionViewImage(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewImageVC") as! ViewImageVC
-        vc.modalPresentationStyle = .overFullScreen
-        vc.isComing = true
-        vc.imgString =  Store.userDetail?["profile"] as? String ?? ""
-        self.navigationController?.present(vc, animated: true)
-        
+        if Store.userDetail?["profile"] as? String ?? "" != ""{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewImageVC") as! ViewImageVC
+            vc.modalPresentationStyle = .overFullScreen
+            vc.isComing = true
+            vc.imgString =  Store.userDetail?["profile"] as? String ?? ""
+            self.navigationController?.present(vc, animated: true)
+        }
     }
     @IBAction func actionIdentification(_ sender: UIButton) {
         if videoVerify == 3{

@@ -55,7 +55,7 @@ class AddNewEmailVC: UIViewController {
             imgVwTitle.image = UIImage(named: "askhumaniconlight")
             lblTitle.textColor =  UIColor(hex: "#303030")
             lblTitleMessage.textColor =  UIColor(hex: "#4C4C4C")
-            let placeholderColor = UIColor(hex: "#484848")
+            let placeholderColor = UIColor.placeholder
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]

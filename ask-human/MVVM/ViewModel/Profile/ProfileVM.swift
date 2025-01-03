@@ -151,7 +151,7 @@ class ProfileVM{
                 
                 WebService.service(API.updateProfile,param: param,service: .put,is_raw_form: false){(model:ProfileDetailModel,jsonData,jsonSer) in
                     Store.Hashtags = model
-                    Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? "","age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? "","nationality":model.data?.user?.nationality ?? "","document":model.data?.user?.document ?? "","identity":model.data?.user?.identity ?? 0]
+                    Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? "","age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? "","nationality":model.data?.user?.nationality ?? "","document":model.data?.user?.document ?? "","identity":model.data?.user?.identity ?? ""]
                     
                     //            showSwiftyAlert("", model.message ?? "", true)
                     onSuccess(model)
@@ -162,6 +162,23 @@ class ProfileVM{
         } catch {
             print("Error: \(error)")
         }
+    }
+    
+    func setProfileAfterSocialLoginApi(name:String,
+                          age:Int,
+                             dob:String,
+                             countryCode:String,
+                             onSuccess:@escaping((ProfileDetailModel?)->())){
+        let param:parameters = ["name": name,
+                             "age": age,
+                             "dob": dob,
+                             "countryCode": countryCode]
+                print(param)
+                WebService.service(API.updateProfile,param: param,service: .put,is_raw_form: false){(model:ProfileDetailModel,jsonData,jsonSer) in
+                    Store.Hashtags = model
+                    Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? "","age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? "","nationality":model.data?.user?.nationality ?? "","document":model.data?.user?.document ?? "","identity":model.data?.user?.identity ?? ""]
+                    onSuccess(model)
+                }
     }
     func sendHashtagRequest(id: String, onSuccess: @escaping (VerificationHashtagData?) -> Void) {
         // Parameters for the API request
@@ -202,7 +219,7 @@ class ProfileVM{
         
         WebService.service(API.getProfile,service: .get,showHud: false,is_raw_form: true){(model:ProfileDetailModel,jsonData,jsonSer) in
             Store.Hashtags = model
-            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? "","nationality":model.data?.user?.nationality ?? "","document":model.data?.user?.document ?? "","identity":model.data?.user?.identity ?? 0]
+            Store.userDetail = ["userName":model.data?.user?.name ?? "","email":model.data?.user?.email ?? "","profile":model.data?.user?.profileImage ?? "","phone":model.data?.user?.mobile ?? 0,"age":model.data?.user?.age ?? 0,"gender":model.data?.user?.gender ?? 0,"ethnicity":model.data?.user?.ethnicity ?? "","zodiac":model.data?.user?.zodiac ?? "","smoke":model.data?.user?.smoke ?? "","drink":model.data?.user?.drink ?? "","workout":model.data?.user?.workout ?? "","bodyType":model.data?.user?.bodytype ?? "","description":model.data?.user?.about ?? "","hoursPrice":model.data?.user?.hoursPrice ?? 0,"userId":model.data?.user?.id ?? "","dob":model.data?.user?.dob ?? "","countryCode":model.data?.user?.countryCode ?? "","nationality":model.data?.user?.nationality ?? "","document":model.data?.user?.document ?? "","identity":model.data?.user?.identity ?? ""]
             
             WebSocketManager.shared.initialize(userId: model.data?.user?.id ?? "")
             onSuccess(model)
