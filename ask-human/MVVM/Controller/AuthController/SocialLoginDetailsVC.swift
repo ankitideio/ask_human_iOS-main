@@ -10,6 +10,12 @@ import CountryPickerView
 
 class SocialLoginDetailsVC: UIViewController {
     //MARK: - IBOutlet
+    @IBOutlet var viewDateOfBirth: UIView!
+    @IBOutlet var viewPhoneNumber: UIView!
+    @IBOutlet var viewName: UIView!
+    @IBOutlet var viewBackCountryPicker: UIView!
+    @IBOutlet var viewPhone: UIView!
+
     @IBOutlet var widthCountryPickerVw: NSLayoutConstraint!
     @IBOutlet var viewCountryPicker: CountryPickerView!
     @IBOutlet var txtFldName: UITextField!
@@ -221,6 +227,7 @@ class SocialLoginDetailsVC: UIViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         uiSet()
     }
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -233,7 +240,6 @@ class SocialLoginDetailsVC: UIViewController {
        
         viewCountryPicker.delegate = self
         viewCountryPicker.showCountryCodeInView = false
-        viewCountryPicker.flagImageView.isHidden = true
         txtFldName.text = userName
         txtFldEmail.text = Store.userDetail?["email"] as? String ?? ""
         lblScrenTitle.text = "Finish Setting  up your \n account"
@@ -243,6 +249,19 @@ class SocialLoginDetailsVC: UIViewController {
     }
     func darkMode(){
         if traitCollection.userInterfaceStyle == .dark {
+            viewName.borderCol = .white
+            viewDateOfBirth.borderCol = .white
+            
+            viewBackCountryPicker.borderWid = 1
+            viewBackCountryPicker.borderCol = .white
+            viewBackCountryPicker.layer.cornerRadius = 24
+            viewBackCountryPicker.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+
+            viewPhone.borderWid = 1
+            viewPhone.borderCol = .white
+            viewPhone.layer.cornerRadius = 24
+            viewPhone.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+
             btnBack.setImage(UIImage(named: "keyboard-backspace25"), for: .normal)
             viewCountryPicker.textColor = .white
             txtFldName.textColor = .white
@@ -256,10 +275,23 @@ class SocialLoginDetailsVC: UIViewController {
                        .foregroundColor: placeholderColor
                    ]
             txtFldName.attributedPlaceholder = NSAttributedString(string: "Enter your full name", attributes: attributes)
-            txtFldEmail.attributedPlaceholder = NSAttributedString(string: "Enter your Email here", attributes: attributes)
-            txtFldPhonenumber.attributedPlaceholder = NSAttributedString(string: "Enter your Phone number", attributes: attributes)
+            txtFldEmail.attributedPlaceholder = NSAttributedString(string: "Enter your email here", attributes: attributes)
+            txtFldPhonenumber.attributedPlaceholder = NSAttributedString(string: "Phone number", attributes: attributes)
             txtFldDateofbirth.attributedPlaceholder = NSAttributedString(string: "MM-DD-YY", attributes: attributes)
                 }else{
+                    viewName.borderCol = .bordercolor
+                    viewDateOfBirth.borderCol = .bordercolor
+
+                    viewBackCountryPicker.borderWid = 1
+                    viewBackCountryPicker.borderCol = .bordercolor
+                    viewBackCountryPicker.layer.cornerRadius = 24
+                    viewBackCountryPicker.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+
+                    viewPhone.borderWid = 1
+                    viewPhone.borderCol = .bordercolor
+                    viewPhone.layer.cornerRadius = 24
+                    viewPhone.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+
                     lblScrenTitle.textColor = UIColor(hex: "#303030")
                     btnBack.setImage(UIImage(named: "back"), for: .normal)
                     txtFldName.textColor = .black
@@ -273,8 +305,8 @@ class SocialLoginDetailsVC: UIViewController {
                         .foregroundColor: placeholderColor
                     ]
                     txtFldName.attributedPlaceholder = NSAttributedString(string: "Enter your full name", attributes: attributes)
-                    txtFldEmail.attributedPlaceholder = NSAttributedString(string: "Enter your Email here", attributes: attributes)
-                    txtFldPhonenumber.attributedPlaceholder = NSAttributedString(string: "Enter your Phone number", attributes: attributes)
+                    txtFldEmail.attributedPlaceholder = NSAttributedString(string: "Enter your email here", attributes: attributes)
+                    txtFldPhonenumber.attributedPlaceholder = NSAttributedString(string: "Phone number", attributes: attributes)
                     txtFldDateofbirth.attributedPlaceholder = NSAttributedString(string: "MM-DD-YY", attributes: attributes)
                 }
     }
@@ -285,13 +317,13 @@ class SocialLoginDetailsVC: UIViewController {
         let phoneCodeLength = viewCountryPicker.selectedCountry.phoneCode.count
         switch phoneCodeLength {
         case 2:
-            widthCountryPickerVw.constant = 35
+            widthCountryPickerVw.constant = 50
         case 3:
-            widthCountryPickerVw.constant = 45
-        case 4:
             widthCountryPickerVw.constant = 55
+        case 4:
+            widthCountryPickerVw.constant = 65
         default:
-            widthCountryPickerVw.constant = 60
+            widthCountryPickerVw.constant = 75
         }
     }
 
@@ -304,20 +336,15 @@ class SocialLoginDetailsVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func actionSignup(_ sender: UIButton) {
-      //  print(txtFldName.text ?? "",selectedAge ?? 0,txtFldDateofbirth.text ?? "",viewCountryPicker.selectedCountry.phoneCode)
-        if txtFldName.text == ""{
+        if txtFldName.text?.trimWhiteSpace == ""{
             
-            showSwiftyAlert("", "Please enter your full name.", false)
+            showSwiftyAlert("", "Name must be entered.", false)
             
-        }else if txtFldEmail.text == ""{
+        }else  if txtFldName.text?.count ?? 0 < 3 || txtFldName.text?.count ?? 0 > 30{
             
-            showSwiftyAlert("", "Please enter your email address.", false)
+            showSwiftyAlert("", "Name must be between 3 and 30 characters long.", false)
             
-        }else if txtFldEmail.isValidEmail(txtFldEmail.text ?? "") == false{
-            
-            showSwiftyAlert("", "Please enter a valid email address.", false)
-            
-        }else if txtFldPhonenumber.text == ""{
+        }else  if txtFldPhonenumber.text == ""{
             
             showSwiftyAlert("", "Please enter your phone number.", false)
             
@@ -329,15 +356,16 @@ class SocialLoginDetailsVC: UIViewController {
             
             showSwiftyAlert("", "Please enter your date of birth.", false)
             
-        }else if selectedAge ?? 0 < 11{
+        }else if selectedAge ?? 0 < 18{
             
-            showSwiftyAlert("", "You must be at least 11 years old to proceed.", false)
+            showSwiftyAlert("", "You must be at least 18 years old to proceed.", false)
             
         }else{
-            
-            viewModel.setProfileAfterSocialLoginApi(name: txtFldName.text ?? "", age: selectedAge ?? 0, dob: txtFldDateofbirth.text ?? "", countryCode: viewCountryPicker.selectedCountry.phoneCode) { data in
+            let countryCode = viewCountryPicker.selectedCountry.phoneCode.replacingOccurrences(of: "+", with: "")
+            print("Selected Country Code: \(countryCode)")
+
+            viewModel.setProfileAfterSocialLoginApi(name: txtFldName.text ?? "", age: selectedAge ?? 0, dob: txtFldDateofbirth.text ?? "", countryCode: countryCode) { data in
                 self.viewModel.getProfileApi { data in
-                    
                     let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
                     Store.autoLogin = "true"
                     self.navigationController?.pushViewController(vc2, animated:true)
@@ -393,19 +421,7 @@ extension SocialLoginDetailsVC:CountryPickerViewDelegate{
             txtFldPhonenumber.maxLength = digits
             txtFldPhonenumber.text = ""
         }
-        if country.phoneCode.count == 2{
-            widthCountryPickerVw.constant = 35
-            
-        }else  if country.phoneCode.count == 3{
-            widthCountryPickerVw.constant = 45
-            
-        }else  if country.phoneCode.count == 4{
-            widthCountryPickerVw.constant = 55
-            
-        }else{
-            widthCountryPickerVw.constant = 60
-            
-        }
+        adjustCountryPickerWidth()
     }
     
 }
@@ -418,11 +434,15 @@ extension SocialLoginDetailsVC {
         if #available(iOS 13.4, *) {
             datePicker.preferredDatePickerStyle = .wheels
         }
+        let currentDate = Date()
+        let calendar = Calendar.current
+        if let maxDate = calendar.date(byAdding: .year, value: -65, to: currentDate) {
+            datePicker.maximumDate = currentDate
+            datePicker.minimumDate = maxDate
+        }
+        
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         textField.inputView = datePicker
-        
-        // Allow only past dates
-        datePicker.maximumDate = Date()  // Current date is the maximum
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -431,7 +451,6 @@ extension SocialLoginDetailsVC {
         toolbar.setItems([flexibleSpace, doneButton], animated: true)
         textField.inputAccessoryView = toolbar
         
-        // Add target for value change
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         datePicker.tag = textField.tag
     }

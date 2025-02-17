@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// MARK: - SearchUserModel
+// MARK: - Welcome
 struct SearchUserModel: Codable {
     let status, message: String?
     let statusCode: Int?
@@ -15,20 +15,35 @@ struct SearchUserModel: Codable {
 
 // MARK: - DataClass
 struct GetSearchData: Codable {
+    let totalPages,totalCount: Int?
     let users: [Userrr]?
 }
 
 // MARK: - User
 struct Userrr: Codable {
-    var isSelected: Bool = false
-    let id, email: String?
-    let profileImage: String?
+    let hashtags: [Hashtagg]?
+    let id, name, email: String?
+    let profileImage,badge: String?
     let mobile: Int?
-    let about, name: String?
-    let videoVerify:Int?
+    let about: String?
+    let gender, age, videoVerify,hoursPrice,chatCount: Int?
+    let isOnline:Bool?
+    let rating:Double?
+
+    enum CodingKeys: String, CodingKey {
+        case hashtags
+        case id = "_id"
+        case name, email, profileImage, mobile, about, gender, age, videoVerify,badge,isOnline,rating,hoursPrice,chatCount
+    }
+}
+
+// MARK: - Hashtag
+struct Hashtagg: Codable {
+    let id, title: String?
+    let usedCount,isVerified: Int?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case email, profileImage, mobile, about, name,videoVerify
+        case title, usedCount,isVerified
     }
 }

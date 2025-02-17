@@ -13,19 +13,25 @@ enum TriangleDirection {
     case bottomRight
     case centerBetweenLeftRight
 }
-
-
+// Associated keys to store the reference of the triangle layer and the triangle's name in the view
+private struct AssociatedKeys {
+    static var triangleLayerKey = "triangleLayerKey"
+    static var triangleNameKey = "triangleNameKey"
+}
 
 class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     //MARK: - OUTLETS
+    @IBOutlet var imgVwBackTop: NSLayoutConstraint!
+    @IBOutlet var imgVwNotification: UIImageView!
+    @IBOutlet var bottomImgVwBAck: NSLayoutConstraint!
+    @IBOutlet var imgVwBackGround: UIImageView!
+    @IBOutlet var viewTextArea: UIView!
     @IBOutlet var viewButtons: UIView!
     @IBOutlet var lblProfilePercent: UILabel!
     @IBOutlet var viewCircular: CircularProgressBarView!
-   // @IBOutlet var btnUpload: UIButton!
     @IBOutlet var viewNotificationCount: UIView!
     @IBOutlet var lblNotificationCount: UILabel!
-    @IBOutlet var btnBack: UIButton!
     @IBOutlet var btnDraft: UIButton!
     @IBOutlet var lblTitleMessage: UILabel!
     @IBOutlet var imgVwTitle: UIImageView!
@@ -52,151 +58,61 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Ensure the container view (viewButtons) has a proper frame and size before adding subviews
-        let buttonFrame = viewButtons.frame
-
-        // Adjust the width and position of the triangles to decrease space between them
-        let triangleWidth = buttonFrame.width / 2.0  // Slightly decrease the width
-        // Create the center triangle between the left and right
-        let triangle3 = CustomTriangleView(frame: CGRect(
-            x: 0,
-            y: 0,
-            width: buttonFrame.width,
-            height: 150
-        ))
-
-        // Add 30-point bottom space by adjusting the frame's y position
-        let adjustedYPosition = buttonFrame.height - 15 - triangle3.frame.height
-        triangle3.frame.origin.y = adjustedYPosition
-        triangle3.direction = .centerBetweenLeftRight
-        triangle3.imageName = "topp"
-        viewButtons.addSubview(triangle3) // Add to viewButtons
-       // addTapGesture(to: triangle3, name: "Center Triangle")
-        
-        // Create the first triangle (left)
-        let triangle1 = CustomTriangleView(frame: CGRect(x: 0, y: 0, width: triangleWidth, height: 120))
-        triangle1.direction = .bottomLeft
-        triangle1.imageName = "lefftt"
-        triangle1.layer.cornerRadius = 15 // Adjust the radius as needed
-        triangle1.layer.masksToBounds = true // Ensure the corner radius is applied
-
-        viewButtons.addSubview(triangle1) // Add to viewButtons
-        addTapGesture(to: triangle1, name: "Left Triangle")
-
-        // Create the second triangle (right)
-        let triangle2 = CustomTriangleView(frame: CGRect(x: buttonFrame.width - triangleWidth, y: 0, width: triangleWidth, height: 120))
-        triangle2.direction = .bottomRight
-        triangle2.imageName = "rightt"
-        triangle2.layer.cornerRadius = 15 // Adjust the radius as needed
-        triangle2.layer.masksToBounds = true // Ensure the corner radius is applied
-
-        viewButtons.addSubview(triangle2) // Add to viewButtons
-        addTapGesture(to: triangle2, name: "Right Triangle")
-
-        // Create the center triangle between the left and right
-        let triangle4 = CustomTriangleView(frame: CGRect(
-            x: (buttonFrame.width - buttonFrame.width / 2.0 ) / 2,
-            y: 0,
-            width: triangleWidth,
-            height: 120
-        ))
-
-        // Add 30-point bottom space by adjusting the frame's y position
-        let adjustedYPosition2 = buttonFrame.height - 55 - triangle4.frame.height
-        triangle4.frame.origin.y = adjustedYPosition2
-
-        triangle4.direction = .centerBetweenLeftRight
-       // triangle4.imageName = "topp"
-        viewButtons.addSubview(triangle4) // Add to viewButtons
-        addTapGesture(to: triangle4, name: "Center Triangle")
-
-
-        getProfileApi()
+        Store.searchHastag = nil
+        Store.userHashtags = nil
         darkMode()
         arrImages.removeAll()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardWhileClick))
-                      tapGesture.cancelsTouchesInView = false
-                      view.addGestureRecognizer(tapGesture)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("getnotifyCount"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfGetNotificationCount(notification:)), name: Notification.Name("GetNotificationCount"), object: nil)
         uiSet()
         
      }
-    func addTapGesture(to view: UIView, name: String) {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTriangleTap(_:)))
-        view.addGestureRecognizer(tapGesture)
-        view.isUserInteractionEnabled = true // Ensure the view allows interactions
-        // Store reference to the triangle's name (left or right)
-        objc_setAssociatedObject(view, &AssociatedKeys.triangleNameKey, name, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
-
-    @objc func handleTriangleTap(_ gesture: UITapGestureRecognizer) {
-        guard let view = gesture.view else { return }
+    private func uiSet(){
+        lblName.text = "Hi, \(Store.userDetail?["userName"] as? String ?? "")"
+        vwShadow.addTopShadow(shadowColor: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.13), shadowOpacity: 0.9, shadowRadius: 5, offset: CGSize(width: 0.0, height : -5.0))
+        viewCircular.setProgress(to: CGFloat(Store.userDetail?["completionPercentage"] as? Int ?? 0))
+        lblProfilePercent.text = "\(Store.userDetail?["completionPercentage"] as? Int ?? 0 )%"
         
-        if let triangleName = objc_getAssociatedObject(view, &AssociatedKeys.triangleNameKey) as? String {
-            switch triangleName {
-            case "Left Triangle":
-                print("Left Triangle tapped!")
-                
-                if Store.isComingDraft == true{
-                    updateNoteApi(status: "0", isComing: false)
-                    
-                }else{
-                    addNoteApi(status: "0", isComing: false)
-                    
-                }
-
-            case "Right Triangle":
-                print("Right Triangle tapped!")
-                let wordsWithHash = getWordsAfterHash(from: txtVwNote.text)
-
-                if !wordsWithHash.isEmpty {
-                    print("Words after # are: \(wordsWithHash)")
-                    Store.hashtagForSearchUser = wordsWithHash
-                } else {
-                    print("No words found after #")
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.1){
-                    if Store.isComingDraft == true{
-                        self.updateNoteApi(status: "1", isComing: true)
-                        
-                    }else{
-                        
-                        self.addNoteApi(status: "1", isComing: true)
-                        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("getnotifyCount"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfGetNotificationCount(notification:)), name: Notification.Name("GetNotificationCount"), object: nil)
+        getDraftDetailsApi()
+        handleTapGestures()
+        getEarning()
+        
+    }
+    private func getDraftDetailsApi(){
+        if Store.isComingDraft == true{
+            viewModel.draftDetail(id: draftId) { data in
+                self.txtVwNote.text = data?.notesDraftDetails?.note ?? ""
+                guard let media = data?.notesDraftDetails?.media else { return }
+                for item in media {
+                    if !self.arrImages.contains(where: { $0 as? String == item }) {
+                        self.arrImages.append(item)
                     }
                 }
-
-            case "Center Triangle":
-                print("Center Triangle tapped!")
-                if arrImages.count >= 5 {
-                    showSwiftyAlert("", "You can only upload up to 5 images and videos.", false)
-                    return
-                }else{
-                    chooseImage()
-                }
-            default:
-                print("Unknown Triangle tapped!")
+                self.clsnVwAddPhotos.reloadData()
             }
         }
     }
+    private func handleTapGestures(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardWhileClick))
+                      tapGesture.cancelsTouchesInView = false
+                      view.addGestureRecognizer(tapGesture)
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(openKeyboard))
+                      tapGesture2.cancelsTouchesInView = false
+        viewTextArea.addGestureRecognizer(tapGesture2)
 
-
-    // Associated keys to store the reference of the triangle layer and the triangle's name in the view
-    private struct AssociatedKeys {
-        static var triangleLayerKey = "triangleLayerKey"
-        static var triangleNameKey = "triangleNameKey"
     }
-
-
-
+    @objc func openKeyboard() {
+        if arrImages.isEmpty{
+            txtVwNote.becomeFirstResponder()
+        }
+       
+    }
+    
     @objc func dismissKeyboardWhileClick() {
         view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
         uiSet()
         getNotificationCount()
 //        if Store.openSiri == false{
@@ -206,66 +122,50 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
 //            }
 //        }
     }
-    func getProfileApi(){
-        viewModelProfile.getProfileApi{ data in
-            self.viewCircular.setProgress(to: CGFloat(data?.data?.completionPercentage ?? 0))
-            self.lblProfilePercent.text = "\(data?.data?.completionPercentage ?? 0)%"
-        }
-     
-
-    }
     @objc func methodOfReceivedNotification(notification: Notification) {
        getNotificationCount()
         uiSet()
     }
     @objc func methodOfGetNotificationCount(notification: Notification) {
-        
         getNotificationCount()
-        
     }
-
-    func openSiri(){
+    private func openSiri(){
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SiriPopUpVC") as! SiriPopUpVC
         vc.modalPresentationStyle = .overFullScreen
         vc.callBack = { (voiceText) in
             self.txtVwNote.text = voiceText
-            
         }
         self.navigationController?.present(vc, animated: true)
     }
     
-    func darkMode(){
-        if traitCollection.userInterfaceStyle == .dark {
-           // btnUpload.setImage(UIImage(named: "mediaDark"), for: .normal)
-            lblNotificationCount.textColor = .white
-            btnBack.setImage(UIImage(named: "keyboard-backspace25"), for: .normal)
-            lblName.textColor = .white
-            lblScreenTitle.textColor = .white
-            lblProfilePercent.textColor = .white
-            lblTitleMessage.textColor = .white
-            btnDraft.backgroundColor = .white
-            btnDraft.setTitleColor(.black, for: .normal)
-            imgVwTitle.image = UIImage(named: "askhumanicondark")
-            txtVwNote.tintColor = .white
-            
-            
-        }else{
-            lblScreenTitle.textColor = .black
-           // btnUpload.setImage(UIImage(named: "mediaLight"), for: .normal)
-            txtVwNote.tintColor = .black
-            lblNotificationCount.textColor = .white
-            btnBack.setImage(UIImage(named: "back"), for: .normal)
-            imgVwTitle.image = UIImage(named: "askhumaniconlight")
-            lblName.textColor = UIColor(red: 76/255, green: 76/255, blue: 76/255, alpha: 1.0)
-            lblScreenTitle.textColor = UIColor(red: 76/255, green: 76/255, blue: 76/255, alpha: 1.0)
-            lblTitleMessage.textColor = UIColor(red: 76/255, green: 76/255, blue: 76/255, alpha: 1.0)
-            btnDraft.backgroundColor = .black
-            btnDraft.setTitleColor(.white, for: .normal)
-            
-        }
+    private func darkMode() {
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+
+        imgVwNotification.image = UIImage(named: isDarkMode ? "darkNotif" : "pinkNotification")
+        imgVwBackGround.image = UIImage(named: isDarkMode ? "darkHome 1" : "lightHome")
+        imgVwTitle.image = UIImage(named: "appIcon")
+
+        let textColor = isDarkMode ? UIColor.white : UIColor(red: 76/255, green: 76/255, blue: 76/255, alpha: 1.0)
+        lblNotificationCount.textColor = .white
+        lblName.textColor = textColor
+        lblScreenTitle.textColor = textColor
+        lblTitleMessage.textColor = textColor
+        lblProfilePercent.textColor = isDarkMode ? .white : textColor
+        txtVwNote.tintColor = isDarkMode ? .white : .black
+
+        btnDraft.backgroundColor = isDarkMode ? .white : .black
+        btnDraft.setTitleColor(isDarkMode ? .black : .white, for: .normal)
+
+        bottomImgVwBAck.constant = isDarkMode ? -40 : bottomImgVwBAck.constant
+        imgVwBackTop.constant = isDarkMode ? -110 : imgVwBackTop.constant
+        
+        viewTextArea.backgroundColor = isDarkMode ? UIColor(hex: "#1C1C1C") : .white
+        clsnVwAddPhotos.backgroundColor = isDarkMode ? .clear : .white
+        txtVwNote.backgroundColor = isDarkMode ? .clear : .white
     }
+
     
-    func getNotificationCount() {
+    private func getNotificationCount() {
         if WebSocketManager.shared.socket?.status == .connected{
             let param: parameters = ["userId": Store.userDetail?["userId"] as? String ?? ""]
             WebSocketManager.shared.getNotificationCount(dict: param)
@@ -293,34 +193,8 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
             }
         }
    
-    func uiSet(){
-        if isComing == true{
-            btnBack.isHidden = false
-        }else{
-            btnBack.isHidden = true
-        }
-        getEarning()
-        if Store.isComingDraft == true{
-            viewModel.draftDetail(id: draftId) { data in
-                self.txtVwNote.text = data?.notesDraftDetails?.note ?? ""
-                guard let media = data?.notesDraftDetails?.media else { return }
-                for item in media {
-                    if !self.arrImages.contains(where: { $0 as? String == item }) {
-                        self.arrImages.append(item)
-                    }
-                }
-                self.clsnVwAddPhotos.reloadData()
-            }
-
-            
-        }
-        lblName.text = "Hi, \(Store.userDetail?["userName"] as? String ?? "")"
-    
-        vwShadow.addTopShadow(shadowColor: UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.13), shadowOpacity: 0.9, shadowRadius: 5, offset: CGSize(width: 0.0, height : -5.0))
-    }
     
     func getEarning(){
-        
         calendar.firstWeekday = 1
            let startDate = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentWeekStartDate))!
            let endDate = calendar.date(byAdding: .day, value: 6, to: startDate)!
@@ -330,48 +204,73 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
           let date = dateFormatter.date(from: dateFormatter.string(from: todayDate)) ?? Date()
         if let date1 = dateFormatter.date(from: dateFormatter.string(from: startDate)),
            let date2 = dateFormatter.date(from: dateFormatter.string(from: endDate)) {
-            
                 dateFormatter.dateFormat = "yyyy-M-dd"
                 let formattedDate1 = dateFormatter.string(from: date1)
                 let formattedDate2 = dateFormatter.string(from: date2)
                 print("StartDate",formattedDate1,"EndDate",formattedDate2)
             viewModelEarning.getEarningApi(startDate: formattedDate1, endDate: formattedDate2, showLoader: false) { data in
+                print("success")
                 Store.totalEarning = data?.walletBalance ?? 0
-                
             }
         } else {
             print("Error converting date strings to Date objects.")
         }
-        
     }
-
-    
     func imageUploadApi(image:UIImage){
         viewModelFile.fileUpload(image: image) { data in
             self.arrImages.insert(data?.imageUrl ?? "", at:0)
             self.clsnVwAddPhotos.reloadData()
-            print("Imageesss",self.arrImages)
         }
     }
     func videoUploadApi(videoUrl:URL){
         viewModelFile.fileUploadVideo(video: videoUrl){ data in
             self.arrImages.insert(data?.imageUrl ?? "", at:0)
             self.clsnVwAddPhotos.reloadData()
-            print("Imageesss",self.arrImages)
         }
     }
     //MARK: - ACTIONS
-    
-    @IBAction func actionDraft(_ sender: UIButton) {
-        print("actionDraft")
+    @IBAction func actionSearchan(_ sender: UIButton) {
+        if txtVwNote.text.trimWhiteSpace.isEmpty == true{
+            if arrImages.isEmpty{
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+                vc.message = "Please upload a photo or enter text."
+                vc.modalPresentationStyle = .overFullScreen
+                self.navigationController?.present(vc, animated:false)
+            }
+            }else{
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddHashtagVC") as! AddHashtagVC
+                vc.modalPresentationStyle = .overFullScreen
+                vc.callBack = { hashtags, isSkip in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        if Store.isComingDraft {
+                            self.updateNoteApi(status: "1", isComing: true)
+                        } else {
+                            self.addNoteApi(status: "1", isComing: true)
+                        }
+                    }
+                }
+                self.navigationController?.present(vc, animated: true)
+            }
     }
-    @IBAction func actionSearchh(_ sender: UIButton) {
-        print("actionSearchh")
+    @IBAction func actionAddPhoto(_ sender: UIButton) {
+        if arrImages.count >= 5 {
+            showSwiftyAlert("", "You can only upload up to 5 images and videos.", false)
+            return
+        }else{
+            chooseImage()
+        }
     }
     @IBAction func actionProfile(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-        vc.isComing = 0
-        self.navigationController?.pushViewController(vc, animated: true)
+        if Store.userDetail?["document"] as? String ?? "" == ""{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
+            vc.isComing = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "IdVerifiedVC") as! IdVerifiedVC
+            vc.isComing = true
+            self.navigationController?.pushViewController(vc, animated: true)
+
+        }
     }
     @IBAction func actionUpload(_ sender: UIButton) {
         if arrImages.count >= 5 {
@@ -389,8 +288,6 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
     @IBAction func actionBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
     @IBAction func actionSaveDraft(_ sender: UIButton) {
         
         if Store.isComingDraft == true{
@@ -398,37 +295,34 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
             
         }else{
             addNoteApi(status: "0", isComing: false)
-            
         }
-        
-        
     }
     
     @IBAction func actionSearch(_ sender: GradientButton) {
-        let wordsWithHash = getWordsAfterHash(from: txtVwNote.text)
-
-        if !wordsWithHash.isEmpty {
-            print("Words after # are: \(wordsWithHash)")
-            Store.hashtagForSearchUser = wordsWithHash
-        } else {
-            print("No words found after #")
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.1){
-            if Store.isComingDraft == true{
-                self.updateNoteApi(status: "1", isComing: true)
-                
-            }else{
-                
-                self.addNoteApi(status: "1", isComing: true)
-                
-            }
-        }
+//        let wordsWithHash = getWordsAfterHash(from: txtVwNote.text)
+//
+//        if !wordsWithHash.isEmpty {
+//            print("Words after # are: \(wordsWithHash)")
+//            Store.hashtagForSearchUser = wordsWithHash
+//        } else {
+//            print("No words found after #")
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: .now()+0.1){
+//            if Store.isComingDraft == true{
+//                self.updateNoteApi(status: "1", isComing: true)
+//                
+//            }else{
+//                
+//                self.addNoteApi(status: "1", isComing: true)
+//                
+//            }
+//        }
     }
     
     func addNoteApi(status:String,isComing:Bool){
-        
         if txtVwNote.text.trimWhiteSpace.isEmpty == true{
             if arrImages.isEmpty{
+               
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
                 vc.message = "Please upload a photo or enter text."
                 vc.modalPresentationStyle = .overFullScreen
@@ -438,13 +332,18 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                 var arrUpdateImage = [Any]()
                 arrUpdateImage = arrImages
                 print(arrUpdateImage)
-//                if Store.totalEarning ?? 0 > 0 {
-                    viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
+                print("1")
+                viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { [weak self] data,message  in
+                    guard let self = self else { return }
                         if isComing == true{
                             Store.notesId = data?.createNotes?.id ?? ""
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+                            Store.question = data?.createNotes?.note ?? ""
+                            vc.arrMedia = arrImages
                             Store.isRefer = false
+                            self.dismiss(animated: true)
                             self.navigationController?.pushViewController(vc, animated: true)
+                            
                         }else{
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
                             vc.message = message ?? ""
@@ -456,56 +355,23 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                             self.navigationController?.present(vc, animated:false)
                         }
                         
-                    }
-//                }else{
-//                    if isComing == true{
-//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-//                        vc.modalPresentationStyle = .overFullScreen
-//                        vc.message = "You have insufficient funds for your search. First Add funds to continue."
-//                        vc.isComing = true
-//                        vc.callBack = {
-//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
-//                            vc.isComing = true
-//                            vc.callBack = {
-//                                self.getEarning()
-//                            }
-//                            self.navigationController?.pushViewController(vc, animated: true)
-//                        }
-//                        self.navigationController?.present(vc, animated: false)
-//                    }else{
-//                        viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
-//                            if isComing == true{
-//                                Store.notesId = data?.createNotes?.id ?? ""
-//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
-//                                Store.isRefer = false
-//                                self.navigationController?.pushViewController(vc, animated: true)
-//                            }else{
-//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-//                                vc.message = message ?? ""
-//                                vc.isComing = false
-//                                vc.modalPresentationStyle = .overFullScreen
-//                                vc.callBack = {
-//                                    SceneDelegate().tabBarHomeVCRoot()
-//                                }
-//                                self.navigationController?.present(vc, animated:false)
-//                            }
-//
-//                        }
-//
-//                    }
-//
-//                }
+                    
+                }
             }
             }else{
                 var arrUpdateImage = [Any]()
                 arrUpdateImage = arrImages
-               // if Store.totalEarning ?? 0 > 0 {
-                    viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
+                print("2")
+                viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
                         if isComing == true{
                             Store.notesId = data?.createNotes?.id ?? ""
-                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
-                            Store.isRefer = false
-                            self.navigationController?.pushViewController(vc, animated: true)
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+                            Store.question = data?.createNotes?.note ?? ""
+                            vc.arrMedia = self.arrImages
+                                Store.isRefer = false
+                                self.dismiss(animated: true)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            
                         }else{
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
                             vc.message = message ?? ""
@@ -516,48 +382,10 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                             vc.modalPresentationStyle = .overFullScreen
                             self.navigationController?.present(vc, animated:false)
                         }
-                    }
-//                }else{
-//                    if isComing == true{
-//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-//                        vc.modalPresentationStyle = .overFullScreen
-//                        vc.message = "You have insufficient funds for your search. First Add funds to continue."
-//                        vc.isComing = true
-//                        vc.callBack = {
-//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
-//                            vc.isComing = true
-//
-//                            vc.callBack = {
-//                                self.getEarning()
-//                            }
-//                            self.navigationController?.pushViewController(vc, animated: true)
-//                        }
-//                        self.navigationController?.present(vc, animated: false)
-//                    }else{
-//                        viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
-//                            if isComing == true{
-//                                Store.notesId = data?.createNotes?.id ?? ""
-//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
-//                                Store.isRefer = false
-//                                self.navigationController?.pushViewController(vc, animated: true)
-//                            }else{
-//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-//                                vc.message = message ?? ""
-//                                vc.isComing = false
-//                                vc.modalPresentationStyle = .overFullScreen
-//                                vc.callBack = {
-//                                    SceneDelegate().tabBarHomeVCRoot()
-//                                }
-//                                self.navigationController?.present(vc, animated:false)
-//                            }
-//
-//                        }
-//                    }
-//                }
+                }
             }
     }
     func updateNoteApi(status:String,isComing:Bool){
-        
          if txtVwNote.text == "" {
              if arrImages.isEmpty{
                  let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
@@ -573,6 +401,8 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                      if isComing == true{
                          Store.notesId = data?.createNotes?.id ?? ""
                          let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+                         Store.question = data?.createNotes?.note ?? ""
+                         vc.arrMedia = self.arrImages
                          Store.isRefer = false
                          self.navigationController?.pushViewController(vc, animated: true)
                      }else{
@@ -601,6 +431,8 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
                          Store.notesId = data?.createNotes?.id ?? ""
                         
                          let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+                         Store.question = data?.createNotes?.note ?? ""
+                         vc.arrMedia = self.arrImages
                          Store.isRefer = false
                          Store.isComingDraft = false
                          self.navigationController?.pushViewController(vc, animated: true)
@@ -703,7 +535,7 @@ class SearchNoteVC: UIViewController,UIImagePickerControllerDelegate & UINavigat
 //MARK: -UITextViewDelegate
 extension SearchNoteVC:UITextViewDelegate{
     func textViewDidChange(_ textView: UITextView) {
-        applyTextAttributes(to: textView)
+       // applyTextAttributes(to: textView)
        }
        
     func applyTextAttributes(to textView: UITextView) {
@@ -784,6 +616,9 @@ extension SearchNoteVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
             cell.btnCross.isHidden = false
             cell.btnCross.addTarget(self, action: #selector(deleteImage), for: .touchUpInside)
             cell.btnCross.tag = indexPath.row
+            let isDarkMode = traitCollection.userInterfaceStyle == .dark
+            cell.imgVwCross.image = isDarkMode ? UIImage(named: "darkCros") : UIImage(named: "crossTag")
+          
         return cell
         
     }
@@ -832,22 +667,22 @@ extension SearchNoteVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
 }
 
-//MARK: - getWordAfterHash
-extension SearchNoteVC{
-    func getWordsAfterHash(from sentence: String) -> [String] {
-        // Split the sentence by spaces
-        let components = sentence.split(separator: " ")
-        
-        // Filter components that start with '#' and have letters after it
-        let wordsAfterHash = components.filter {
-            $0.hasPrefix("#") && $0.count > 1
-        }
-        .map { String($0.dropFirst()) } // Remove the '#' and keep the rest
-        
-        return wordsAfterHash
-    }
-
-}
+////MARK: - getWordAfterHash
+//extension SearchNoteVC{
+//    func getWordsAfterHash(from sentence: String) -> [String] {
+//        // Split the sentence by spaces
+//        let components = sentence.split(separator: " ")
+//        
+//        // Filter components that start with '#' and have letters after it
+//        let wordsAfterHash = components.filter {
+//            $0.hasPrefix("#") && $0.count > 1
+//        }
+//        .map { String($0.dropFirst()) } // Remove the '#' and keep the rest
+//        
+//        return wordsAfterHash
+//    }
+//
+//}
 
 
 class CustomTriangleView: UIView {
@@ -926,3 +761,217 @@ class CustomTriangleView: UIView {
         return path
     }
 }
+
+//                if Store.totalEarning ?? 0 > 0 {
+//                }else{
+//                    if isComing == true{
+//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                        vc.modalPresentationStyle = .overFullScreen
+//                        vc.message = "You have insufficient funds for your search. First Add funds to continue."
+//                        vc.isComing = true
+//                        vc.callBack = {
+//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
+//                            vc.isComing = true
+//                            vc.callBack = {
+//                                self.getEarning()
+//                            }
+//                            self.navigationController?.pushViewController(vc, animated: true)
+//                        }
+//                        self.navigationController?.present(vc, animated: false)
+//                    }else{
+//                        viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
+//                            if isComing == true{
+//                                Store.notesId = data?.createNotes?.id ?? ""
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+//                                Store.isRefer = false
+//                                self.navigationController?.pushViewController(vc, animated: true)
+//                            }else{
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                                vc.message = message ?? ""
+//                                vc.isComing = false
+//                                vc.modalPresentationStyle = .overFullScreen
+//                                vc.callBack = {
+//                                    SceneDelegate().tabBarHomeVCRoot()
+//                                }
+//                                self.navigationController?.present(vc, animated:false)
+//                            }
+//
+//                        }
+//
+//                    }
+//
+//                }
+
+// if Store.totalEarning ?? 0 > 0 {
+ //print("2")
+//                }else{
+//                    if isComing == true{
+//                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                        vc.modalPresentationStyle = .overFullScreen
+//                        vc.message = "You have insufficient funds for your search. First Add funds to continue."
+//                        vc.isComing = true
+//                        vc.callBack = {
+//                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WalletVC") as! WalletVC
+//                            vc.isComing = true
+//
+//                            vc.callBack = {
+//                                self.getEarning()
+//                            }
+//                            self.navigationController?.pushViewController(vc, animated: true)
+//                        }
+//                        self.navigationController?.present(vc, animated: false)
+//                    }else{
+//                        viewModel.addNoteApi(note: txtVwNote.text ?? "", media: arrUpdateImage, status: status) { data,message  in
+//                            if isComing == true{
+//                                Store.notesId = data?.createNotes?.id ?? ""
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+//                                Store.isRefer = false
+//                                self.navigationController?.pushViewController(vc, animated: true)
+//                            }else{
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                                vc.message = message ?? ""
+//                                vc.isComing = false
+//                                vc.modalPresentationStyle = .overFullScreen
+//                                vc.callBack = {
+//                                    SceneDelegate().tabBarHomeVCRoot()
+//                                }
+//                                self.navigationController?.present(vc, animated:false)
+//                            }
+//
+//                        }
+//                    }
+//                }
+// Ensure the container view (viewButtons) has a proper frame and size before adding subviews
+//let buttonFrame = viewButtons.frame
+//let triangleWidth = buttonFrame.width / 2.0  // Slightly decrease the width
+//let triangle3 = CustomTriangleView(frame: CGRect(
+//    x: 0,
+//    y: 0,
+//    width: buttonFrame.width,
+//    height: 150
+//))
+//
+//// Add 30-point bottom space by adjusting the frame's y position
+//let adjustedYPosition = buttonFrame.height - 15 - triangle3.frame.height
+//triangle3.frame.origin.y = adjustedYPosition
+//triangle3.direction = .centerBetweenLeftRight
+//triangle3.imageName = "topp"
+//viewButtons.addSubview(triangle3) // Add to viewButtons
+//// addTapGesture(to: triangle3, name: "Center Triangle")
+//
+//// Create the first triangle (left)
+//let triangle1 = CustomTriangleView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//triangle1.direction = .bottomLeft
+//triangle1.imageName = "lefftt"
+//triangle1.layer.cornerRadius = 15 // Adjust the radius as needed
+//triangle1.layer.masksToBounds = true // Ensure the corner radius is applied
+//
+//viewButtons.addSubview(triangle1) // Add to viewButtons
+//addTapGesture(to: triangle1, name: "Left Triangle")
+//
+//// Create the second triangle (right)
+//let triangle2 = CustomTriangleView(frame: CGRect(x: buttonFrame.width - triangleWidth, y: 0, width: triangleWidth, height: 120))
+//triangle2.direction = .bottomRight
+//triangle2.imageName = "rightt"
+//triangle2.layer.cornerRadius = 15 // Adjust the radius as needed
+//triangle2.layer.masksToBounds = true // Ensure the corner radius is applied
+//
+//viewButtons.addSubview(triangle2) // Add to viewButtons
+//addTapGesture(to: triangle2, name: "Right Triangle")
+//
+//// Create the center triangle between the left and right
+//let triangle4 = CustomTriangleView(frame: CGRect(
+//    x: (buttonFrame.width - buttonFrame.width / 2.0 ) / 2,
+//    y: 0,
+//    width: triangleWidth,
+//    height: 120
+//))
+//
+//// Add 30-point bottom space by adjusting the frame's y position
+//let adjustedYPosition2 = buttonFrame.height - 55 - triangle4.frame.height
+//triangle4.frame.origin.y = adjustedYPosition2
+//
+//triangle4.direction = .centerBetweenLeftRight
+//// triangle4.imageName = "topp"
+//viewButtons.addSubview(triangle4) // Add to viewButtons
+//addTapGesture(to: triangle4, name: "Center Triangle")
+//func addTapGesture(to view: UIView, name: String) {
+//    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTriangleTap(_:)))
+//    view.addGestureRecognizer(tapGesture)
+//    view.isUserInteractionEnabled = true // Ensure the view allows interactions
+//    // Store reference to the triangle's name (left or right)
+//    objc_setAssociatedObject(view, &AssociatedKeys.triangleNameKey, name, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//}
+//@objc func handleTriangleTap(_ gesture: UITapGestureRecognizer) {
+//    guard let view = gesture.view else { return }
+//    
+//    if let triangleName = objc_getAssociatedObject(view, &AssociatedKeys.triangleNameKey) as? String {
+//        switch triangleName {
+//        case "Left Triangle":
+//            print("Left Triangle tapped!")
+//            
+//            if Store.isComingDraft == true{
+//                updateNoteApi(status: "0", isComing: false)
+//            }else{
+//                addNoteApi(status: "0", isComing: false)
+//            }
+//
+//        case "Right Triangle":
+//            print("Right Triangle tapped!")
+//            if txtVwNote.text.trimWhiteSpace.isEmpty == true{
+//                if arrImages.isEmpty{
+//                    
+//                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+//                    vc.message = "Please upload a photo or enter text."
+//                    vc.modalPresentationStyle = .overFullScreen
+//                    
+//                    self.navigationController?.present(vc, animated:false)
+//                }
+//                }else{
+//                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddHashtagVC") as! AddHashtagVC
+//                    vc.modalPresentationStyle = .overFullScreen
+//                    vc.callBack = { hashtags, isSkip in
+//                        
+//                        
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+//                            if Store.isComingDraft {
+//                                self.updateNoteApi(status: "1", isComing: true)
+//                            } else {
+//                                self.addNoteApi(status: "1", isComing: true)
+//                            }
+//                        }
+//                    }
+//                    self.navigationController?.present(vc, animated: true)
+//                }
+////                let wordsWithHash = getWordsAfterHash(from: txtVwNote.text)
+////
+////                if !wordsWithHash.isEmpty {
+////                    print("Words after # are: \(wordsWithHash)")
+////                    Store.hashtagForSearchUser = wordsWithHash
+////                } else {
+////                    print("No words found after #")
+////                }
+////                DispatchQueue.main.asyncAfter(deadline: .now()+0.1){
+////                    if Store.isComingDraft == true{
+////                        self.updateNoteApi(status: "1", isComing: true)
+////
+////                    }else{
+////
+////                        self.addNoteApi(status: "1", isComing: true)
+////
+////                    }
+////                }
+//
+//        case "Center Triangle":
+//            print("Center Triangle tapped!")
+//            if arrImages.count >= 5 {
+//                showSwiftyAlert("", "You can only upload up to 5 images and videos.", false)
+//                return
+//            }else{
+//                chooseImage()
+//            }
+//        default:
+//            print("Unknown Triangle tapped!")
+//        }
+//    }
+//}

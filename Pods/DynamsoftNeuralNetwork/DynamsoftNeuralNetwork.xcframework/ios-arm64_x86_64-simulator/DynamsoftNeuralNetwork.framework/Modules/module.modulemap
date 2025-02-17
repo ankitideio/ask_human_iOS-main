@@ -1,0 +1,6 @@
+framework module DynamsoftNeuralNetwork {
+  umbrella header "DynamsoftNeuralNetwork.h"
+
+  export *
+  module * { export * }
+}

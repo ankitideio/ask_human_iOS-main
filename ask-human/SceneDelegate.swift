@@ -123,9 +123,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UIApplication.shared.windows.first?.rootViewController = nav
         
     }
+    func verifiedVCRootToHome(){
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let nextVC = mainStoryBoard.instantiateViewController(withIdentifier: "IdVerifiedVC") as! IdVerifiedVC
+        nextVC.isComing = true
+        let nav = UINavigationController.init(rootViewController: nextVC)
+        nav.isNavigationBarHidden = true
+        UIApplication.shared.windows.first?.rootViewController = nav
+        
+    }
+    func verifiedVCRootToProfile(){
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let nextVC = mainStoryBoard.instantiateViewController(withIdentifier: "IdVerifiedVC") as! IdVerifiedVC
+        nextVC.isComing = false
+        let nav = UINavigationController.init(rootViewController: nextVC)
+        nav.isNavigationBarHidden = true
+        UIApplication.shared.windows.first?.rootViewController = nav
+        
+    }
+
     func loginConfirmVCRoot(){
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = mainStoryBoard.instantiateViewController(withIdentifier: "LoginConfirmVC") as! LoginConfirmVC
+        let nav = UINavigationController.init(rootViewController: nextVC)
+        nav.isNavigationBarHidden = true
+        UIApplication.shared.windows.first?.rootViewController = nav
+        
+    }
+    func UserListVCRootisReferFalse(){
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let nextVC = mainStoryBoard.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
+        Store.isRefer = false
         let nav = UINavigationController.init(rootViewController: nextVC)
         nav.isNavigationBarHidden = true
         UIApplication.shared.windows.first?.rootViewController = nav
@@ -168,6 +196,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
     func notificationsRoot(selectTab:Int){
+        isReload = true
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = mainStoryBoard.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
         Store.selectTabIndex = selectTab

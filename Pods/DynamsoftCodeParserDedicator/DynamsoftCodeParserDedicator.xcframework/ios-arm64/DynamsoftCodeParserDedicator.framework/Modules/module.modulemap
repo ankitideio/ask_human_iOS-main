@@ -1,0 +1,6 @@
+framework module DynamsoftCodeParserDedicator {
+  umbrella header "DynamsoftCodeParserDedicator.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module DynamsoftCaptureVisionRouter {
+  umbrella header "DynamsoftCaptureVisionRouter.h"
+
+  export *
+  module * { export * }
+}

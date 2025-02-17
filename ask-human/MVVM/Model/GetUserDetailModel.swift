@@ -24,27 +24,44 @@ struct UserData: Codable {
 
 // MARK: - User
 struct UserDeatil: Codable {
-    let id, name: String?
+    let id, name,ethnicity: String?
     let profileImage: String?
     let mobile: Int?
     let about: String?
     let gender: Int?
     let zodiac: String?
-    let age: Int?
-    let smoke, drink, bodytype: String?
-    let videoVerify:Int?
+    let age,chatCount: Int?
+    let isOnline:Bool?
+    let smoke, drink, bodytype,badge: String?
+    let videoVerify,hoursPrice,rating:Int?
     let reviews: [Review]?
     let hashtags: [Hashtagz]?
+    let languages: [Languages]?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case name, profileImage, mobile, about, gender, zodiac, age, smoke, drink, bodytype,videoVerify,reviews,hashtags
+        case name, profileImage, mobile, about, gender, zodiac, age, smoke, drink, bodytype,videoVerify,reviews,hashtags,hoursPrice,ethnicity,isOnline,languages,rating,badge,chatCount
     }
 }
+// MARK: - Review
+struct Languages: Codable {
+    let id: String?
+    let name: String?
+    let createdAt: String?
+    let updatedAt: String?
+    let version: Int?
 
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case name
+        case createdAt
+        case updatedAt
+        case version = "__v"
+    }
+}
 // MARK: - Review
 struct Review: Codable {
-    let comment: String?
+    let comment,createdAt: String?
     let starCount: Double?
     let reviewerName: String?
     let reviewerProfileImage: String?

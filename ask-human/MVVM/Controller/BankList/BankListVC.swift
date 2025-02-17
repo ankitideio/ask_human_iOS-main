@@ -8,13 +8,16 @@
 import UIKit
 
 class BankListVC: UIViewController {
+    //MARK: - Outlets
     @IBOutlet weak var lblNoData: UILabel!
     @IBOutlet weak var tblVwBankList: UITableView!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var lblAddBank: UILabel!
     
+    //MARK: - variables
     var arrBank = [BankData]()
     var viewModel = WalletVM()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +27,7 @@ class BankListVC: UIViewController {
         getBankDetails()
     }
     func getBankDetails(){
-        viewModel.getBankDetailsApi { data in
+        viewModel.getBankDetailsApi(loader: true) { data in
             self.arrBank = data?.data ?? []
             if self.arrBank.count > 0{
                 self.lblNoData.isHidden = true
@@ -52,32 +55,25 @@ class BankListVC: UIViewController {
 
     func darkMode(){
         if traitCollection.userInterfaceStyle == .dark {
-            
-    
             btnBack.setImage(UIImage(named: "keyboard-backspace25"), for: .normal)
             
             let labels = [
                 lblAddBank
             ]
-
             for label in labels {
                 label?.textColor = .white
             }
-
         }else{
-          
             btnBack.setImage(UIImage(named: "back"), for: .normal)
             let labels = [
                lblAddBank
             ]
-
             for label in labels {
                 label?.textColor = .black
             }
-         
-            
         }
     }
+    //MARK: - IBAction
     @IBAction func actionBack(_ sender: UIButton) {
         SceneDelegate().tabBarProfileVCRoot()
     }
@@ -88,7 +84,7 @@ class BankListVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
-
+//MARK: - UITableViewDelegate
 extension BankListVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if arrBank.count > 0{

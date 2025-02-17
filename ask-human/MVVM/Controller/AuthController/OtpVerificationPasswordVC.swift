@@ -87,11 +87,11 @@ class OtpVerificationPasswordVC: UIViewController {
         }
         }
     @IBAction func actionResend(_ sender: UIButton) {
-        viewModel.resendApi { data in
-            showSwiftyAlert("", "Enter otp: \(data?.otp ?? "")", true)
-            self.remainingTime = 60
-            self.startTimer()
-        }
+//        viewModel.resendApi { data in
+//            showSwiftyAlert("", "Enter otp: \(data?.otp ?? "")", true)
+//            self.remainingTime = 60
+//            self.startTimer()
+//        }
     }
     
     @IBAction func actionVerify(_ sender: GradientButton) {

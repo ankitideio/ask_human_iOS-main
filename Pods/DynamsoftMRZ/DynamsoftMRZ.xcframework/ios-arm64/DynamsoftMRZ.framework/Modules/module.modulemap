@@ -1,0 +1,6 @@
+framework module DynamsoftMRZ {
+  umbrella header "DynamsoftMRZ.h"
+
+  export *
+  module * { export * }
+}

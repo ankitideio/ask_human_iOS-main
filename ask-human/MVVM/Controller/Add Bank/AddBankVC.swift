@@ -27,6 +27,7 @@ class AddBankVC: UIViewController {
     var bankId = ""
     var viewModel = WalletVM()
     var bankListcount = 0
+    var isComing = false
     //MARK: - LIFE CYCLE METHOD
     
     override func viewDidLoad() {
@@ -53,8 +54,8 @@ class AddBankVC: UIViewController {
             ]
             txtFldHolderName.attributedPlaceholder = NSAttributedString(string: "Holder name", attributes: attributes)
             txtFldAccountNumber.attributedPlaceholder = NSAttributedString(string: "Account number", attributes: attributes)
-            txtFldRoutingNumber.attributedPlaceholder = NSAttributedString(string: "Routing Number", attributes: attributes)
-            txtFldIdNumber.attributedPlaceholder = NSAttributedString(string: "Id Number", attributes: attributes)
+            txtFldRoutingNumber.attributedPlaceholder = NSAttributedString(string: "Routing number", attributes: attributes)
+            txtFldIdNumber.attributedPlaceholder = NSAttributedString(string: "Id number", attributes: attributes)
             
             btnBack.setImage(UIImage(named: "keyboard-backspace25"), for: .normal)
             
@@ -86,8 +87,8 @@ class AddBankVC: UIViewController {
             ]
             txtFldHolderName.attributedPlaceholder = NSAttributedString(string: "Holder name", attributes: attributes)
             txtFldAccountNumber.attributedPlaceholder = NSAttributedString(string: "Account number", attributes: attributes)
-            txtFldRoutingNumber.attributedPlaceholder = NSAttributedString(string: "Routing Number", attributes: attributes)
-            txtFldIdNumber.attributedPlaceholder = NSAttributedString(string: "Id Number", attributes: attributes)
+            txtFldRoutingNumber.attributedPlaceholder = NSAttributedString(string: "Routing number", attributes: attributes)
+            txtFldIdNumber.attributedPlaceholder = NSAttributedString(string: "Id number", attributes: attributes)
          
             btnBack.setImage(UIImage(named: "back"), for: .normal)
             let labels = [
@@ -115,22 +116,23 @@ class AddBankVC: UIViewController {
     
     @IBAction func actionDefault(_ sender: UISwitch) {
         if bankListcount > 0{
-            
             if sender.isOn == true{
                 isDefault = "true"
             }else{
                 isDefault = "false"
             }
-            
         }else{
-            
             isDefault = "false"
         }
-        
-       
     }
     @IBAction func actionBack(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        if isComing{
+            //from profile
+            SceneDelegate().tabBarProfileVCRoot()
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     
     @IBAction func actionSubmit(_ sender: GradientButton) {

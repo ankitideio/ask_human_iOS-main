@@ -53,8 +53,7 @@ class ContactUsVC: UIViewController {
     //MARK: - ACTIONS
     
     @IBAction func actionBack(_ sender: UIButton) {
-        //        self.navigationController?.popViewController(animated: true)
-        SceneDelegate().tabBarProfileVCRoot()
+        SceneDelegate().notificationsRoot(selectTab: 2)
     }
     
     @IBAction func actionStartChat(_ sender: GradientButton) {

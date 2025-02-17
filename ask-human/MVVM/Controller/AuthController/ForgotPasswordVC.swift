@@ -74,10 +74,8 @@ class ForgotPasswordVC: UIViewController {
     @IBAction func acionSendCode(_ sender: GradientButton) {
         if txtFldEmailPhone.text != ""{
             
-            viewModel.forgotPasswordApi(emailOrPhone: txtFldEmailPhone.text ?? "") { data in
-                
-
-                
+            viewModel.forgotPasswordApi(emailOrPhone: txtFldEmailPhone.text ?? "") { data,message in
+                showSwiftyAlert("", "Enter otp: \(data?.otp ?? "")", true)
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "OtpVerificationPasswordVC") as! OtpVerificationPasswordVC
                 vc.emailOrPhone = self.txtFldEmailPhone.text ?? ""
                 self.navigationController?.pushViewController(vc, animated:true)

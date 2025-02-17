@@ -9,11 +9,10 @@ import UIKit
 
 class WithdrawAmountVC: UIViewController {
     @IBOutlet var lblTitle: UILabel!
-    
+    @IBOutlet var viewTextArea: UIView!
     @IBOutlet var lblHowMuch: UILabel!
     @IBOutlet weak var vwBackground: UIView!
     @IBOutlet weak var txtFldAmount: UITextField!
-//    @IBOutlet weak var widthAmount: NSLayoutConstraint!
     
     var viewModel = EarningVM()
     var viewModelWallet = WalletVM()
@@ -23,38 +22,34 @@ class WithdrawAmountVC: UIViewController {
     var isComing = false
     override func viewDidLoad() {
         super.viewDidLoad()
-
         uiSet()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardWhileClick))
-                      tapGesture.cancelsTouchesInView = false
-                      view.addGestureRecognizer(tapGesture)
-           }
-           @objc func dismissKeyboardWhileClick() {
-                  view.endEditing(true)
-              }
-     func uiSet(){
-         txtFldAmount.adjustsFontSizeToFitWidth = false
-
-         vwBackground.layer.cornerRadius = 40
-         vwBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-         if isComing == true{
-             //wallet
-             lblTitle.text = " Add amount"
-             lblHowMuch.text = "How much would you like to add"
-         }else{
-             //earning
-             lblTitle.text = " Withdraw amount"
-             lblHowMuch.text = "How much would you like to withdraw"
+    }
+    private func uiSet(){
+        let tapGestureOnTetxAreaView = UITapGestureRecognizer(target: self, action: #selector(openKeyboard))
+        tapGestureOnTetxAreaView.cancelsTouchesInView = false
+        viewTextArea.addGestureRecognizer(tapGestureOnTetxAreaView)
+        
+        txtFldAmount.adjustsFontSizeToFitWidth = false
+        vwBackground.layer.cornerRadius = 40
+        vwBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        if isComing == true{
+            //wallet
+            lblTitle.text = " Add amount"
+            lblHowMuch.text = "How much would you like to add"
+        }else{
+            //earning
+            lblTitle.text = " Withdraw amount"
+            lblHowMuch.text = "How much would you like to withdraw"
             
-         }
-     }
-    
-    func withdrawAmountApi(){
-     
-            viewModel.withdrawAmount(amount: txtFldAmount.text ?? "") {
-                self.dismiss(animated: true)
-                self.callBack?(0)
-            
+        }
+    }
+    @objc func openKeyboard() {
+        txtFldAmount.becomeFirstResponder()
+    }
+    private func withdrawAmountApi(){
+        viewModel.withdrawAmount(amount: txtFldAmount.text ?? "") {
+            self.dismiss(animated: true)
+            self.callBack?(0)
         }
     }
     @IBAction func actionCrossBtn(_ sender: UIButton) {
@@ -72,7 +67,7 @@ class WithdrawAmountVC: UIViewController {
                 dismiss(animated: true)
                 callBack?(Int(txtFldAmount.text ?? "") ?? 0)
             }
-
+            
         }else{
             inputAmount = Int(txtFldAmount.text ?? "") ?? 0
             if txtFldAmount.text == "" {

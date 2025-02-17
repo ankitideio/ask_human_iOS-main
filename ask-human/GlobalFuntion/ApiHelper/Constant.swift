@@ -41,7 +41,9 @@ var filterIndex = 0
 var sendByMe = false
 var viewInboxData = false
 var showLoader = false
-
+var newHashtags = [String]()
+var isLanguageExist = false
+var isReload = false
 
 //MARK: - StoryBoard
 enum AppStoryboard: String{
@@ -59,6 +61,26 @@ var rootVC: UIViewController?{
         UIApplication.shared.windows.first?.rootViewController = newValue
     }
 }
+//MARK: - Filter Variables
+
+ var minPrice:Int = 1
+ var maxPrice:Int = 10000
+ var maxTime:Int = 24
+ var minTime:Int = 1
+var ratingFilter:String = "0"
+ var popularity = 1
+ var endingSoon = 1
+ var rating = 0
+ var minDeal = 1
+ var maxDeal = 100
+ var isSelectGigPrice = false
+ var isSelectGigTime = false
+
+ var isSelectPopularity = false
+ var isSelectEndingSoon = false
+
+ var isSelectDealing = false
+ var isSelectRating = false
 
 //MARK: - STORE FILE
 enum DefaultKeys: String{
@@ -99,8 +121,16 @@ enum DefaultKeys: String{
     case openSiri
     case openUrl
     case Hashtags
+    case storeLanguages
     case hashtagForSearchUser
     case nationality
+    case searchHastag
+    case userHashtags
+    case filterMinMaxValues
+    case filterGender
+    case languages
+    case ScrollviewCurrentOffset
+    case question
 }
 
 
@@ -117,6 +147,7 @@ enum Services: String
 enum API: String
 {
     //MARK: API - USER
+    case signUpWithPhone = "auth/verify"
     case signUp = "auth/signUp"
     case logIn = "auth/login"
     case loginWithGoogle = "auth/sociallogin"
@@ -125,9 +156,10 @@ enum API: String
     case getNote = "user/notes/notesDraftList"
     case getProfile = "user/myProfile"
     case logout = "auth/logout"
+    case deleteAccount = "auth/deleteAccount"
     case updateProfile = "user/updateProfile"
     case changePassword = "user/changePassword"
-    case searchNote = "user/allUserList"
+    case allUserList = "user/allUserList"
     case resendOtp = "auth/otpResend"
     case userResendOtp = "user/otpResend"
     case forgotPassword = "auth/forgotPassword"
@@ -177,6 +209,15 @@ enum API: String
     case getHashtags = "user/hashtags/getHashtags"
     case sendRequestForHashtag = "user/hashtags/requestVerification"
     case scanDocument = "user/scanDocument"
+    case trendingHashtag = "user/listTrendingHastags"
+    case getLanguage  = "user/listLanguages"
+    case addLanguage  = "admin/user/addLanguage"
+    case getEthinicity  = "user/listEthnics"
+    case addEthnicity  = "user/addEthnic"
+    case getContent  = "user/content"
+    case editHashtag  = "user/updateparameters"
+
+
 }
 enum dateFormat: String {
     case fullDate = "MM_dd_yy_HH:mm:ss.SS"

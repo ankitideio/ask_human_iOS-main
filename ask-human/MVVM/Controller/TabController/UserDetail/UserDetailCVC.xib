@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="UserDetailCVC" customModule="ask_human" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="112" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="112" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSK-og-F6u">
+                        <rect key="frame" x="0.0" y="0.0" width="112" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Sports" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yH2-cq-eCo">
+                                <rect key="frame" x="38.333333333333329" y="19.666666666666668" width="35.333333333333329" height="10.666666666666668"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins Medium" pointSize="10"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LC2-JE-HTz">
+                                <rect key="frame" x="19.333333333333332" y="18" width="13.999999999999996" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="XWC-Df-3n4"/>
+                                    <constraint firstAttribute="height" constant="14" id="rHK-WT-gsB"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yH2-cq-eCo" firstAttribute="leading" secondItem="LC2-JE-HTz" secondAttribute="trailing" constant="5" id="1rs-3f-Oew"/>
+                            <constraint firstItem="LC2-JE-HTz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vSK-og-F6u" secondAttribute="leading" constant="5" id="GQN-3i-MRi"/>
+                            <constraint firstItem="yH2-cq-eCo" firstAttribute="centerX" secondItem="vSK-og-F6u" secondAttribute="centerX" id="Lz0-tD-arl"/>
+                            <constraint firstItem="LC2-JE-HTz" firstAttribute="centerY" secondItem="vSK-og-F6u" secondAttribute="centerY" id="bNu-ME-DRD"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yH2-cq-eCo" secondAttribute="trailing" id="bwr-YQ-vZD"/>
+                            <constraint firstItem="yH2-cq-eCo" firstAttribute="centerY" secondItem="vSK-og-F6u" secondAttribute="centerY" id="jXh-vL-tRs"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vSK-og-F6u" secondAttribute="trailing" id="VLw-5d-KRn"/>
+                <constraint firstItem="vSK-og-F6u" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jUc-WO-hFO"/>
+                <constraint firstAttribute="bottom" secondItem="vSK-og-F6u" secondAttribute="bottom" id="l9u-5h-3kQ"/>
+                <constraint firstItem="vSK-og-F6u" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zDY-bo-eOs"/>
+            </constraints>
+            <size key="customSize" width="112" height="50"/>
+            <connections>
+                <outlet property="imgVwTitle" destination="LC2-JE-HTz" id="9BY-rS-cNY"/>
+                <outlet property="lblTitle" destination="yH2-cq-eCo" id="pyS-VH-gzo"/>
+                <outlet property="viewBAck" destination="vSK-og-F6u" id="iu4-WK-qsa"/>
+                <outlet property="widthImgVwTitle" destination="XWC-Df-3n4" id="HQF-GN-5nJ"/>
+            </connections>
+            <point key="canvasLocation" x="125.19083969465649" y="-11.267605633802818"/>
+        </collectionViewCell>
+    </objects>
+</document>

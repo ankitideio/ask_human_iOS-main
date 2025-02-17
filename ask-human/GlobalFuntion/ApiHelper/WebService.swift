@@ -118,6 +118,7 @@ struct WebService {
                     }
                 }
                 if error != nil{
+                    hideLoader()
                     WebService.showAlert(error!.localizedDescription)
                 }else{
                     if let jsonData = data{
@@ -136,18 +137,25 @@ struct WebService {
                             }else if status == 400{
 //
 //                               showAlert(error)
-                                NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: error)
+                                hideLoader()
+                                if isLanguageExist{
+                                    showAlert(error)
+                                    
+                                }else{
+                                    NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: error)
+                                }
+                                
                             }
                            
                         }catch let err{
                             print(err)
+                            hideLoader()
                             WebService.showAlert(err.localizedDescription)
                         }
                     }
                 }
             }.resume()
         }
-        
         else
         {
             self.showAlert(constantMessages.internetError.instance)
@@ -171,12 +179,13 @@ struct WebService {
             let loaderView = FLAnimatedImageView()
             loaderView.frame = CGRect(x: 0, y: 0, width: 130, height: 100)
             loaderView.center = fullScreenView.center
-        let currentTraitCollection = UITraitCollection.current
-          if currentTraitCollection.userInterfaceStyle == .dark {
-              loaderView.backgroundColor = UIColor(hex: "6C6C6C")
-          } else {
+            // let currentTraitCollection = UITraitCollection.current
+         // if currentTraitCollection.userInterfaceStyle == .dark {
               loaderView.backgroundColor = .white
-          }
+//          } else {
+//              loaderView.backgroundColor = UIColor(hex: "6C6C6C")
+//              
+//          }
             loaderView.layer.cornerRadius = 10
             loaderView.contentMode = .scaleAspectFill
             loaderView.clipsToBounds = true
@@ -258,6 +267,7 @@ extension Data {
 
 extension UIImage {
     func toData() -> Data{
+        //return self.jpegData(compressionQuality: 1.0)!
         return self.jpegData(compressionQuality: 0.5)!
     }
     func isEqualToImage(image: UIImage) -> Bool

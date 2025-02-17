@@ -1,0 +1,3141 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "DocumentType",
+        "printedName": "DocumentType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "all",
+            "printedName": "all",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DynamsoftMRZScannerBundle.DocumentType.Type) -> DynamsoftMRZScannerBundle.DocumentType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DocumentType",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DocumentType",
+                        "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                        "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType@DSDocumentTypeAll",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12DocumentTypeO3allyA2CmF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "id",
+            "printedName": "id",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DynamsoftMRZScannerBundle.DocumentType.Type) -> DynamsoftMRZScannerBundle.DocumentType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DocumentType",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DocumentType",
+                        "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                        "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType@DSDocumentTypeId",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12DocumentTypeO2idyA2CmF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "passport",
+            "printedName": "passport",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DynamsoftMRZScannerBundle.DocumentType.Type) -> DynamsoftMRZScannerBundle.DocumentType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DocumentType",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DocumentType",
+                        "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                        "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType@DSDocumentTypePassport",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12DocumentTypeO8passportyA2CmF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 2
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DynamsoftMRZScannerBundle.DocumentType?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DocumentType",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:25DynamsoftMRZScannerBundle12DocumentTypeO8rawValueACSgSi_tcfc",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12DocumentTypeO8rawValueACSgSi_tcfc",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25DynamsoftMRZScannerBundle12DocumentTypeO8rawValueSivp",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12DocumentTypeO8rawValueSivp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle12DocumentTypeO8rawValueSivg",
+                "mangledName": "$s25DynamsoftMRZScannerBundle12DocumentTypeO8rawValueSivg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType",
+        "mangledName": "$s25DynamsoftMRZScannerBundle12DocumentTypeO",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "objc_name": "DSDocumentType",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "enumRawTypeName": "Int",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MRZScannerConfig",
+        "printedName": "MRZScannerConfig",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "license",
+            "printedName": "license",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ImplicitlyUnwrappedOptional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(py)license",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC7licenseSSSgvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)license",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC7licenseSSSgvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ImplicitlyUnwrappedOptional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)setLicense:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC7licenseSSSgvs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B6ConfigC7licenseSSSgvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC7licenseSSSgvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "templateFilePath",
+            "printedName": "templateFilePath",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(py)templateFilePath",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC16templateFilePathSSSgvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)templateFilePath",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC16templateFilePathSSSgvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)setTemplateFilePath:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC16templateFilePathSSSgvs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B6ConfigC16templateFilePathSSSgvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC16templateFilePathSSSgvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "isTorchButtonVisible",
+            "printedName": "isTorchButtonVisible",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(py)isTorchButtonVisible",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC20isTorchButtonVisibleSbvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)isTorchButtonVisible",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC20isTorchButtonVisibleSbvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)setIsTorchButtonVisible:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC20isTorchButtonVisibleSbvs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B6ConfigC20isTorchButtonVisibleSbvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC20isTorchButtonVisibleSbvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "isBeepEnabled",
+            "printedName": "isBeepEnabled",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(py)isBeepEnabled",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC13isBeepEnabledSbvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)isBeepEnabled",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC13isBeepEnabledSbvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)setIsBeepEnabled:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC13isBeepEnabledSbvs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B6ConfigC13isBeepEnabledSbvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC13isBeepEnabledSbvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "isCloseButtonVisible",
+            "printedName": "isCloseButtonVisible",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(py)isCloseButtonVisible",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC20isCloseButtonVisibleSbvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)isCloseButtonVisible",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC20isCloseButtonVisibleSbvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)setIsCloseButtonVisible:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC20isCloseButtonVisibleSbvs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B6ConfigC20isCloseButtonVisibleSbvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC20isCloseButtonVisibleSbvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "documentType",
+            "printedName": "documentType",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DocumentType",
+                "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(py)documentType",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC12documentTypeAA08DocumentF0Ovp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DocumentType",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)documentType",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC12documentTypeAA08DocumentF0Ovg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DocumentType",
+                    "printedName": "DynamsoftMRZScannerBundle.DocumentType",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSDocumentType"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)setDocumentType:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC12documentTypeAA08DocumentF0Ovs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B6ConfigC12documentTypeAA08DocumentF0OvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC12documentTypeAA08DocumentF0OvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "isGuideFrameVisible",
+            "printedName": "isGuideFrameVisible",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(py)isGuideFrameVisible",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC19isGuideFrameVisibleSbvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)isGuideFrameVisible",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC19isGuideFrameVisibleSbvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)setIsGuideFrameVisible:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC19isGuideFrameVisibleSbvs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B6ConfigC19isGuideFrameVisibleSbvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC19isGuideFrameVisibleSbvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MRZScannerConfig",
+                "printedName": "DynamsoftMRZScannerBundle.MRZScannerConfig",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig(im)init",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigCACycfc",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig",
+        "mangledName": "$s25DynamsoftMRZScannerBundle0B6ConfigC",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "objc_name": "DSMRZScannerConfig",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "ObjCMembers"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "DynamsoftCore",
+        "printedName": "DynamsoftCore",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "DynamsoftCameraEnhancer",
+        "printedName": "DynamsoftCameraEnhancer",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle"
+      },
+      {
+        "kind": "Import",
+        "name": "DynamsoftCaptureVisionRouter",
+        "printedName": "DynamsoftCaptureVisionRouter",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle"
+      },
+      {
+        "kind": "Import",
+        "name": "DynamsoftLicense",
+        "printedName": "DynamsoftLicense",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle"
+      },
+      {
+        "kind": "Import",
+        "name": "DynamsoftUtility",
+        "printedName": "DynamsoftUtility",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle"
+      },
+      {
+        "kind": "Import",
+        "name": "DynamsoftCodeParser",
+        "printedName": "DynamsoftCodeParser",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle"
+      },
+      {
+        "kind": "Import",
+        "name": "DynamsoftLabelRecognizer",
+        "printedName": "DynamsoftLabelRecognizer",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MRZScannerViewController",
+        "printedName": "MRZScannerViewController",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "config",
+            "printedName": "config",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MRZScannerConfig",
+                "printedName": "DynamsoftMRZScannerBundle.MRZScannerConfig",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(py)config",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC6configAA0B6ConfigCvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "Custom",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MRZScannerConfig",
+                    "printedName": "DynamsoftMRZScannerBundle.MRZScannerConfig",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)config",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC6configAA0B6ConfigCvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MRZScannerConfig",
+                    "printedName": "DynamsoftMRZScannerBundle.MRZScannerConfig",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerConfig"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)setConfig:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC6configAA0B6ConfigCvs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B14ViewControllerC6configAA0B6ConfigCvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC6configAA0B6ConfigCvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "onScannedResult",
+            "printedName": "onScannedResult",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((DynamsoftMRZScannerBundle.MRZScanResult) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(DynamsoftMRZScannerBundle.MRZScanResult) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "MRZScanResult",
+                        "printedName": "DynamsoftMRZScannerBundle.MRZScanResult",
+                        "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(py)onScannedResult",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC15onScannedResultyAA07MRZScanH0CcSgvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "HasInitialValue",
+              "Custom",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((DynamsoftMRZScannerBundle.MRZScanResult) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(DynamsoftMRZScannerBundle.MRZScanResult) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "MRZScanResult",
+                            "printedName": "DynamsoftMRZScannerBundle.MRZScanResult",
+                            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)onScannedResult",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC15onScannedResultyAA07MRZScanH0CcSgvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((DynamsoftMRZScannerBundle.MRZScanResult) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(DynamsoftMRZScannerBundle.MRZScanResult) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "MRZScanResult",
+                            "printedName": "DynamsoftMRZScannerBundle.MRZScanResult",
+                            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)setOnScannedResult:",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC15onScannedResultyAA07MRZScanH0CcSgvs",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle0B14ViewControllerC15onScannedResultyAA07MRZScanH0CcSgvM",
+                "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC15onScannedResultyAA07MRZScanH0CcSgvM",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "viewDidLoad",
+            "printedName": "viewDidLoad()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)viewDidLoad",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC11viewDidLoadyyF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "objc_name": "viewDidLoad",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "viewWillAppear",
+            "printedName": "viewWillAppear(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)viewWillAppear:",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC14viewWillAppearyySbF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "objc_name": "viewWillAppear:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "viewWillDisappear",
+            "printedName": "viewWillDisappear(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)viewWillDisappear:",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC17viewWillDisappearyySbF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "objc_name": "viewWillDisappear:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "viewDidAppear",
+            "printedName": "viewDidAppear(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)viewDidAppear:",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC13viewDidAppearyySbF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "objc_name": "viewDidAppear:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "viewWillLayoutSubviews",
+            "printedName": "viewWillLayoutSubviews()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)viewWillLayoutSubviews",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC22viewWillLayoutSubviewsyyF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "objc_name": "viewWillLayoutSubviews",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(nibName:bundle:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MRZScannerViewController",
+                "printedName": "DynamsoftMRZScannerBundle.MRZScannerViewController",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Bundle?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bundle",
+                    "printedName": "Foundation.Bundle",
+                    "usr": "c:objc(cs)NSBundle"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)initWithNibName:bundle:",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC7nibName6bundleACSSSg_So8NSBundleCSgtcfc",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "initWithNibName:bundle:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(coder:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DynamsoftMRZScannerBundle.MRZScannerViewController?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MRZScannerViewController",
+                    "printedName": "DynamsoftMRZScannerBundle.MRZScannerViewController",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NSCoder",
+                "printedName": "Foundation.NSCoder",
+                "usr": "c:objc(cs)NSCoder"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)initWithCoder:",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC5coderACSgSo7NSCoderC_tcfc",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "initWithCoder:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "Required"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "onLicenseVerified",
+            "printedName": "onLicenseVerified(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Error?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)onLicenseVerified:error:",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC17onLicenseVerified_5errorySb_s5Error_pSgtF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "objc_name": "onLicenseVerified:error:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onParsedResultsReceived",
+            "printedName": "onParsedResultsReceived(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ParsedResult",
+                "printedName": "DynamsoftCodeParser.ParsedResult",
+                "usr": "c:objc(cs)DSParsedResult"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)onParsedResultsReceived:",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC23onParsedResultsReceivedyySo14DSParsedResultCF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "objc_name": "onParsedResultsReceived:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onCameraStateChanged",
+            "printedName": "onCameraStateChanged(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CameraState",
+                "printedName": "DynamsoftCameraEnhancer.CameraState",
+                "usr": "c:@E@DSCameraState"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController(im)onCameraStateChanged:",
+            "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC20onCameraStateChangedyySo08DSCameraH0VF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "objc_name": "onCameraStateChanged:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Custom",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScannerViewController",
+        "mangledName": "$s25DynamsoftMRZScannerBundle0B14ViewControllerC",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "objc_name": "DSMRZScannerViewController",
+        "declAttributes": [
+          "Custom",
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)UIViewController",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "UIKit.UIViewController",
+          "UIKit.UIResponder",
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ResultStatus",
+        "printedName": "ResultStatus",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "finished",
+            "printedName": "finished",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DynamsoftMRZScannerBundle.ResultStatus.Type) -> DynamsoftMRZScannerBundle.ResultStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ResultStatus",
+                    "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DynamsoftMRZScannerBundle.ResultStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ResultStatus",
+                        "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                        "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus@DSResultStatusFinished",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12ResultStatusO8finishedyA2CmF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 0
+          },
+          {
+            "kind": "Var",
+            "name": "canceled",
+            "printedName": "canceled",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DynamsoftMRZScannerBundle.ResultStatus.Type) -> DynamsoftMRZScannerBundle.ResultStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ResultStatus",
+                    "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DynamsoftMRZScannerBundle.ResultStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ResultStatus",
+                        "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                        "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus@DSResultStatusCanceled",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12ResultStatusO8canceledyA2CmF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 1
+          },
+          {
+            "kind": "Var",
+            "name": "exception",
+            "printedName": "exception",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DynamsoftMRZScannerBundle.ResultStatus.Type) -> DynamsoftMRZScannerBundle.ResultStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ResultStatus",
+                    "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DynamsoftMRZScannerBundle.ResultStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ResultStatus",
+                        "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                        "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus@DSResultStatusException",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12ResultStatusO9exceptionyA2CmF",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 2
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DynamsoftMRZScannerBundle.ResultStatus?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ResultStatus",
+                    "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:25DynamsoftMRZScannerBundle12ResultStatusO8rawValueACSgSi_tcfc",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12ResultStatusO8rawValueACSgSi_tcfc",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:25DynamsoftMRZScannerBundle12ResultStatusO8rawValueSivp",
+            "mangledName": "$s25DynamsoftMRZScannerBundle12ResultStatusO8rawValueSivp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:25DynamsoftMRZScannerBundle12ResultStatusO8rawValueSivg",
+                "mangledName": "$s25DynamsoftMRZScannerBundle12ResultStatusO8rawValueSivg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus",
+        "mangledName": "$s25DynamsoftMRZScannerBundle12ResultStatusO",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "objc_name": "DSResultStatus",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "enumRawTypeName": "Int",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MRZData",
+        "printedName": "MRZData",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "firstName",
+            "printedName": "firstName",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)firstName",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC9firstNameSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)firstName",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC9firstNameSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "lastName",
+            "printedName": "lastName",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)lastName",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC8lastNameSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)lastName",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC8lastNameSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sex",
+            "printedName": "sex",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)sex",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC3sexSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)sex",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC3sexSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "issuingState",
+            "printedName": "issuingState",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)issuingState",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC12issuingStateSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)issuingState",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC12issuingStateSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "nationality",
+            "printedName": "nationality",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)nationality",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC11nationalitySSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)nationality",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC11nationalitySSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "dateOfBirth",
+            "printedName": "dateOfBirth",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)dateOfBirth",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC11dateOfBirthSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)dateOfBirth",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC11dateOfBirthSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "dateOfExpire",
+            "printedName": "dateOfExpire",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)dateOfExpire",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC12dateOfExpireSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)dateOfExpire",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC12dateOfExpireSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "documentType",
+            "printedName": "documentType",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)documentType",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC12documentTypeSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)documentType",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC12documentTypeSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "documentNumber",
+            "printedName": "documentNumber",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)documentNumber",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC14documentNumberSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)documentNumber",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC14documentNumberSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "age",
+            "printedName": "age",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)age",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC3ageSivp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)age",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC3ageSivg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "mrzText",
+            "printedName": "mrzText",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(py)mrzText",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC7mrzTextSSvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)mrzText",
+                "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC7mrzTextSSvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MRZData",
+                "printedName": "DynamsoftMRZScannerBundle.MRZData",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData(im)init",
+            "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataCACycfc",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData",
+        "mangledName": "$s25DynamsoftMRZScannerBundle7MRZDataC",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "objc_name": "DSMRZData",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "ObjCMembers"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "hasMissingDesignatedInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MRZScanResult",
+        "printedName": "MRZScanResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "resultStatus",
+            "printedName": "resultStatus",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ResultStatus",
+                "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(py)resultStatus",
+            "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC12resultStatusAA0eG0Ovp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ResultStatus",
+                    "printedName": "DynamsoftMRZScannerBundle.ResultStatus",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@E@DSResultStatus"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(im)resultStatus",
+                "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC12resultStatusAA0eG0Ovg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "data",
+            "printedName": "data",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DynamsoftMRZScannerBundle.MRZData?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "MRZData",
+                    "printedName": "DynamsoftMRZScannerBundle.MRZData",
+                    "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(py)data",
+            "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC4dataAA7MRZDataCSgvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "DynamsoftMRZScannerBundle.MRZData?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "MRZData",
+                        "printedName": "DynamsoftMRZScannerBundle.MRZData",
+                        "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZData"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(im)data",
+                "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC4dataAA7MRZDataCSgvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "errorCode",
+            "printedName": "errorCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(py)errorCode",
+            "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC9errorCodeSivp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(im)errorCode",
+                "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC9errorCodeSivg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "errorString",
+            "printedName": "errorString",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(py)errorString",
+            "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC11errorStringSSSgvp",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(im)errorString",
+                "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC11errorStringSSSgvg",
+                "moduleName": "DynamsoftMRZScannerBundle",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MRZScanResult",
+                "printedName": "DynamsoftMRZScannerBundle.MRZScanResult",
+                "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult(im)init",
+            "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultCACycfc",
+            "moduleName": "DynamsoftMRZScannerBundle",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@DynamsoftMRZScannerBundle@objc(cs)DSMRZScanResult",
+        "mangledName": "$s25DynamsoftMRZScannerBundle13MRZScanResultC",
+        "moduleName": "DynamsoftMRZScannerBundle",
+        "objc_name": "DSMRZScanResult",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "ObjCMembers"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "hasMissingDesignatedInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScannerConfig.swift",
+      "kind": "IntegerLiteral",
+      "offset": 223,
+      "length": 2,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScannerConfig.swift",
+      "kind": "IntegerLiteral",
+      "offset": 235,
+      "length": 8,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScannerConfig.swift",
+      "kind": "IntegerLiteral",
+      "offset": 223,
+      "length": 2,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScannerConfig.swift",
+      "kind": "IntegerLiteral",
+      "offset": 235,
+      "length": 8,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScannerConfig.swift",
+      "kind": "BooleanLiteral",
+      "offset": 445,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScannerConfig.swift",
+      "kind": "BooleanLiteral",
+      "offset": 487,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScannerConfig.swift",
+      "kind": "BooleanLiteral",
+      "offset": 536,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScannerConfig.swift",
+      "kind": "BooleanLiteral",
+      "offset": 633,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScanResult.swift",
+      "kind": "IntegerLiteral",
+      "offset": 225,
+      "length": 8,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScanResult.swift",
+      "kind": "IntegerLiteral",
+      "offset": 243,
+      "length": 9,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScanResult.swift",
+      "kind": "IntegerLiteral",
+      "offset": 225,
+      "length": 8,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScanResult.swift",
+      "kind": "IntegerLiteral",
+      "offset": 243,
+      "length": 9,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScanResult.swift",
+      "kind": "StringLiteral",
+      "offset": 299,
+      "length": 7,
+      "value": "\"DynamsoftMRZScannerBundle.MRZData\""
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScanResult.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1592,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/dynamsoft\/Desktop\/TFSAgent\/_work\/257\/s\/ios\/src\/DynamsoftMRZScannerBundle\/DynamsoftMRZScannerBundle\/MRZScanResult.swift",
+      "kind": "StringLiteral",
+      "offset": 1350,
+      "length": 13,
+      "value": "\"DynamsoftMRZScannerBundle.MRZScanResult\""
+    }
+  ]
+}

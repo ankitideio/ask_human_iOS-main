@@ -1,0 +1,95 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)
+// swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name DynamsoftMRZScannerBundle
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import DynamsoftCameraEnhancer
+import DynamsoftCaptureVisionRouter
+import DynamsoftCodeParser
+import DynamsoftCore
+import DynamsoftLabelRecognizer
+import DynamsoftLicense
+@_exported import DynamsoftMRZScannerBundle
+import DynamsoftUtility
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+@objc(DSDocumentType) public enum DocumentType : Swift.Int {
+  case all
+  case id
+  case passport
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objcMembers @objc(DSMRZScannerConfig) public class MRZScannerConfig : ObjectiveC.NSObject {
+  @objc public var license: Swift.String!
+  @objc public var templateFilePath: Swift.String?
+  @objc public var isTorchButtonVisible: Swift.Bool
+  @objc public var isBeepEnabled: Swift.Bool
+  @objc public var isCloseButtonVisible: Swift.Bool
+  @objc public var documentType: DynamsoftMRZScannerBundle.DocumentType
+  @objc public var isGuideFrameVisible: Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc(DSMRZScannerViewController) @_Concurrency.MainActor(unsafe) public class MRZScannerViewController : UIKit.UIViewController {
+  @objc @_Concurrency.MainActor(unsafe) public var config: DynamsoftMRZScannerBundle.MRZScannerConfig
+  @objc @_Concurrency.MainActor(unsafe) public var onScannedResult: ((DynamsoftMRZScannerBundle.MRZScanResult) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillLayoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension DynamsoftMRZScannerBundle.MRZScannerViewController : DynamsoftLicense.LicenseVerificationListener {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func onLicenseVerified(_ isSuccess: Swift.Bool, error: (Swift.Error)?)
+}
+extension DynamsoftMRZScannerBundle.MRZScannerViewController : DynamsoftCaptureVisionRouter.CapturedResultReceiver {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func onParsedResultsReceived(_ result: DynamsoftCodeParser.ParsedResult)
+}
+extension DynamsoftMRZScannerBundle.MRZScannerViewController : DynamsoftCameraEnhancer.CameraStateListener {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func onCameraStateChanged(_ currentState: DynamsoftCameraEnhancer.CameraState)
+}
+@objc(DSResultStatus) public enum ResultStatus : Swift.Int {
+  case finished
+  case canceled
+  case exception
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc(DSMRZData) public class MRZData : ObjectiveC.NSObject {
+  @objc final public let firstName: Swift.String
+  @objc final public let lastName: Swift.String
+  @objc final public let sex: Swift.String
+  @objc final public let issuingState: Swift.String
+  @objc final public let nationality: Swift.String
+  @objc final public let dateOfBirth: Swift.String
+  @objc final public let dateOfExpire: Swift.String
+  @objc final public let documentType: Swift.String
+  @objc final public let documentNumber: Swift.String
+  @objc final public let age: Swift.Int
+  @objc final public let mrzText: Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc(DSMRZScanResult) public class MRZScanResult : ObjectiveC.NSObject {
+  @objc final public let resultStatus: DynamsoftMRZScannerBundle.ResultStatus
+  @objc final public let data: DynamsoftMRZScannerBundle.MRZData?
+  @objc final public let errorCode: Swift.Int
+  @objc final public let errorString: Swift.String?
+  @objc deinit
+}
+extension DynamsoftMRZScannerBundle.DocumentType : Swift.Equatable {}
+extension DynamsoftMRZScannerBundle.DocumentType : Swift.Hashable {}
+extension DynamsoftMRZScannerBundle.DocumentType : Swift.RawRepresentable {}
+extension DynamsoftMRZScannerBundle.ResultStatus : Swift.Equatable {}
+extension DynamsoftMRZScannerBundle.ResultStatus : Swift.Hashable {}
+extension DynamsoftMRZScannerBundle.ResultStatus : Swift.RawRepresentable {}

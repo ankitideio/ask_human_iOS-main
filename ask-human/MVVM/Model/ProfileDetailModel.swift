@@ -29,11 +29,12 @@ struct Userr: Codable {
     let smoke, drink, workout, bodytype: String?
     let hoursPrice, videoVerify: Int?
     let hashtags: [Hashtag]?
+    let languages: [Languagez]?
     let dob: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case name, email, profileImage, mobile, countryCode, about, gender, ethnicity, zodiac, age, smoke, drink, workout, bodytype, hoursPrice, videoVerify, hashtags, dob,nationality,document,identity
+        case name, email, profileImage, mobile, countryCode, about, gender, ethnicity, zodiac, age, smoke, drink, workout, bodytype, hoursPrice, videoVerify, hashtags, dob,nationality,document,identity,languages
     }
 }
 
@@ -54,3 +55,17 @@ struct Hashtag: Codable {
     }
 }
 
+// MARK: - Language
+struct Languagez: Codable {
+    let version: Int?
+    let id: String?
+    let createdAt: String?
+    let name: String?
+    let updatedAt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case version = "__v"
+        case id = "_id"
+        case createdAt, name, updatedAt
+    }
+}

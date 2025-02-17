@@ -20,7 +20,7 @@ import QuartzCore
       updateTrackLayerFrameAndKnobPositions()
     }
   }
-  
+
   ///The maximum value selectable on the RangeSlider
   @IBInspectable open var maximumValue: Double = 10.0 {
     didSet {
@@ -175,7 +175,11 @@ import QuartzCore
       updateLabelText()
     }
   }
-  
+    @IBInspectable open var typeString: Bool = false {
+      didSet {
+        updateLabelText()
+      }
+    }
   var previousLocation = CGPoint()
   var previouslySelectedKnob = Knob.Neither
   
@@ -187,7 +191,7 @@ import QuartzCore
   let upperKnob = RangeSliderKnob()
   let lowerLabel = CATextLayer()
   let upperLabel = CATextLayer()
-  
+
   var TrackThickness: CGFloat {
     get {
       return trueTrackThickness ? trackThickness : trackThickness * bounds.height
@@ -319,8 +323,12 @@ import QuartzCore
         numberFormatter.numberStyle = NumberFormatter.Style.decimal
         numberFormatter.maximumFractionDigits = 0
         guard let labelText = numberFormatter.string(from: NSNumber(value: value)) else { return "" }
+        if typeString == false{
+            return "$" + labelText
+        }else{
+            return labelText + " Years"
+        }
         
-        return labelText
     }
   
   ///Updates the labels text content.

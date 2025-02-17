@@ -25,19 +25,20 @@ class OtpVC: UIViewController {
     //MARK: - VARIABLES
     var viewModel = AuthVM()
     var mobileNo:Int?
+    var countryCode:String?
     var otp:Int?
-    var isComing = 0
     var viewModelProfile = ProfileVM()
     var timer: Timer?
     var remainingTime: Int = 60
-    var mobileOtp:String = ""
+    var mobileOtp,profileComplete:Int?
+    var isSignup = false
+    var isComing = false
     override func viewDidLoad() {
         super.viewDidLoad()
         uiSet()
     }
     override func viewWillAppear(_ animated: Bool) {
-        
-//        showSwiftyAlert("", "Enter otp: \(mobileOtp)", true)
+        print("mobileNo:--\(mobileNo ?? 0)")
         darkMode()
         startTimer()
     }
@@ -61,7 +62,6 @@ class OtpVC: UIViewController {
             lblTimer.text = "00:00"
             btnResend.isHidden = false
             lblTimer.isHidden = true
-            // Handle the case when the timer ends, e.g., enable the resend button
         }
     }
 
@@ -112,7 +112,7 @@ class OtpVC: UIViewController {
         if length > 4 {
             let startIndex = phoneNumber.index(phoneNumber.endIndex, offsetBy: -4)
             let lastFourDigits = phoneNumber[startIndex..<phoneNumber.endIndex]
-            let maskedDigits = String(repeating: "x", count: length - 4)
+            let maskedDigits = String(repeating: "*", count: length - 4)
             return maskedDigits + lastFourDigits
         } else {
             return phoneNumber
@@ -122,79 +122,52 @@ class OtpVC: UIViewController {
     //MARK: - BUTTON ACTIONS
     
     @IBAction func actionResend(_ sender: UIButton) {
-      
-        if Store.comingOtp == 1 || Store.comingOtp == 2{
-          
-            viewModel.userResendApi { data in
+        viewModel.resendApi(phone: String(mobileNo ?? 0), countryCode: countryCode ?? "") { data in
                 showSwiftyAlert("", "Enter otp: \(data?.otp ?? "")", true)
                 self.remainingTime = 60
                 self.startTimer()
-            }
-        }else{
-            viewModel.resendApi { data in
-                showSwiftyAlert("", "Enter otp: \(data?.otp ?? "")", true)
-                self.remainingTime = 60
-                self.startTimer()
-            }
         }
     }
     @IBAction func actionContinue(_ sender: GradientButton) {
         timer?.invalidate()
         timer = nil
         guard let enteredOTP = otp else {
-                // Show alert if OTP is not entered
                 showSwiftyAlert("", "Please enter the OTP.", false)
                 return
             }
-        if Store.comingOtp == 1{
-            
-            viewModelProfile.verifyChangeMobileNumberApi(otp: otp ?? 0) { message in
-                
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                vc.modalPresentationStyle = .overFullScreen
-                vc.message = message ?? ""
-                vc.callBack = {
-                    Store.authKey = ""
-                    Store.autoLogin = "false"
-                    SceneDelegate().loginVCRoot()
-                    
+        if isComing{
+            viewModel.phoneVerificationApi(phone: String(mobileNo ?? 0), countryCode: countryCode ?? "", otp: String(otp ?? 0)){ data in
+                DispatchQueue.main.async {
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.message = "Mobile number changed successfully"
+                    vc.callBack = {
+                        SceneDelegate().loginVCRoot()
+                    }
+                    self.navigationController?.present(vc, animated: false)
                 }
-                self.navigationController?.present(vc, animated: false)
-                
             }
-            
-        }else if Store.comingOtp == 2{
-            
-            viewModelProfile.verifyChangeEmailApi(token: Store.authKey ?? "") { message in
-                
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                vc.modalPresentationStyle = .overFullScreen
-                vc.message = message ?? ""
-                vc.callBack = {
-                    Store.authKey = ""
-                    Store.autoLogin = "false"
-                    SceneDelegate().loginVCRoot()
-                    
-                }
-                self.navigationController?.present(vc, animated: false)
-            }
-            
         }else{
-            viewModel.phoneVerificationApi(otp: otp ?? 0, mobile: mobileNo ?? 0) { data in
-                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
-                Store.autoLogin = "true"
-                self.navigationController?.pushViewController(vc2, animated:true)
-
-
-//                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-//                    vc.isComing = 0
-//                self.navigationController?.pushViewController(vc, animated:true)
+            viewModel.phoneVerificationApi(phone: String(mobileNo ?? 0), countryCode: countryCode ?? "", otp: String(otp ?? 0)){ data in
+                if self.profileComplete == 0{
+                    print("Store.authKe:--000\(Store.authKey ?? "")")
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
+                    vc.mobileNo = self.mobileNo
+                    vc.countryCode = Int(self.countryCode ?? "")
+                    self.navigationController?.pushViewController(vc, animated:true)
+                }else{
+                    self.viewModelProfile.getProfileApi { data in
+                        Store.autoLogin = "true"
+                        if self.isSignup{
+                            let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmEmailVC") as! ConfirmEmailVC
+                            self.navigationController?.pushViewController(vc2, animated:true)
+                        }else{
+                            SceneDelegate().tabBarHomeVCRoot()
+                        }
+                    }
+                }
+            }
         }
-        
-            
-        
-    }
-        
     }
     @IBAction func actionBack(_ sender: UIButton) {
         
@@ -203,6 +176,7 @@ class OtpVC: UIViewController {
     }
     
 }
+//MARK: - OTPViewDelegate
 extension OtpVC: OTPViewDelegate {
        func didFinishedEnterOTP(otpNumber: Int) {
            otp = otpNumber

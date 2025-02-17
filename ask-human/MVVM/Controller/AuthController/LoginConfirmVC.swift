@@ -12,6 +12,10 @@ import GoogleSignInSwift
 class LoginConfirmVC: UIViewController {
     
     //MARK: - OUTLET
+    @IBOutlet var viewAppleSignin: UIView!
+    @IBOutlet var lblSigninAppleee: UILabel!
+    @IBOutlet var imgVwApple: UIImageView!
+
     @IBOutlet var lblDontHaveAccount: UILabel!
     @IBOutlet var imgVwTitle: UIImageView!
     
@@ -26,7 +30,6 @@ class LoginConfirmVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         GoogleSignIn.shared.delegate = self
-       
     }
   
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +42,12 @@ class LoginConfirmVC: UIViewController {
             }
         }
     func uiSet(){
+        Store.autoLogin = "false"
         if traitCollection.userInterfaceStyle == .dark {
+            imgVwApple.image = UIImage(named: "darkapple")
+            lblSigninAppleee.textColor = .black
+            viewAppleSignin.backgroundColor = UIColor(hex: "#D9D9D9")
+
             btnSigninApple.borderWid = 1
             btnSigninApple.borderCol = .white
             btnSigninApple.cornerRadi = 24
@@ -49,7 +57,10 @@ class LoginConfirmVC: UIViewController {
             
             applyGradientColor(to: lblTitle, with: "ASK", gradientColors: [UIColor(red: 240/255, green: 11/255, blue: 128/255, alpha: 1.0).cgColor, UIColor(red: 122/255, green: 13/255, blue: 158/255, alpha: 1.0).cgColor])
                 } else {
-                    
+                    imgVwApple.image = UIImage(named: "apple")
+                    lblSigninAppleee.textColor = .white
+                    viewAppleSignin.backgroundColor = .black
+
                     lblTitle.textColor = UIColor(red: 76/255, green: 76/255, blue: 76/255, alpha: 1.0)
                     
                     applyGradientColor(to: lblTitle, with: "ASK", gradientColors: [UIColor(red: 240/255, green: 11/255, blue: 128/255, alpha: 1.0).cgColor, UIColor(red: 122/255, green: 13/255, blue: 158/255, alpha: 1.0).cgColor])
@@ -63,8 +74,6 @@ class LoginConfirmVC: UIViewController {
     //MARK: - ACTIONS
     
     @IBAction func actionSignupEmail(_ sender: UIButton) {
-        
-        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
         self.navigationController?.pushViewController(vc, animated: true)
     }

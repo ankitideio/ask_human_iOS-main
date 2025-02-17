@@ -18,9 +18,9 @@ class WalletVC: UIViewController {
     @IBOutlet var lblScreenTitle: UILabel!
     @IBOutlet weak var lblBalance: UILabel!
     
+    //MARK: - variables
     var viewModel = WalletVM()
     var viewModelEarning = EarningVM()
-    
     var currentWeekStartDate: Date = Date()
     var calendar = Calendar.current
     var firstDate = String()
@@ -31,44 +31,46 @@ class WalletVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         updateLabel()
     }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
+        uiSet()
         darkMode()
+        getWalletApi()
     }
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
             darkMode()
-            
-        }
-        
-    }
-    func darkMode(){
-        if traitCollection.userInterfaceStyle == .dark {
-            lblBalance.textColor = .white
-            lbltitleBalance.textColor = .white
-            lblScreenTitle.textColor = .white
-            lblYourBalance.textColor = .white
-            btnBack.setImage(UIImage(named: "keyboard-backspace25"), for: .normal)
-            viewBack.backgroundColor = UIColor(hex: "#161616")
-            viewBack.borderCol = .clear
-            viewBack.borderWid = 0
-        }else{
-            viewBack.borderCol = UIColor(hex: "#DDDDDD")
-            viewBack.borderWid = 1
-            viewBack.backgroundColor = .white
-            lblBalance.textColor = .black
-            lbltitleBalance.textColor = .black
-            lblScreenTitle.textColor = .black
-            lblYourBalance.textColor = UIColor(hex: "#727272")
-            btnBack.setImage(UIImage(named: "back"), for: .normal)
         }
     }
-    func updateLabel() {
+    private func uiSet(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(overlayTapped))
+        self.view.addGestureRecognizer(tapGesture)
+
+    }
+    @objc func overlayTapped() {
+        self.dismiss(animated: true)
+    }
+    private func getWalletApi(){
+        viewModel.getWalletDetail(showHud: true) { data in
+            self.lblBalance.text = "$\(data?.checkWallet?.ammount ?? 0)"
+        }
+    }
+    private func darkMode() {
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+        let textColor: UIColor = isDarkMode ? .white : .black
+        let balanceTextColor = isDarkMode ? .white : UIColor(hex: "#727272")
+
+        [lblBalance, lbltitleBalance, lblScreenTitle].forEach { $0?.textColor = textColor }
+        lblYourBalance.textColor = balanceTextColor
+        btnBack.setImage(UIImage(named: isDarkMode ? "keyboard-backspace25" : "back"), for: .normal)
+
+        viewBack.backgroundColor = isDarkMode ? UIColor(hex: "#161616") : .white
+        viewBack.borderCol = isDarkMode ? .clear : UIColor(hex: "#DDDDDD")
+        viewBack.borderWid = isDarkMode ? 0 : 1
+    }
+    private func updateLabel() {
         calendar.firstWeekday = 2
         let startDate = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentWeekStartDate))!
         let endDate = calendar.date(byAdding: .day, value: 6, to: startDate)!
@@ -92,7 +94,7 @@ class WalletVC: UIViewController {
         
         
     }
-    func getEarningApi(startData:String,endDate:String){
+    private func getEarningApi(startData:String,endDate:String){
         viewModelEarning.getEarningApi(startDate: startData, endDate: endDate, showLoader: true) { data in
             self.lblBalance.text = "$\(data?.walletBalance ?? 0)"
             print("walletBalance:---\(data?.walletBalance ?? 0)")

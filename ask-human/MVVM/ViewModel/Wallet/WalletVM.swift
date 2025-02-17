@@ -87,8 +87,8 @@ class WalletVM{
             print("Error converting parameters to JSON: \(error)")
         }
     }
-    func getBankDetailsApi(onSccess:@escaping((ExternalAccounts?)->())){
-        WebService.service(API.bankList,service: .get,is_raw_form: true) { (model:BankListModel,jsonData,jsonSer) in
+    func getBankDetailsApi(loader:Bool,onSccess:@escaping((ExternalAccounts?)->())){
+        WebService.service(API.bankList,service: .get,showHud: loader,is_raw_form: true) { (model:BankListModel,jsonData,jsonSer) in
             onSccess(model.data?.externalAccounts)
         }
     }

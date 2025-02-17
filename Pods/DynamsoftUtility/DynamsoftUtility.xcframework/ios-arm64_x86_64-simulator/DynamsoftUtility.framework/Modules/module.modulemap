@@ -1,0 +1,6 @@
+framework module DynamsoftUtility {
+  umbrella header "DynamsoftUtility.h"
+
+  export *
+  module * { export * }
+}

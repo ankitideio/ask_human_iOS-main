@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
  
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Store.ScrollviewCurrentOffset = 0
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
         GoogleSignIn.shared.clientId = "64784249708-7vs00q0h5ds78f0tnmsgvm4ri5hged3n.apps.googleusercontent.com"

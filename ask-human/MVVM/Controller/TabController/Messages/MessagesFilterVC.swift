@@ -26,7 +26,7 @@ class MessagesFilterVC: UIViewController {
     @IBOutlet var tblVwList: UITableView!
     
     //MARK: - VARIABLES
-
+    
     var usersListData = [GetRealTimeMsgModel]()
     var arrUserList = [Messagez]()
     var isFav = false
@@ -35,11 +35,11 @@ class MessagesFilterVC: UIViewController {
     var loaderStatus:Bool = false
     
     //MARK: - LIFE CYCLE METHOD
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        
         uiSet()
         self.setupRefreshControl()
     }
@@ -57,7 +57,7 @@ class MessagesFilterVC: UIViewController {
             self?.methodOfReceivedList(notification: notification)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfGetNotificationCount(notification:)), name: Notification.Name("GetNotificationCount"), object: nil)
-
+        
         NotificationCenter.default.addObserver(forName: Notification.Name("sendMessageListener"), object: nil, queue: .main) { [weak self] notification in
             self?.methodOfReceivedSendMesage(notification: notification)
         }
@@ -72,10 +72,10 @@ class MessagesFilterVC: UIViewController {
         self.lblNodata.isHidden = true
         
         if WebSocketManager.shared.socket?.status == .connected {
-           
+            
             getNotificationCount()
             GetUserList(searchtext: "", isFilter: false)
-           
+            
         } else {
             WebSocketManager.shared.initialize(userId: Store.userDetail?["userId"] as? String ?? "")
         }
@@ -143,10 +143,10 @@ class MessagesFilterVC: UIViewController {
         isRead = false
         arrUserList.removeAll()
         darkMode()
-      
+        
         
         if viewInboxData == false{
-           
+            
             DispatchQueue.main.asyncAfter(deadline: .now()+3.0){
                 self.getNotificationCount()
                 self.GetUserList(searchtext: "", isFilter: false)
@@ -156,11 +156,11 @@ class MessagesFilterVC: UIViewController {
         }else{
             self.getNotificationCount()
             self.GetUserList(searchtext: "", isFilter: false)
-           
+            
         }
         
-}
-
+    }
+    
     func getInboxData(){
         WebSocketManager.shared.userListnerSuccess = {
             self.GetUserList(searchtext: "", isFilter: false)
@@ -193,21 +193,21 @@ class MessagesFilterVC: UIViewController {
             "search": searchtext
         ]
         print(param)
-
+        
         func emitSocket() {
             WebSocketManager.shared.getUserList(dict: param)
             WebSocketManager.shared.inboxList = { data in
-              
+                
                 showLoader = false
                 viewInboxData = true
-
+                
                 guard let data = data else {
                     self.lblNodata.isHidden = false
                     self.arrUserList.removeAll()
                     self.tblVwList.reloadData()
                     return
                 }
-
+                
                 if data.isEmpty || data[0].messages == nil {
                     if isFilter {
                         self.arrUserList.removeAll()
@@ -215,18 +215,18 @@ class MessagesFilterVC: UIViewController {
                     }
                     return
                 }
-
+                
                 self.arrUserList.removeAll() // Clear list before adding new data
-
+                
                 for newUser in data {
                     if let messages = newUser.messages {
                         for newMessage in messages {
                             if let contractID = newMessage.contractID,
                                let index = self.arrUserList.firstIndex(where: { $0.contractID == contractID }) {
-                              
+                                
                                 self.arrUserList.remove(at: index)
                             }
-                          
+                            
                             self.arrUserList.insert(newMessage, at: 0)
                         }
                     }
@@ -237,14 +237,14 @@ class MessagesFilterVC: UIViewController {
                 self.tblVwList.reloadData()
             }
         }
-
+        
         // Initial emit socket call
         emitSocket()
     }
-
-
-
-
+    
+    
+    
+    
     
     func darkMode(){
         
@@ -333,7 +333,7 @@ class MessagesFilterVC: UIViewController {
             return alternativeFormatter.date(from: dateString)
         }
     }
-  
+    
 }
 //MARK: - UITableViewDelegate
 extension MessagesFilterVC: UITableViewDelegate,UITableViewDataSource{
@@ -344,7 +344,7 @@ extension MessagesFilterVC: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InboxListTVC", for: indexPath) as! InboxListTVC
-
+        
         if let poppingFont = UIFont(name: "Popping-Regular", size: 12) {
             cell.lblMessage.font = poppingFont
             cell.lblContractId.font = poppingFont
@@ -367,7 +367,7 @@ extension MessagesFilterVC: UITableViewDelegate,UITableViewDataSource{
                 }else{
                     cell.lblMessage.textColor = UIColor(hex: "#797C7B")
                 }
-            
+                
             }
             if Store.userDetail?["userId"] as? String ?? "" == message.sender?.id{
                 
@@ -383,7 +383,12 @@ extension MessagesFilterVC: UITableViewDelegate,UITableViewDataSource{
                 }
                 
                 cell.lblName.text = message.recipient?.name ?? ""
-                cell.imgVwUser.imageLoad(imageUrl: message.recipient?.profileImage ?? "")
+                if message.recipient?.profileImage == "" || message.recipient?.profileImage == nil{
+                    cell.imgVwUser.image = UIImage(named: "user")
+                }else{
+                    cell.imgVwUser.imageLoad(imageUrl: message.recipient?.profileImage ?? "")
+                }
+                print("recipient:--\(message.recipient?.profileImage ?? "")")
                 if message.isStatus == 2{
                     cell.lblMessage.text = "\(message.recipient?.name ?? "") Rejected  your invitation."
                 }else{
@@ -429,7 +434,12 @@ extension MessagesFilterVC: UITableViewDelegate,UITableViewDataSource{
                         cell.lblMessage.text = "Media"
                     }
                 }
-                cell.imgVwUser.imageLoad(imageUrl: message.sender?.profileImage ?? "")
+                if message.sender?.profileImage == "" || message.sender?.profileImage == nil{
+                    cell.imgVwUser.image = UIImage(named: "user")
+                }else{
+                    cell.imgVwUser.imageLoad(imageUrl: message.sender?.profileImage ?? "")
+                }
+                print("senderr:--\(message.sender?.profileImage ?? "")")
                 if message.unreadCount ?? 0 > 0{
                     cell.viewMessageCount.isHidden = false
                     cell.lblMessageCount.text = "\(message.unreadCount ?? 0)"
@@ -471,7 +481,7 @@ extension MessagesFilterVC: UITableViewDelegate,UITableViewDataSource{
             }
         }
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if arrUserList.count > 0{
@@ -546,8 +556,8 @@ extension MessagesFilterVC :UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let newString = NSString(string: txtfldSearch.text!).replacingCharacters(in: range, with: string)
-          self.arrUserList.removeAll()
-          self.GetUserList(searchtext: newString, isFilter: true)
+        self.arrUserList.removeAll()
+        self.GetUserList(searchtext: newString, isFilter: true)
         
         return true
         
@@ -560,28 +570,5 @@ extension MessagesFilterVC : UIPopoverPresentationControllerDelegate {
     }
     //UIPopoverPresentationControllerDelegate
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-    }
-}
-// MARK: - timeAgoDisplay
-extension Date {
-    func timeAgoDisplay() -> String {
-        let secondsAgo = Int(Date().timeIntervalSince(self))
-        
-        let minute = 60
-        let hour = 60 * minute
-        let day = 24 * hour
-        let week = 7 * day
-        
-        if secondsAgo < minute {
-            return "just now"
-        } else if secondsAgo < hour {
-            return "\(secondsAgo / minute) min ago"
-        } else if secondsAgo < day {
-            return "\(secondsAgo / hour) hrs ago"
-        } else if secondsAgo < week {
-            return "\(secondsAgo / day) days ago"
-        }
-        
-        return "\(secondsAgo / week) weeks ago"
     }
 }

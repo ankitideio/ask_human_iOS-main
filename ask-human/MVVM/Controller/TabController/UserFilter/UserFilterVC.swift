@@ -28,7 +28,7 @@ class UserFilterVC: UIViewController {
     //MARK: - VARIABLE
     
     var availabilityData: [[String: Any]] = [
-        ["data": [["id": "0", "value": "Male"], ["id": "1", "value": "Female"], ["id": "2", "value": "TS"]], "title": "Gender"],
+        ["data": [["id": "0", "value": "Male"], ["id": "1", "value": "Female"], ["id": "2", "value": "Others"]], "title": "Gender"],
         ["data": [["id": "3", "value": "White"], ["id": "4", "value": "Black"], ["id": "5", "value": "Asian"], ["id": "6", "value": "Indian"], ["id": "7", "value": "Hispanic"], ["id": "8", "value": "Middle Eastern"], ["id": "9", "value": "Other"]], "title": "Ethnicity"],
         ["data": [["id": "10", "value": "Jawan"], ["id": "11", "value": "Munawwar Rangila"], ["id": "12", "value": "Salsabilla"], ["id": "13", "value": "Now Entertainment"]], "title": "Zodiac"],
         ["data": [["id": "14", "value": ""]], "title": "Age"],
@@ -118,7 +118,7 @@ class UserFilterVC: UIViewController {
             arrData.append("Female")
         }
         if Store.filterDetail?["Gender"]?.contains("2") == true{
-            arrData.append("TS")
+            arrData.append("Others")
         }
         print(arrData)
         if Store.isFilterAge == true{

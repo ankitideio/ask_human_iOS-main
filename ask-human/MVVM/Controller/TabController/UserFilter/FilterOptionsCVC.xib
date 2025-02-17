@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FilterOptionsCVC" customModule="ask_human" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="270" height="63"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="270" height="63"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVh-KE-dlq">
+                        <rect key="frame" x="0.0" y="21.666666666666668" width="20" height="20.000000000000004"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="23X-AL-jvh"/>
+                            <constraint firstAttribute="width" constant="20" id="sWD-j7-o5I"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="deSelected"/>
+                        <state key="selected" image="selected"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKy-hq-leT">
+                        <rect key="frame" x="30" y="0.0" width="230" height="63"/>
+                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins Medium" pointSize="13"/>
+                        <color key="textColor" red="0.3294117647" green="0.3294117647" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="gKy-hq-leT" firstAttribute="centerY" secondItem="cVh-KE-dlq" secondAttribute="centerY" id="0Tr-E1-hSz"/>
+                <constraint firstAttribute="trailing" secondItem="gKy-hq-leT" secondAttribute="trailing" constant="10" id="32o-6X-F72"/>
+                <constraint firstItem="gKy-hq-leT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="60O-T6-KjV"/>
+                <constraint firstItem="cVh-KE-dlq" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="J0U-QY-M1L"/>
+                <constraint firstAttribute="bottom" secondItem="gKy-hq-leT" secondAttribute="bottom" id="QGl-7f-f9g"/>
+                <constraint firstItem="cVh-KE-dlq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SiT-QT-o7u"/>
+                <constraint firstItem="gKy-hq-leT" firstAttribute="leading" secondItem="cVh-KE-dlq" secondAttribute="trailing" constant="10" id="yPq-En-nwI"/>
+            </constraints>
+            <size key="customSize" width="270" height="63"/>
+            <connections>
+                <outlet property="btnSelect" destination="cVh-KE-dlq" id="RaT-9a-jKe"/>
+                <outlet property="lblTitle" destination="gKy-hq-leT" id="NfH-c0-f9U"/>
+            </connections>
+            <point key="canvasLocation" x="219.84732824427479" y="-6.6901408450704229"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="deSelected" width="19" height="19"/>
+        <image name="selected" width="19" height="19"/>
+    </resources>
+</document>

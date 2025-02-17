@@ -107,11 +107,15 @@ class AddReviewVC: UIViewController {
             
         }else{
             
-            viewModel.addReview(messageId: messageId, userId: userId, comment: txtVwReview.text ?? "", count: Int(ratingVw.rating)) {
-                
-                self.dismiss(animated: true)
-                self.callBack?()
-
+            viewModel.addReview(messageId: messageId, userId: userId, comment: txtVwReview.text ?? "", count: Int(ratingVw.rating)) { message in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+                vc.modalPresentationStyle = .overFullScreen
+                vc.message = message ?? ""
+                vc.callBack = {
+                    self.dismiss(animated: true)
+                    self.callBack?()
+                }
+                self.navigationController?.present(vc, animated: false)
             }
         }
             }

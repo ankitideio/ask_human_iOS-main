@@ -46,7 +46,7 @@ class ResetPasswordVC: UIViewController {
                 .foregroundColor: placeholderColor
             ]
      txtFldPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
-     txtFldNewPasswrd.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: attributes)
+     txtFldNewPasswrd.attributedPlaceholder = NSAttributedString(string: "Confirm password", attributes: attributes)
      
             txtFldPassword.textColor = .white
             txtFldNewPasswrd.textColor = .white
@@ -62,7 +62,7 @@ class ResetPasswordVC: UIViewController {
                 .foregroundColor: placeholderColor
             ]
      txtFldPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
-     txtFldNewPasswrd.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: attributes)
+     txtFldNewPasswrd.attributedPlaceholder = NSAttributedString(string: "Confirm password", attributes: attributes)
      
             txtFldPassword.textColor = .black
             txtFldNewPasswrd.textColor = .black
@@ -75,21 +75,12 @@ class ResetPasswordVC: UIViewController {
     @IBAction func acionResetPasswrd(_ sender: GradientButton) {
         if txtFldPassword.text == ""{
             showSwiftyAlert("", "Enter your new password", false)
-            
-        }else if txtFldPassword.text?.count ?? 0 < 6{
-            
-            showSwiftyAlert("", "Password must be exactly 6 digits.", false)
-            
-        }else if !isValidPassword(txtFldPassword.text ?? ""){
-            
-            showSwiftyAlert("", "Password must be at least one uppercase letter, one lowercase letter, one digit, and one special character", false)
-            
+        }else if txtFldPassword.text?.count ?? 0 < 6 || !isValidPassword(txtFldPassword.text ?? ""){
+            showSwiftyAlert("", "Password must be at least 6 characters long, and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.", false)
         }else if txtFldNewPasswrd.text == ""{
             showSwiftyAlert("", "Enter your confirm password", false)
         }else if txtFldPassword.text != txtFldNewPasswrd.text{
-                
-                showSwiftyAlert("", "Your password don’t match.", false)
-                
+            showSwiftyAlert("", "Your password don’t match.", false)
         }else{
         
             viewModel.setNewPasswordApi(token: Store.authKey ?? "" , password: txtFldPassword.text ?? "", confirmPassword: txtFldNewPasswrd.text ?? "") { data in

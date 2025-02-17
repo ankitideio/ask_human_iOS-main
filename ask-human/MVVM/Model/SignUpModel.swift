@@ -22,14 +22,14 @@ struct SignUpData: Codable {
 
 // MARK: - User
 struct UserDetail: Codable {
-    let role: String?
+    let role,ethnicity: String?
     let name: String?
     let email: String?
     let profileImage, countryCode: String?
     let mobile,age: Int?
     let password: String?
-    let about: String?
-    let gender: Int?
+    let about,dob: String?
+    let gender,hoursPrice: Int?
     let zodiac, smoke, drink: String?
     let workout, bodytype, deviceID: String?
     let fcmToken: [String]?
@@ -40,7 +40,7 @@ struct UserDetail: Codable {
     let v: Int?
 
     enum CodingKeys: String, CodingKey {
-        case role, name, email, profileImage, countryCode, mobile, password, about, gender, zodiac, age, smoke, drink, workout, bodytype
+        case role, name, email, profileImage, countryCode, mobile, password, about, gender, zodiac, age, smoke, drink, workout, bodytype,ethnicity,hoursPrice,dob
         case deviceID = "deviceId"
         case fcmToken, isApproved, isEmailVerify, isMobileVerify
         case socialID = "socialId"

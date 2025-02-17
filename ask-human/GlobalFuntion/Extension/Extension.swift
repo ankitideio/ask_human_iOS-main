@@ -54,11 +54,7 @@ class CircularProgressBarView: UIView {
         progressLayer.lineCap = .round
         progressLayer.lineWidth = 2  // Reduced line width for smaller view
         progressLayer.strokeEnd = 0
-        if traitCollection.userInterfaceStyle == .dark {
-            progressLayer.strokeColor = UIColor.white.cgColor
-        }else{
-            progressLayer.strokeColor = UIColor.app.cgColor
-        }
+        progressLayer.strokeColor = UIColor.app.cgColor
         layer.addSublayer(progressLayer)
     }
     
@@ -71,7 +67,12 @@ class CircularProgressBarView: UIView {
             height: imageViewSize.height
         )
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "insideCircular") // Replace with your image name
+        
+        if traitCollection.userInterfaceStyle == .dark {
+            imageView.image = UIImage(named: "darkScrol") // Replace with your image name
+        }else{
+            imageView.image = UIImage(named: "insideCircular") // Replace with your image name
+        }
         addSubview(imageView)
     }
     
@@ -460,6 +461,8 @@ extension UIView{
         self.mask = button
 
     }
+   
+
     func gradientButton(_ buttonText: String, startColor: UIColor, endColor: UIColor, textSize: CGFloat, fontFamily: String) {
 
         let button: UIButton = UIButton(frame: self.bounds)
@@ -634,4 +637,39 @@ class CustomSlide: UISlider {
 
 
        }
+}
+// MARK: - Get time of reviews 
+extension Date {
+    func timeAgoDisplay() -> String {
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        
+        let minute = 60
+        let hour = 60 * minute
+        let day = 24 * hour
+        let week = 7 * day
+        let month = 30 * day
+        let year = 12 * month
+        
+        if secondsAgo < minute {
+            return "just now"
+        } else if secondsAgo < hour {
+            let minutes = secondsAgo / minute
+            return "\(minutes) \(minutes == 1 ? "min ago" : "mins ago")"
+        } else if secondsAgo < day {
+            let hours = secondsAgo / hour
+            return "\(hours) \(hours == 1 ? "hour ago" : "hours ago")"
+        } else if secondsAgo < week {
+            let days = secondsAgo / day
+            return "\(days) \(days == 1 ? "day ago" : "days ago")"
+        } else if secondsAgo < month {
+            let weeks = secondsAgo / week
+            return "\(weeks) \(weeks == 1 ? "week ago" : "weeks ago")"
+        } else if secondsAgo < year {
+            let months = secondsAgo / month
+            return "\(months) \(months == 1 ? "month ago" : "months ago")"
+        } else {
+            let years = secondsAgo / year
+            return "\(years) \(years == 1 ? "year ago" : "years ago")"
+        }
+    }
 }

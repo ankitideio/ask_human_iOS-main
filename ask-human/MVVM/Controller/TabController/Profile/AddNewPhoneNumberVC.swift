@@ -9,7 +9,7 @@ import UIKit
 import CountryPickerView
 
 class AddNewPhoneNumberVC: UIViewController {
-
+    @IBOutlet var viewBackCountryPicker: UIView!
     @IBOutlet var widthPhoneCodeVw: NSLayoutConstraint!
     @IBOutlet var viewCountryPicker: CountryPickerView!
     @IBOutlet var viewBackTxtfld: UIView!
@@ -220,7 +220,6 @@ class AddNewPhoneNumberVC: UIViewController {
         super.viewDidLoad()
         txtFldPhone.delegate = self
         viewCountryPicker.showCountryCodeInView = false
-        viewCountryPicker.flagImageView.isHidden = true
         viewCountryPicker.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardWhileClick))
                       tapGesture.cancelsTouchesInView = false
@@ -238,20 +237,20 @@ class AddNewPhoneNumberVC: UIViewController {
     func adjustCountryPickerWidth() {
         if let digits = digits(for: viewCountryPicker.selectedCountry.name) {
             txtFldPhone.maxLength = digits
-            
         }
         let phoneCodeLength = viewCountryPicker.selectedCountry.phoneCode.count
         switch phoneCodeLength {
         case 2:
-            widthPhoneCodeVw.constant = 35
+            widthPhoneCodeVw.constant = 50
         case 3:
-            widthPhoneCodeVw.constant = 45
-        case 4:
             widthPhoneCodeVw.constant = 55
+        case 4:
+            widthPhoneCodeVw.constant = 65
         default:
-            widthPhoneCodeVw.constant = 60
+            widthPhoneCodeVw.constant = 75
         }
     }
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
             super.traitCollectionDidChange(previousTraitCollection)
             if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
@@ -261,8 +260,16 @@ class AddNewPhoneNumberVC: UIViewController {
     func darkMode(){
         if traitCollection.userInterfaceStyle == .dark {
             viewCountryPicker.textColor = .white
-            viewBackTxtfld.borderCol = UIColor(hex: "#D9D9D9")
+            viewBackCountryPicker.borderWid = 1
+            viewBackCountryPicker.borderCol = .white
+            viewBackCountryPicker.layer.cornerRadius = 24
+            viewBackCountryPicker.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+
             viewBackTxtfld.borderWid = 1
+            viewBackTxtfld.borderCol = .white
+            viewBackTxtfld.layer.cornerRadius = 24
+            viewBackTxtfld.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+
             btnBack.setImage(UIImage(named: "keyboard-backspace25"), for: .normal)
             imgVwTitle.image = UIImage(named: "askhumanicondark")
             lblTitle.textColor = .white
@@ -271,12 +278,21 @@ class AddNewPhoneNumberVC: UIViewController {
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]
-            txtFldPhone.attributedPlaceholder = NSAttributedString(string: "Enter your new phone number", attributes: attributes)
+            txtFldPhone.attributedPlaceholder = NSAttributedString(string: "Phone number", attributes: attributes)
             txtFldPhone.textColor = .white
         }else{
-            viewCountryPicker.textColor = .black
-            viewBackTxtfld.borderCol = UIColor(hex: "#9C9C9C")
+            viewCountryPicker.textColor = UIColor(hex: "#707070")
+
+            viewBackCountryPicker.borderWid = 1
+            viewBackCountryPicker.borderCol = .bordercolor
+            viewBackCountryPicker.layer.cornerRadius = 24
+            viewBackCountryPicker.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+
             viewBackTxtfld.borderWid = 1
+            viewBackTxtfld.borderCol = .bordercolor
+            viewBackTxtfld.layer.cornerRadius = 24
+            viewBackTxtfld.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+
             btnBack.setImage(UIImage(named: "back"), for: .normal)
             imgVwTitle.image = UIImage(named: "askhumaniconlight")
             lblTitle.textColor =  UIColor(hex: "#303030")
@@ -285,14 +301,16 @@ class AddNewPhoneNumberVC: UIViewController {
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: placeholderColor
             ]
-            txtFldPhone.attributedPlaceholder = NSAttributedString(string: "Enter your new phone number", attributes: attributes)
+            txtFldPhone.attributedPlaceholder = NSAttributedString(string: "Phone number", attributes: attributes)
             txtFldPhone.textColor = .black
             
         }
         }
     @IBAction func actionCountryPicker(_ sender: UIButton) {
-        viewCountryPicker.showCountriesList(from: self)
-        
+        view.endEditing(true)
+        DispatchQueue.main.async{
+            self.viewCountryPicker.showCountriesList(from: self)
+        }
         
     }
     @IBAction func actionSendCode(_ sender: GradientButton) {
@@ -306,14 +324,16 @@ class AddNewPhoneNumberVC: UIViewController {
         }else{
             
             if let phoneNumberText = txtFldPhone.text, let phoneNumber = Int(phoneNumberText) {
-                viewModel.changePhoneNumberApi(phoneNO: phoneNumber, countryCode: viewCountryPicker.selectedCountry.phoneCode) { data in
-                    
+                let countryCode = viewCountryPicker.selectedCountry.phoneCode.replacingOccurrences(of: "+", with: "")
+                print("Selected Country Code: \(countryCode)")
+                viewModel.changePhoneNumberApi(phoneNO: phoneNumber, countryCode: countryCode) { data in
                     showSwiftyAlert("", "Enter otp: \(data?.otp ?? "")", true)
                     Store.comingOtp = 1
                     if let phoneNumberString = self.txtFldPhone.text, let phoneNumber = Int(phoneNumberString) {
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OtpVC") as! OtpVC
                         vc.mobileNo = phoneNumber
-                        vc.isComing = 0
+                        vc.countryCode = self.viewCountryPicker.selectedCountry.phoneCode
+                        vc.isComing = true
                         self.navigationController?.pushViewController(vc, animated:true)
                     }
                 }
@@ -322,7 +342,6 @@ class AddNewPhoneNumberVC: UIViewController {
         
     }
     @IBAction func actionBack(_ sender: UIButton) {
-        
         SceneDelegate().tabBarProfileVCRoot()
     }
  
@@ -351,25 +370,25 @@ extension AddNewPhoneNumberVC:CountryPickerViewDelegate{
         }
         return nil  // Return nil if country name is not found
     }
-
+    
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: CPVCountry){
         if let digits = digits(for: country.name) {
             txtFldPhone.maxLength = digits
             txtFldPhone.text = ""
         }
+        countryPickerView.font = UIFont.systemFont(ofSize: 15)
         if country.phoneCode.count == 2{
-            widthPhoneCodeVw.constant = 35
+            widthPhoneCodeVw.constant = 50
             
         }else  if country.phoneCode.count == 3{
-            widthPhoneCodeVw.constant = 45
-            
-        }else  if country.phoneCode.count == 4{
             widthPhoneCodeVw.constant = 55
             
+        }else  if country.phoneCode.count == 4{
+            widthPhoneCodeVw.constant = 65
+            
         }else{
-            widthPhoneCodeVw.constant = 60
+            widthPhoneCodeVw.constant = 75
             
         }
     }
-    
-}
+    }

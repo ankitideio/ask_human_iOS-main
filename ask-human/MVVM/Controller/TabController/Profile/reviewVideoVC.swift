@@ -12,13 +12,22 @@ class reviewVideoVC: UIViewController {
     @IBOutlet var btnBack: UIButton!
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblTitleMessage: UILabel!
+    
+    var viewModel = ProfileVM()
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     override func viewWillAppear(_ animated: Bool) {
         darkMode()
+        getProfileApi()
     }
+    func getProfileApi(){
+        viewModel.getProfileApi{ data in
+        }
+
+    }
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
@@ -40,10 +49,12 @@ class reviewVideoVC: UIViewController {
         }
     }
     @IBAction func actionBack(_ sender: UIButton) {
-        SceneDelegate().tabBarHomeVCRoot()
+        SceneDelegate().notificationsRoot(selectTab: 2)
+        
     }
     @IBAction func actionDone(_ sender: GradientButton) {
-        SceneDelegate().tabBarHomeVCRoot()
+        SceneDelegate().notificationsRoot(selectTab: 2)
+        
     }
 
 }

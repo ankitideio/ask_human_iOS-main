@@ -14,8 +14,6 @@ class UserFilterTVC: UITableViewCell{
     
 
     //MARK: - OUTLETS
- 
-
     @IBOutlet weak var slider: RangeSlider!
     @IBOutlet weak var lblMax: UILabel!
     @IBOutlet weak var lblMin: UILabel!

@@ -1,0 +1,11 @@
+framework module DynamsoftMRZScannerBundle {
+  umbrella header "DynamsoftMRZScannerBundle.h"
+
+  export *
+  module * { export * }
+}
+
+module DynamsoftMRZScannerBundle.Swift {
+  header "DynamsoftMRZScannerBundle-Swift.h"
+  requires objc
+}

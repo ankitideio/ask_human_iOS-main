@@ -1,0 +1,6 @@
+framework module DynamsoftLicense {
+  umbrella header "DynamsoftLicense.h"
+
+  export *
+  module * { export * }
+}

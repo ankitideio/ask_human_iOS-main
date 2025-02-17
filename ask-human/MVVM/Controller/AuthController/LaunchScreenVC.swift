@@ -57,15 +57,10 @@ class LaunchScreenVC: UIViewController {
     func SetMode() {
         if Store.DarkMode == 0{
             applyUserInterfaceStyle(.dark)
-            
-            
         } else if Store.DarkMode == 1{
             applyUserInterfaceStyle(.light)
-            
-            
         }else{
             applyUserInterfaceStyle(.unspecified)
-            
         }
     }
   
@@ -95,13 +90,10 @@ class LaunchScreenVC: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+5){
             if Store.autoLogin == "true"{
                 SceneDelegate().tabBarHomeVCRoot()
-                
             }else if Store.autoLogin == "false"{
                 SceneDelegate().loginVCRoot()
             }else{
-                
                 SceneDelegate().loginConfirmVCRoot()
-                
             }
         }
     }

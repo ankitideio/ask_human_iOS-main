@@ -82,7 +82,7 @@ class ProfileVC: UIViewController {
             arrProfile.append(ProfileData(title: "Contact Us", img: "contact"))
             arrProfile.append(ProfileData(title: "All Contracts", img: "contracts"))
             arrProfile.append(ProfileData(title: "Notifications", img: "pinkNotification"))
-             arrProfile.append(ProfileData(title: "Applied Requests", img: "requests"))
+             arrProfile.append(ProfileData(title: "Asked questions", img: "requests"))
             arrProfile.append(ProfileData(title: "All Disputes", img: "dispute"))
             arrProfile.append(ProfileData(title: "Transaction History", img: "transection"))
             arrProfile.append(ProfileData(title: "Earnings", img: "dollr"))
@@ -168,7 +168,7 @@ class ProfileVC: UIViewController {
     }
     @IBAction func actionEdit(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetailVC") as! ProfileDetailVC
-        vc.isComing = 1
+        vc.isComing = false
         vc.callBack = {
          self.getProfileApi()
       

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+<application>
+    <meta-data
+        ios:name="dynamsoft-code-parser-dedicator-version"
+        ios:value="1.2.30" />
+</application>
+</manifest>
+

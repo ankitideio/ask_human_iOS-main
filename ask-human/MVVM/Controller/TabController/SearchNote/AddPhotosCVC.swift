@@ -9,6 +9,7 @@ import UIKit
 
 class AddPhotosCVC: UICollectionViewCell {
     
+    @IBOutlet var imgVwCross: UIImageView!
     @IBOutlet weak var imgVwPlay: UIImageView!
     @IBOutlet weak var btnCross: UIButton!
     @IBOutlet weak var imgVwUpload: UIImageView!

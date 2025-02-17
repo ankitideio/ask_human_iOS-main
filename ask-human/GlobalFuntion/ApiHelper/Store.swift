@@ -9,18 +9,33 @@ import Foundation
 import UIKit
 
 class Store {
+    class var languages: [String]?{
+        set{
+            Store.saveValue(newValue, .languages)
+        }get{
+            return Store.getValue(.languages) as? [String]
+        }
+    }
+    class var userHashtags: GetSearchData?{
+        set{
+            Store.saveUserDetails(newValue, .userDetails)
+        }get{
+            return Store.getUserDetails(.userDetails)
+        }
+    }
+    class var question: String?{
+        set{
+            Store.saveValue(newValue, .question)
+        }get{
+            return Store.getValue(.question) as? String
+        }
+    }
+
     class var nationality: String?{
         set{
             Store.saveValue(newValue, .nationality)
         }get{
             return Store.getValue(.nationality) as? String
-        }
-    }
-    class var hashtagForSearchUser: [String]?{
-        set{
-            Store.saveValue(newValue, .hashtagForSearchUser)
-        }get{
-            return Store.getValue(.hashtagForSearchUser) as? [String]
         }
     }
     class var Hashtags:ProfileDetailModel? {
@@ -31,6 +46,15 @@ class Store {
             return Store.getUserDetails(.Hashtags)
         }
         }
+    class var storeLanguages:[Languagez]? {
+        set{
+            Store.saveUserDetails(newValue, .storeLanguages)
+        }
+        get{
+            return Store.getUserDetails(.storeLanguages)
+        }
+        }
+
     class var DarkMode: Int?{
         set{
             Store.saveValue(newValue, .DarkMode)
@@ -38,7 +62,20 @@ class Store {
             return Store.getValue(.DarkMode) as? Int
         }
     }
-
+    class var ScrollviewCurrentOffset: Double?{
+        set{
+            Store.saveValue(newValue, .ScrollviewCurrentOffset)
+        }get{
+            return Store.getValue(.ScrollviewCurrentOffset) as? Double
+        }
+    }
+    class var searchHastag: [String]?{
+        set{
+            Store.saveValue(newValue, .searchHastag)
+        }get{
+            return Store.getValue(.searchHastag) as? [String]
+        }
+    }
     class var userIdRefer: String?{
         set{
             Store.saveValue(newValue, .userIdRefer)
@@ -129,7 +166,22 @@ class Store {
             return Store.getValue(.filterDetail) as? [String:[String]] ?? [:]
         }
     }
- 
+    class var filterMinMaxValues: [String:String]?{
+        set{
+            Store.saveValue(newValue, .filterMinMaxValues)
+        }get{
+            return Store.getValue(.filterMinMaxValues) as? [String:String] ?? [:]
+        }
+    }
+    class var filterGender: [String:[Int]]?{
+        set{
+            Store.saveValue(newValue, .filterGender)
+        }get{
+            return Store.getValue(.filterGender) as? [String:[Int]] ?? [:]
+        }
+    }
+
+
     class var selectFilter: [[String:Any]]?{
         set{
             Store.saveValue(newValue, .selectFilter)

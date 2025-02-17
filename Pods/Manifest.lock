@@ -6,9 +6,29 @@ PODS:
   - Charts/Core (4.1.0):
     - SwiftAlgorithms (~> 1.0)
   - CountryPickerView (3.3.0)
-  - DocumentReader (7.5.4221):
-    - RegulaCommon (= 7.5.935)
-  - DocumentReaderFullRFID (7.5.11009)
+  - DynamsoftCameraEnhancer (4.2.21)
+  - DynamsoftCaptureVisionRouter (2.4.30)
+  - DynamsoftCodeParser (2.4.30)
+  - DynamsoftCodeParserDedicator (1.2.30)
+  - DynamsoftCore (3.4.30)
+  - DynamsoftImageProcessing (2.4.30)
+  - DynamsoftLabelRecognizer (3.4.30)
+  - DynamsoftLicense (3.4.40)
+  - DynamsoftMRZ (3.4.20)
+  - DynamsoftMRZScannerBundle (2.0.0):
+    - DynamsoftCameraEnhancer (= 4.2.21)
+    - DynamsoftCaptureVisionRouter (= 2.4.30)
+    - DynamsoftCodeParser (= 2.4.30)
+    - DynamsoftCodeParserDedicator (= 1.2.30)
+    - DynamsoftCore (= 3.4.30)
+    - DynamsoftImageProcessing (= 2.4.30)
+    - DynamsoftLabelRecognizer (= 3.4.30)
+    - DynamsoftLicense (= 3.4.40)
+    - DynamsoftMRZ (= 3.4.20)
+    - DynamsoftNeuralNetwork (= 1.0.20)
+    - DynamsoftUtility (= 1.4.30)
+  - DynamsoftNeuralNetwork (1.0.20)
+  - DynamsoftUtility (1.4.30)
   - Firebase (11.1.0):
     - Firebase/Core (= 11.1.0)
   - Firebase/Analytics (11.1.0):
@@ -119,7 +139,62 @@ PODS:
     - GoogleUtilities/Privacy
   - IQKeyboardManagerSwift (7.1.1)
   - Kingfisher (7.12.0)
+  - MaterialComponents/AnimationTiming (124.2.0)
+  - MaterialComponents/Availability (124.2.0)
+  - MaterialComponents/Elevation (124.2.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (124.2.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Palettes (124.2.0)
+  - MaterialComponents/private/Application (124.2.0)
+  - MaterialComponents/private/Color (124.2.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/Math (124.2.0)
+  - MaterialComponents/private/ThumbTrack (124.2.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Ripple (124.2.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (124.2.0)
+  - MaterialComponents/ShadowLayer (124.2.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (124.2.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (124.2.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/Slider (124.2.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/ThumbTrack
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Typography (124.2.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+    - MDFTextAccessibility
   - MBCircularProgressBar (0.3.5)
+  - MBDocCapture (0.1.4)
+  - MDFInternationalization (3.0.0)
+  - MDFTextAccessibility (2.0.1)
+  - MultiSlider (2.2.0):
+    - SweeterSwift
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -129,13 +204,14 @@ PODS:
     - NVActivityIndicatorView/Base (= 5.2.0)
   - NVActivityIndicatorView/Base (5.2.0)
   - OTPInputView (0.1.2)
+  - PPBlinkID (6.13.0)
   - PromisesObjC (2.4.0)
   - RangeSeekSlider (1.8.0)
   - RangeUISlider (4.0.1)
-  - RegulaCommon (7.5.935)
   - Socket.IO-Client-Swift (16.1.0):
     - Starscream (~> 4.0.6)
   - Starscream (4.0.8)
+  - SweeterSwift (1.2.6)
   - SwiftAlgorithms (1.0.0)
   - SwiftGifOrigin (1.7.0)
   - SwiftMessages (10.0.0):
@@ -144,14 +220,15 @@ PODS:
   - SwiftRangeSlider (2.0.0)
   - SwiftyJSON (5.0.2)
   - TOCropViewController (2.7.4)
+  - WeScan (1.7.0)
+  - YesWeScan (2.2.2)
 
 DEPENDENCIES:
   - AlignedCollectionViewFlowLayout
   - ChartProgressBar
   - Charts
   - CountryPickerView
-  - DocumentReader
-  - DocumentReaderFullRFID
+  - DynamsoftMRZScannerBundle
   - Firebase
   - Firebase/Analytics
   - Firebase/Messaging
@@ -161,9 +238,13 @@ DEPENDENCIES:
   - GoogleSignInSwift
   - IQKeyboardManagerSwift
   - Kingfisher
+  - MaterialComponents/Slider
   - MBCircularProgressBar
+  - MBDocCapture
+  - MultiSlider
   - NVActivityIndicatorView
   - OTPInputView
+  - PPBlinkID
   - RangeSeekSlider
   - RangeUISlider
   - Socket.IO-Client-Swift
@@ -172,6 +253,8 @@ DEPENDENCIES:
   - SwiftRangeSlider
   - SwiftyJSON
   - TOCropViewController
+  - WeScan
+  - YesWeScan
 
 SPEC REPOS:
   trunk:
@@ -179,8 +262,18 @@ SPEC REPOS:
     - ChartProgressBar
     - Charts
     - CountryPickerView
-    - DocumentReader
-    - DocumentReaderFullRFID
+    - DynamsoftCameraEnhancer
+    - DynamsoftCaptureVisionRouter
+    - DynamsoftCodeParser
+    - DynamsoftCodeParserDedicator
+    - DynamsoftCore
+    - DynamsoftImageProcessing
+    - DynamsoftLabelRecognizer
+    - DynamsoftLicense
+    - DynamsoftMRZ
+    - DynamsoftMRZScannerBundle
+    - DynamsoftNeuralNetwork
+    - DynamsoftUtility
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -196,30 +289,48 @@ SPEC REPOS:
     - GoogleUtilities
     - IQKeyboardManagerSwift
     - Kingfisher
+    - MaterialComponents
     - MBCircularProgressBar
+    - MBDocCapture
+    - MDFInternationalization
+    - MDFTextAccessibility
+    - MultiSlider
     - nanopb
     - NVActivityIndicatorView
     - OTPInputView
+    - PPBlinkID
     - PromisesObjC
     - RangeSeekSlider
     - RangeUISlider
-    - RegulaCommon
     - Socket.IO-Client-Swift
     - Starscream
+    - SweeterSwift
     - SwiftAlgorithms
     - SwiftGifOrigin
     - SwiftMessages
     - SwiftRangeSlider
     - SwiftyJSON
     - TOCropViewController
+    - WeScan
+    - YesWeScan
 
 SPEC CHECKSUMS:
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   ChartProgressBar: 1fe24fc286de1a3a8d02dcbdf6bc779c8e85865b
   Charts: ce0768268078eee0336f122c3c4ca248e4e204c5
   CountryPickerView: 6322ada32a80b0cd721b0267282a5c24f406f263
-  DocumentReader: 972979da2ff7c8122c7a1c926127e84877c5b24d
-  DocumentReaderFullRFID: 02e9bad897ae1b7ef980a0344171959e3c09ac21
+  DynamsoftCameraEnhancer: 4569ffa7ed0a8f31d0ed8c0e2089224d2904eee8
+  DynamsoftCaptureVisionRouter: 4e2fb20b7f0aae3b8709b6ff56713decb599e4ea
+  DynamsoftCodeParser: 7a8118c0bcd21bc849aaf7427f4088c2ea15d9a6
+  DynamsoftCodeParserDedicator: baa514940d7f5310e4a5f5d04eb59bb8282c1c8a
+  DynamsoftCore: 7b4ba6658f14d99aab9cc8e6ff2bc847909103ff
+  DynamsoftImageProcessing: 9c8e8deae9165693ec4ba4499a835a5609659fbb
+  DynamsoftLabelRecognizer: e05eed966b67d99dc8189ef74383a7454de37377
+  DynamsoftLicense: 4eabe8e077a64b38c8fdcf6177236bc018bac9a0
+  DynamsoftMRZ: 2f1983c9eb81d23bedbe80e56d6ff44136c3f43c
+  DynamsoftMRZScannerBundle: bf726d595fb0588095d66854105722b5c2c62c3d
+  DynamsoftNeuralNetwork: 281373d04b236f4616f2f607b6266f0393d906e5
+  DynamsoftUtility: 0cea6058495725a9bdfff664f952785d81ab274e
   Firebase: fdb3bd378401f26a7adfcf446b0a630f8c20c0e8
   FirebaseAnalytics: 9fcdb2e9844174bb405b34cc47092c9b91993d83
   FirebaseCore: 6e2a2782e234b14d48e880ed369ac55cda87fed7
@@ -235,23 +346,31 @@ SPEC CHECKSUMS:
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   IQKeyboardManagerSwift: d7f3d3a562c237a0e7335e657cd598c452f57f1b
   Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
+  MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MBCircularProgressBar: 0b795b722a5eb5b0923822f90474e2576a1a7855
+  MBDocCapture: 08165ce6f820559fd0280976c27a7e77d44f9760
+  MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
+  MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
+  MultiSlider: 9667217199a051fa729bf54986d68fb9b911554c
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
   OTPInputView: 8a7cc613e29d264f799d121169d00a745cae4c00
+  PPBlinkID: 9533f80cab3f83f17b387c0dc8edfefdf67fa712
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   RangeUISlider: 52e6e0b9b1a7d62e5a1cf0ec68dbb420e1c5f8b5
-  RegulaCommon: 2a6406d2d3ebbd720b66a9cfa5b9631701d343eb
   Socket.IO-Client-Swift: ee4b8f80a3db18dd7f32b266ddf273310609443c
   Starscream: 19b5533ddb925208db698f0ac508a100b884a1b9
+  SweeterSwift: 1eca266517c703d7376e723a21926f5cb2ba4d0f
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   SwiftMessages: d3540f0f981dfbac25bd2ae9a662effa48f76f92
   SwiftRangeSlider: f86e3b637c961120158fa1a89277c8343845cbe4
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654
+  WeScan: fed582f6c38014d529afb5aa9ffd1bad38fc72b7
+  YesWeScan: ad8be3cc6499d162b9be8a14dfe5080aca6305d1
 
-PODFILE CHECKSUM: 026071d9df288e820311cca5e5a8eb14f302c4ca
+PODFILE CHECKSUM: 0cc0e98072f2018ebec2f6ebf1ab88dd65ba24a9
 
 COCOAPODS: 1.16.2

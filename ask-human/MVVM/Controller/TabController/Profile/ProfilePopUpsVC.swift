@@ -16,7 +16,12 @@ class ProfilePopUpsVC: UIViewController {
     var isSelect = 1
     var filterIndex = 0
     var type = ""
-    
+    let zodiacSigns = [
+        "Aries", "Taurus", "Gemini", "Cancer",
+        "Leo", "Virgo", "Libra", "Scorpio",
+        "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+    ]
+    var selectedTitle = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         uiSet()
@@ -27,7 +32,7 @@ class ProfilePopUpsVC: UIViewController {
          if isSelect == 1{
             arrTitle.append("Male")
             arrTitle.append("Female")
-            arrTitle.append("TS")
+            arrTitle.append("Others")
             
         }else if isSelect == 2{
             arrTitle.append("White")
@@ -92,6 +97,8 @@ class ProfilePopUpsVC: UIViewController {
            arrTitle.append("Driving License")
            arrTitle.append("Country ID")
            
+       }else if isSelect == 20{
+           arrTitle.append(contentsOf: zodiacSigns)
        }else{
             arrTitle.append("Slim")
             arrTitle.append("Fit")
@@ -123,7 +130,6 @@ extension ProfilePopUpsVC: UITableViewDelegate,UITableViewDataSource{
         if traitCollection.userInterfaceStyle == .dark {
             
             if isSelect == 9 || isSelect == 11 || isSelect == 12{
-                
                 if indexPath.row == filterIndex{
                     cell.widthImgVwTick.constant = 15
                     cell.lblTitle.textColor = UIColor(hex: "#830D9A")
@@ -132,7 +138,13 @@ extension ProfilePopUpsVC: UITableViewDelegate,UITableViewDataSource{
                     cell.lblTitle.textColor = .white
                 }
             }else{
-                cell.lblTitle.textColor = .white
+                if arrTitle[indexPath.row] == selectedTitle {
+                    cell.viewBack.backgroundColor = .app
+                    cell.lblTitle.textColor = .white
+                }else{
+                    cell.viewBack.backgroundColor = .clear
+                    cell.lblTitle.textColor = .white
+                }
                 cell.widthImgVwTick.constant = 0
             }
         }else{
@@ -145,17 +157,36 @@ extension ProfilePopUpsVC: UITableViewDelegate,UITableViewDataSource{
                     cell.lblTitle.textColor = .black
                 }
             }else{
-                cell.lblTitle.textColor = .black
+                if arrTitle[indexPath.row] == selectedTitle {
+                    cell.viewBack.backgroundColor = .app
+                    cell.lblTitle.textColor = .white
+                }else{
+                    cell.viewBack.backgroundColor = .clear
+                    cell.lblTitle.textColor = .black
+                }
                 cell.widthImgVwTick.constant = 0
             }
         }
+        
         cell.lblTitle.text = arrTitle[indexPath.row]
-    
+//        if arrTitle[indexPath.row] == selectedTitle {
+//            cell.viewBack.backgroundColor = .app 
+//            cell.lblTitle.textColor = .white
+//        } else {
+//            if traitCollection.userInterfaceStyle == .dark {
+//                cell.viewBack.backgroundColor = .clear
+//                cell.lblTitle.textColor = .white
+//
+//            }else{
+//                cell.viewBack.backgroundColor = .clear
+//                cell.lblTitle.textColor = .black
+//            }
+//        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
      
-            return 35
+            return 45
         
     }
     

@@ -26,6 +26,7 @@ class VideoIdentificationVC: UIViewController, AVCaptureFileOutputRecordingDeleg
     var remainingTime: Int = 15
     var timer: Timer?
     var videoURL: URL?
+    var viewModelProfile = ProfileVM()
     var viewModel = VideoVerificationVM()
     var captureSession: AVCaptureSession!
     var videoOutput: AVCaptureMovieFileOutput!
@@ -185,9 +186,11 @@ class VideoIdentificationVC: UIViewController, AVCaptureFileOutputRecordingDeleg
                 vc.modalPresentationStyle = .overFullScreen
                 vc.message = message
                 vc.callBack = {
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "reviewVideoVC") as! reviewVideoVC
-        //            vc.videoURL = outputFileURL
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.viewModelProfile.getProfileApi{ data in
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "reviewVideoVC") as! reviewVideoVC
+                        //            vc.videoURL = outputFileURL
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
                 self.navigationController?.present(vc, animated: false)
                
@@ -195,11 +198,10 @@ class VideoIdentificationVC: UIViewController, AVCaptureFileOutputRecordingDeleg
            
         }
     }
- 
+
     
     @IBAction func actionStop(_ sender: UIButton) {
         if status == 1{
-           
             setupCaptureSession()
             setupPreviewLayer()
             startCaptureSession()

@@ -65,7 +65,7 @@ class AddNewEmailVC: UIViewController {
         }
         }
     @IBAction func actionBack(_ sender: UIButton) {
-        SceneDelegate().tabBarProfileVCRoot()
+        self.navigationController?.popViewController(animated: true)
     }
     @IBAction func actionSendCode(_ sender: GradientButton) {
         if txtFldEmail.text == ""{
