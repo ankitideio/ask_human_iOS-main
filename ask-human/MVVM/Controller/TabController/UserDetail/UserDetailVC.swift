@@ -25,6 +25,7 @@ class UserDetailVC: UIViewController {
     @IBOutlet weak var tblVwReview: UITableView!
     
     //MARK: - variables
+    //var hlooo = 0
     var indexx = 0
     var viewModel = InvitationVM()
     var userId = ""
