@@ -49,6 +49,7 @@ class UserDetailVC: UIViewController {
     @IBOutlet weak var tblVwReview: UITableView!
     
     //MARK: - variables
+    var callBack:(()->())?
     var gender:String?
     var arrUserDetails = [UserDetailz]()
     var arrLanguages = [Languages]()
@@ -85,6 +86,7 @@ class UserDetailVC: UIViewController {
         registedNibs()
         tblVwReview.estimatedRowHeight = 70
         tblVwReview.rowHeight = UITableView.automaticDimension
+        
         if isRefer == true{
             btnSendInvitation.setTitle("Send Refer", for: .normal)
         }else{
@@ -223,7 +225,7 @@ class UserDetailVC: UIViewController {
                 lblGender.text = "Others"
             }
             self.lblPrice.text = "$\(data?.user?.hoursPrice ?? 0)"
-            self.ratingView.rating = Double(data?.user?.rating ?? 0)
+            self.ratingView.rating = data?.user?.rating ?? 0
             self.lblChatCount.text = "\(data?.user?.chatCount ?? 0)"
            // self.arrUserDetails.append(UserDetailz(title: self.gender, image: isDarkMode ? "genderDark" : "gender"))
             self.arrUserDetails.append(UserDetailz(title: "\(data?.user?.age ?? 0) Years", image: isDarkMode ? "ageDark" : "age"))
@@ -269,6 +271,7 @@ class UserDetailVC: UIViewController {
     
     @IBAction func actionBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+        callBack?()
     }
     @IBAction func actionAddReview(_ sender: UIButton) {
 //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddReviewVC") as! AddReviewVC

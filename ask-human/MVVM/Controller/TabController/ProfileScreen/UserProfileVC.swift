@@ -67,6 +67,7 @@ class UserProfileVC: UIViewController {
     var arrContent = [ContentPolicies]()
     var isSelectView = true
     
+    
     //MARK: - view life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

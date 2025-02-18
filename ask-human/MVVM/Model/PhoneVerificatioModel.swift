@@ -15,7 +15,7 @@ struct PhoneVerificatioModel: Codable {
 
 // MARK: - DataClass
 struct VerificationData: Codable {
-    let userDetails: UserDetails?
+    let user: UserDetails?
     let token: String?
 }
 
@@ -24,10 +24,10 @@ struct UserDetails: Codable {
     let id: String?
     let name: String?
     let email: String?
-    let mobile: Int?
+    let mobile,profileComplete: Int?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case name, email, mobile
+        case name, email, mobile,profileComplete
     }
 }

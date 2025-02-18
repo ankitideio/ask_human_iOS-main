@@ -45,6 +45,7 @@ var newHashtags = [String]()
 var isLanguageExist = false
 var isReload = false
 
+
 //MARK: - StoryBoard
 enum AppStoryboard: String{
     case Main = "Main"

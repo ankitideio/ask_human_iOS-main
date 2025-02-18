@@ -166,7 +166,7 @@ class AddBankVC: UIViewController {
                     vc.isComing = false
                     vc.message = message ?? ""
                     vc.callBack = {
-                        self.navigationController?.popViewController(animated: true)
+                        SceneDelegate().tabBarProfileVCRoot()
                     }
                     self.navigationController?.present(vc, animated: false)
                 
@@ -176,6 +176,7 @@ class AddBankVC: UIViewController {
     
  
 }
+
 extension AddBankVC:UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == txtFldHolderName {

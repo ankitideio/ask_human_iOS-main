@@ -30,7 +30,7 @@ class OtpVC: UIViewController {
     var viewModelProfile = ProfileVM()
     var timer: Timer?
     var remainingTime: Int = 60
-    var mobileOtp,profileComplete:Int?
+    var mobileOtp:Int?
     var isSignup = false
     var isComing = false
     override func viewDidLoad() {
@@ -149,8 +149,7 @@ class OtpVC: UIViewController {
             }
         }else{
             viewModel.phoneVerificationApi(phone: String(mobileNo ?? 0), countryCode: countryCode ?? "", otp: String(otp ?? 0)){ data in
-                if self.profileComplete == 0{
-                    print("Store.authKe:--000\(Store.authKey ?? "")")
+                if data?.user?.profileComplete == 0{
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
                     vc.mobileNo = self.mobileNo
                     vc.countryCode = Int(self.countryCode ?? "")

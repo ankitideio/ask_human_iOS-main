@@ -32,8 +32,9 @@ struct UserDeatil: Codable {
     let zodiac: String?
     let age,chatCount: Int?
     let isOnline:Bool?
+    let rating:Double?
     let smoke, drink, bodytype,badge: String?
-    let videoVerify,hoursPrice,rating:Int?
+    let videoVerify,hoursPrice:Int?
     let reviews: [Review]?
     let hashtags: [Hashtagz]?
     let languages: [Languages]?

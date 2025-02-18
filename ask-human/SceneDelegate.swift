@@ -113,6 +113,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
       
     }
+    func chatScreenVCRoot(){
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let nextVC = mainStoryBoard.instantiateViewController(withIdentifier: "ChatScreenVC") as! ChatScreenVC
+        let nav = UINavigationController.init(rootViewController: nextVC)
+        nav.isNavigationBarHidden = true
+        UIApplication.shared.windows.first?.rootViewController = nav
+        
+    }
 
     func tabBarProfileVCRoot(){
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)

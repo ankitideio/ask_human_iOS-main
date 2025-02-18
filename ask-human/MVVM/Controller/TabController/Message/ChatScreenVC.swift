@@ -599,9 +599,9 @@ class ChatScreenVC: UIViewController,UIImagePickerControllerDelegate , UINavigat
         if isComingDispute == "Dispute"{
             self.navigationController?.popViewController(animated: true)
         }else if isComingDispute == "userList"{
-            SceneDelegate().notificationsRoot(selectTab: 0)
+            SceneDelegate().notificationsRoot(selectTab: 1)
         }else if isComingDispute == "Notification"{
-            SceneDelegate().notificationsRoot(selectTab: 0)
+            SceneDelegate().notificationsRoot(selectTab: 1)
         }else{
             //            SceneDelegate().notificationsRoot(selectTab: 1)
             self.navigationController?.popViewController(animated: true)
@@ -783,10 +783,11 @@ class ChatScreenVC: UIViewController,UIImagePickerControllerDelegate , UINavigat
         }
     }
     @IBAction func actionReffer(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewTabBarVC") as! NewTabBarVC
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as! UserListVC
         Store.selectReferData = ["notificationId":notificationId,"notesId":notesId,"messageId":messageId]
-        Store.selectTabIndex = 0
-        vc.isComing = true
+        //Store.selectTabIndex = 0
+        //vc.isComing = true
         Store.isRefer = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

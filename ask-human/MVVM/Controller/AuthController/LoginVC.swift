@@ -416,7 +416,6 @@ class LoginVC: UIViewController {
                        Store.comingOtp = 0
                        vc.mobileNo = data?.user?.mobile ?? 0
                        vc.countryCode = data?.user?.countryCode ?? ""
-                       vc.profileComplete = data?.user?.profileComplete ?? 0
                        self.navigationController?.pushViewController(vc, animated:true)
                    }
            }

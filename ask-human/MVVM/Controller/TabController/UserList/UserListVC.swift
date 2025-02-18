@@ -62,15 +62,15 @@ class UserListVC: UIViewController,UIAdaptivePresentationControllerDelegate{
     var limit = 10
     var totalPages = 0
     var arrMedia = [Any]()
-    
+    var isLongPress = false
     //MARK: - LIFE CYCLE METHOD
     override func viewDidLoad() {
         super.viewDidLoad()
         uiSet()
         collVwAlignment()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
+        
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         longPressGesture.minimumPressDuration = 0.5
         longPressGesture.delegate = self
@@ -83,8 +83,12 @@ class UserListVC: UIViewController,UIAdaptivePresentationControllerDelegate{
         txtVwQuestion.delegate = self
         getTrendingHahstagApi()
         if Store.isRefer == true{
+            txtVwQuestion.isUserInteractionEnabled = false
             btnSentInvitationAndRefer.setTitle("Send Refer", for: .normal)
         }else{
+            txtVwQuestion.isUserInteractionEnabled = true
+            let tapGestureTextview = UITapGestureRecognizer(target: self, action: #selector(handleTapOnTextView))
+            txtVwQuestion.addGestureRecognizer(tapGestureTextview)
             btnSentInvitationAndRefer.setTitle("Send Invitation", for: .normal)
         }
         darkMode()
@@ -96,17 +100,12 @@ class UserListVC: UIViewController,UIAdaptivePresentationControllerDelegate{
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOnSearchView))
         viewSearch.addGestureRecognizer(tapGesture)
         
-        let tapGestureTextview = UITapGestureRecognizer(target: self, action: #selector(handleTapOnTextView))
-        txtVwQuestion.addGestureRecognizer(tapGestureTextview)
-        
-        
         let nib2 = UINib(nibName: "AddHashtagCVC", bundle: nil)
         collVwHashtag.register(nib2, forCellWithReuseIdentifier: "AddHashtagCVC")
         let nibTblVw = UINib(nibName: "NewUserListTVC", bundle: nil)
         tblVwUserList.register(nibTblVw, forCellReuseIdentifier: "NewUserListTVC")
         
         getUserListApi(isLoader: true)
-        
     }
     //MARK: - adjustTextViewHeight
     private func adjustTextViewHeight() {
@@ -282,7 +281,8 @@ class UserListVC: UIViewController,UIAdaptivePresentationControllerDelegate{
         uiSet()
     }
     @IBAction func actionClose(_ sender: UIButton) {
-        SceneDelegate().userListRootneww()
+        isLongPress = false
+    SceneDelegate().userListRootneww()
     }
     @IBAction func actionBack(_ sender: UIButton) {
         if Store.isRefer == true{
@@ -292,32 +292,37 @@ class UserListVC: UIViewController,UIAdaptivePresentationControllerDelegate{
         }
     }
     @IBAction func actionSentInvitation(_ sender: UIButton) {
-        if Store.isRefer == true{
-            viewModelInvie.sendReferInvitation(notesId: Store.selectReferData?["notesId"] as? String ?? "", notificationId: Store.selectReferData?["notificationId"] as? String ?? "", referTo: arrSelectedUserIds, messageId: Store.selectReferData?["messageId"] as? String ?? "") { message in
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                vc.modalPresentationStyle = .overFullScreen
-                Store.selectReferData = nil
-                vc.message = message ?? ""
-                vc.callBack = {
-                    SceneDelegate().tabBarHomeVCRoot()
-                }
-                self.navigationController?.present(vc, animated: false)
-            }
-            
+        if arrSelectedUserIds.isEmpty{
+            showSwiftyAlert("", "No user selected", false)
         }else{
-            viewModelInvie.sendMultipleInvitationsApi(inviteId: arrSelectedUserIds, notesId: Store.notesId ?? "") { message in
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
-                vc.modalPresentationStyle = .overFullScreen
-                vc.message = message
-                vc.callBack = {
-                    SceneDelegate().tabBarHomeVCRoot()
+            if Store.isRefer == true{
+                viewModelInvie.sendReferInvitation(notesId: Store.selectReferData?["notesId"] as? String ?? "", notificationId: Store.selectReferData?["notificationId"] as? String ?? "", referTo: arrSelectedUserIds, messageId: Store.selectReferData?["messageId"] as? String ?? "") { message in
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+                    vc.modalPresentationStyle = .overFullScreen
+                    Store.selectReferData = nil
+                    vc.message = message ?? ""
+                    vc.callBack = {
+                        SceneDelegate().tabBarHomeVCRoot()
+                    }
+                    self.navigationController?.present(vc, animated: false)
                 }
-                self.navigationController?.present(vc, animated: false)
+                
+            }else{
+                viewModelInvie.sendMultipleInvitationsApi(inviteId: arrSelectedUserIds, notesId: Store.notesId ?? "") { message in
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ResponsePopUpVC") as! ResponsePopUpVC
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.message = message
+                    vc.callBack = {
+                        SceneDelegate().tabBarHomeVCRoot()
+                    }
+                    self.navigationController?.present(vc, animated: false)
+                }
             }
         }
     }
     
     @IBAction func cancelAllItemSelected(_ sender: UIButton) {
+        isLongPress = false
         SceneDelegate().userListRootneww()
     }
     @IBAction func actionFilter(_ sender: UIButton) {
@@ -391,7 +396,7 @@ extension UserListVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             self.viewAppliedHahstag.isHidden = true
             self.vwAllUserList.isHidden = true
             self.stackVwBelowBtns.isHidden = false
-            self.heightStackVwBelowBtns.constant = 76
+            self.heightStackVwBelowBtns.constant = 55
             self.vwSearch.isHidden = true
             self.vwItemSelected.isHidden = false
             self.txtVwQuestion.isHidden = true
@@ -532,14 +537,20 @@ extension UserListVC: UITableViewDelegate,UITableViewDataSource{
     }
     
     @objc func actionAsk(sender:UIButton){
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailVC") as! UserDetailVC
-        if arrSearchUser.count > 0{
+        if !isLongPress{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailVC") as! UserDetailVC
             vc.userId = arrSearchUser[sender.tag].id ?? ""
             vc.isRefer = Store.isRefer ?? false
+            vc.callBack = { [weak self] in
+                guard let self = self else { return }
+                viewWillAppear(true)
+                viewDidLoad()
+                collVwAlignment()
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        self.navigationController?.pushViewController(vc, animated: true)
-        
     }
+    
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         
         if gesture.state == .ended {
@@ -557,6 +568,7 @@ extension UserListVC: UITableViewDelegate,UITableViewDataSource{
                         cell.viewBAck.borderWid = 0
                         cell.viewBAck.borderCol = .clear
                     }
+                    print("handleTaparrSelectedUserIds:-\(arrSelectedUserIds)")
                 }
             }
         }
@@ -575,7 +587,7 @@ extension UserListVC: UITableViewDelegate,UITableViewDataSource{
                 
             }
         }
-        
+        print("toggleSelectionarrSelectedUserIds:-\(arrSelectedUserIds)")
         updateSelectionUI()
         lblIemSelectedCount.text = "\(arrSelectedUserIds.count) Items Selected"
     }
@@ -584,6 +596,7 @@ extension UserListVC: UITableViewDelegate,UITableViewDataSource{
         if gesture.state == .began {
             let point = gesture.location(in: tblVwUserList)
             if let indexPath = tblVwUserList.indexPathForRow(at: point) {
+                isLongPress = true
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
                 tapGesture.delegate = self
                 tblVwUserList.addGestureRecognizer(tapGesture)
@@ -597,6 +610,7 @@ extension UserListVC: UITableViewDelegate,UITableViewDataSource{
                 updateSelectionUI()
                 lblIemSelectedCount.text = "\(arrSelectedUserIds.count) Items Selected"
                 tblVwUserList.reloadData()
+                print("handleLongPressarrSelectedUserIds:-\(arrSelectedUserIds)")
             }
         }
     }
